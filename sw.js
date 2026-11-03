@@ -1,5 +1,5 @@
 // Euphoria Estilo — funciona offline
-const CACHE = 'euphoria-80c27808';
+const CACHE = 'euphoria-555ac728';
 const ARQUIVOS = ["./", "index.html", "fotos.js", "figura.webp", "manifest.json", "icon-192.png", "icon-512.png", "icon-maskable-512.png"];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(ARQUIVOS)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
