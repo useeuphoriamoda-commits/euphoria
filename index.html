@@ -470,6 +470,33 @@ body.modo-capa { background: #0B0A0B; }
 .pin-box .inp { width: 100%; }
 .navb-lock { border: 1px solid var(--line); }
 .painel-eq { display: grid; gap: 20px; padding: 28px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+
+/* ===== Meus Looks (vitrine) ===== */
+.capa-ola { margin: 0; font: 400 20px var(--f-marca); color: var(--pink); letter-spacing: .04em; }
+.capa-cont { align-self: flex-start; background: none; border: 1px solid rgba(255,255,255,.3); color: #fff; border-radius: 999px; padding: 12px 20px; font: 500 15px var(--f-body); cursor: pointer; min-height: 44px; }
+.vt-flt { display: grid; gap: 10px; }
+.vt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; }
+.vt-card { position: relative; display: grid; gap: 8px; min-width: 0; }
+.vt-foto { padding: 0; border: 0; background: var(--surface-2); border-radius: 10px; overflow: hidden; cursor: zoom-in; display: block; }
+.vt-foto img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; display: block; transition: transform .3s; }
+.vt-foto:hover img { transform: scale(1.03); }
+.vt-foto:focus-visible { outline: 2px solid var(--pink); outline-offset: 2px; }
+.vt-fav { position: absolute; top: 10px; right: 10px; width: 48px; height: 48px; border-radius: 50%; border: 0; background: rgba(255,255,255,.92); color: #151215; display: grid; place-items: center; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.15); }
+.vt-fav.on { color: #FF0084; }
+.vt-fav:focus-visible { outline: 2px solid var(--pink); outline-offset: 2px; }
+.vt-tit { font-size: 14px; color: var(--muted); line-height: 1.3; }
+.vt-n { display: inline-flex; align-items: center; gap: 6px; color: var(--pinkink, #C4006A); font-weight: 600; }
+.vt-n svg { color: #FF0084; }
+.lb { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.lb-fundo { position: absolute; inset: 0; border: 0; background: rgba(11,10,11,.88); cursor: zoom-out; }
+.lb-box { position: relative; display: grid; gap: 12px; justify-items: center; max-height: 100%; max-width: min(520px, 100%); }
+.lb-box img { max-height: calc(100dvh - 190px); max-height: calc(100vh - 190px); width: auto; max-width: 100%; border-radius: 10px; display: block; }
+.lb-info { display: grid; gap: 4px; text-align: center; color: #fff; }
+.lb-info b { font: 400 24px var(--f-display); }
+.lb-info span { color: #CFC6CC; }
+.lb-acoes { display: flex; gap: 10px; }
+.lb-acoes .btn { display: inline-flex; align-items: center; gap: 8px; }
+@media (prefers-reduced-motion: reduce) { .vt-foto img { transition: none; } }
 </style>
 </head>
 <body>
@@ -1957,7 +1984,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
   'use strict';
   const $app = document.getElementById('app');
   const E = ESTILOS;
-  const VERSAO_APP = '03/11 · Consultoria';
+  const VERSAO_APP = '03/11 · Meus Looks';
   const PARAMS = new URLSearchParams(location.search);
   const MODO_CLIENTE = PARAMS.has('cliente');
   const RASCUNHO = MODO_CLIENTE ? 'euphoria-casa-v1' : 'euphoria-teste-v1';
@@ -2000,7 +2027,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
   };
 
   /* ---------- acesso: equipe x cliente ---------- */
-  const TELAS_CLIENTE = ['inicio', 'dados', 'teste', 'revisar', 'refino', 'resultado'];
+  const TELAS_CLIENTE = ['inicio', 'dados', 'teste', 'revisar', 'refino', 'resultado', 'vitrine'];
   const vistaCliente = () => MODO_CLIENTE || !S.equipe;
   const BLOQUEIO_MIN = 5;
   async function hashPin(txt) {
@@ -2099,7 +2126,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     clienteSel: null, historico: [], ficha: null, fichaModo: null, confirmarApagar: false, visitaObs: '', voltarPara: null, waTexto: null, salvando: false,
     anivModelo: 'carinho', anivEdit: {},
     conv: { modelo: 'curiosidade', nome: '', wa: '', texto: '', editado: false, clienteId: '' }, recebido: { texto: '' },
-    equipe: false, pin: null, ultimoToque: Date.now(),
+    equipe: false, pin: null, ultimoToque: Date.now(), favs: [], lbox: null, vitFlt: { estilo: '', ocasiao: '', meu: true },
     looks: [], looksMeta: {}, lookFlt: { estilo: '', ocasiao: '', tam: '', esgotados: false, semClass: false }, lookSel: null, lookDraft: null, lookVolta: 'looks', lkApagar: false
   };
   try { const r = localStorage.getItem(RASCUNHO); if (r) { const o = JSON.parse(r); if (o && o.respostas) S.rascunho = o; } } catch (e) { }
@@ -2151,7 +2178,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       clienteId: ses.clienteId, tipo: 'teste', data: ses.inicio, dados: ses.dados, respostas: ses.respostas, desempates: ses.desempates,
       estilos: c.estilos, estilosCalculados: c.r.estilos, ajustado: c.ajustado, preliminar: c.r.preliminar, consistencia: c.r.consistencia,
       pontos: c.p.atual, desejo: c.p.desejo, desejoPrincipal: c.r.desejoPrincipal, validacao: ses.validacao,
-      observacoes: ses.observacoes, sugestoes: ses.sugestoes, extras: ses.extras, tipoCorpo: ses.tipoCorpo, origem: ses.origem || 'loja', salvoEm: hoje()
+      observacoes: ses.observacoes, sugestoes: ses.sugestoes, extras: ses.extras, tipoCorpo: ses.tipoCorpo, favoritos: favsDaSessao(ses), origem: ses.origem || 'loja', salvoEm: hoje()
     });
   }
   async function salvarAtendimento() {
@@ -2164,8 +2191,9 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       const upd = { ultimaVisita: ses.inicio > (cli.ultimaVisita || '') ? ses.inicio : (cli.ultimaVisita || ses.inicio), atualizadoEm: hoje() };
       if (!cli.ultimoTeste || ses.inicio >= cli.ultimoTeste) Object.assign(upd, { estilos: c.estilos, estiloPrincipal: c.estilos[0] || '', ultimoTeste: ses.inicio, ultimoAtendimento: ses.atendimentoId });
       if (ses.tipoCorpo) upd.tipoCorpo = ses.tipoCorpo;
+      const fv = favsDaSessao(ses); if (fv.length) upd.favoritos = [...new Set([...(cli.favoritos || []), ...fv])].slice(-40);
       await S.db.doc('clientes/' + ses.clienteId).update(upd);
-      ses.dirty = false; limparRascunho(); toast('Atendimento salvo na ficha.');
+      ses.favoritos = favsDaSessao(ses); S.favs = []; ses.dirty = false; limparRascunho(); toast('Atendimento salvo na ficha.');
       return true;
     } catch (e) { toast(msgErro(e)); return false; }
     finally { S.salvando = false; render(); }
@@ -2186,8 +2214,8 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
   const imgFoto = (src, alt, cls) => src ? `<img class="${cls || ''}" src="${esc(src)}" alt="${esc(alt || 'Look Euphoria')}" loading="lazy">` : '';
 
   function barra() {
-    if (!MODO_CLIENTE && !S.equipe) { if (S.tela === 'inicio') return ''; return `<header class="bar"><div class="wrap"><span class="brand"><img class="logo-l" src="${LOGO_L}" alt="Euphoria Moda Feminina"><img class="logo-d" src="${LOGO_D}" alt="Euphoria Moda Feminina"></span><span class="dbpill" style="margin-left:auto">Consultoria de Imagem e Estilo</span><button class="navb" data-a="equipe">Equipe</button></div></header>`; }
-    if (MODO_CLIENTE) return `<header class="bar"><div class="wrap"><span class="brand"><img class="logo-l" src="${LOGO_L}" alt="Euphoria Moda Feminina"><img class="logo-d" src="${LOGO_D}" alt="Euphoria Moda Feminina"></span><span class="dbpill" style="margin-left:auto">Teste de estilo</span></div></header>`;
+    if (!MODO_CLIENTE && !S.equipe) { if (S.tela === 'inicio') return ''; return `<header class="bar"><div class="wrap"><span class="brand"><img class="logo-l" src="${LOGO_L}" alt="Euphoria Moda Feminina"><img class="logo-d" src="${LOGO_D}" alt="Euphoria Moda Feminina"></span><span class="dbpill" style="margin-left:auto">Consultoria de Imagem e Estilo</span><button class="navb" data-a="home">Início</button><button class="navb" data-a="equipe">Equipe</button></div></header>`; }
+    if (MODO_CLIENTE) return `<header class="bar"><div class="wrap"><span class="brand"><img class="logo-l" src="${LOGO_L}" alt="Euphoria Moda Feminina"><img class="logo-d" src="${LOGO_D}" alt="Euphoria Moda Feminina"></span><span class="dbpill" style="margin-left:auto">Consultoria de Imagem e Estilo</span><button class="navb" data-a="home">Início</button></div></header>`;
     const t = S.tela, cur = x => (x === t || (x === 'clientes' && t === 'cliente')) ? ' aria-current="page"' : '';
     const db = S.dbStatus === 'ok' ? '<span class="dbpill ok"><i></i>Salvo neste tablet</span>' : S.dbStatus === 'off' ? '<span class="dbpill off"><i></i>Armazenamento indisponível</span>' : '<span class="dbpill"><i></i>Abrindo…</span>';
     return `<header class="bar"><div class="wrap">
@@ -2209,19 +2237,20 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     ['estilo', 'Meu Estilo', 'Os 7 estilos universais', true],
     ['corpo', 'Meu Corpo', 'Silhueta e proporções', false],
     ['cores', 'Minhas Cores', 'Sua cartela pessoal', false],
-    ['looks', 'Meus Looks', 'Peças escolhidas para você', false]
+    ['looks', 'Meus Looks', 'Peças escolhidas para você', true]
   ];
   function telaCapa() {
     return `<section class="capa-c"><div class="capa-claro" aria-hidden="true"><span class="capa-bola"></span></div>
       <img class="capa-fig" src="${ILUSTRA}" alt="Ilustração de moda: mulher com blusa preta, calça pink e sacola Euphoria">
       <div class="capa-lado">
-        <button class="capa-equipe" data-a="equipe">Equipe</button>
-        <div class="capa-topo"><img class="capa-logo" src="${LOGO_D}" alt="Euphoria Moda Feminina"><h1 class="capa-tit">Consultoria de<br>Imagem e Estilo</h1></div>
+        ${MODO_CLIENTE ? '' : '<button class="capa-equipe" data-a="equipe">Equipe</button>'}
+        <div class="capa-topo"><img class="capa-logo" src="${LOGO_D}" alt="Euphoria Moda Feminina">${MODO_CLIENTE && PARAMS.get('n') ? `<p class="capa-ola">Olá, ${esc(PARAMS.get('n'))}!</p>` : ''}<h1 class="capa-tit">Consultoria de<br>Imagem e Estilo</h1></div>
         <ol class="capa-mods">${MODULOS.map(([k, n, sub, ok], i) => `<li><button class="capa-mod" ${ok ? `data-a="modulo" data-v="${k}"` : 'disabled aria-disabled="true"'}><span class="capa-n">${i + 1}</span><span class="capa-t"><b>${n}</b><small>${ok ? sub : sub + ' · em breve'}</small></span><span class="capa-seta" aria-hidden="true">→</span></button></li>`).join('')}</ol>
+        ${MODO_CLIENTE && S.rascunho && S.rascunho.respostas && Object.keys(S.rascunho.respostas).length ? '<button class="capa-cont" data-a="continuar">Continuar o meu teste</button>' : ''}
       </div></section>`;
   }
   function telaInicio() {
-    if (!MODO_CLIENTE && !S.equipe) return telaCapa();
+    if (MODO_CLIENTE || !S.equipe) return telaCapa();
     const r = S.rascunho;
     if (!MODO_CLIENTE) return `<div class="stack-lg">
       <section class="painel-eq"><div class="stack"><span class="eyebrow">Área da equipe</span><h1 class="h1">Painel Euphoria</h1><p class="lead">Comece uma consultoria ou cuide das fichas. Ao entregar o tablet para a cliente, ele bloqueia sozinho.</p></div>
@@ -2405,6 +2434,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
         ${est.length < 3 ? `<p>${est.length === 1 ? 'Seu resultado mostrou um estilo predominante. Os outros apareceram pouco, então não indicamos secundário e terciário.' : 'Um terceiro estilo apareceu pouco nas respostas, então mostramos só os dois que se destacaram.'}</p>` : ''}
       </section>
       ${des ? `<section class="sec"><h3>A imagem que você quer transmitir</h3><div class="box"><p>${des.texto}</p>${des.dicas ? `<ul class="plain">${des.dicas.map(d => `<li>${cap(d)}</li>`).join('')}</ul>` : ''}</div></section>` : ''}
+      ${!vistaCliente() ? blocoFavoritos(favsDaSessao(ses), 'Looks que ela marcou com coração') : ''}
       ${blocoLooksSugeridos(est, (() => { const cl = ses.clienteId && S.clientes.find(x => x.id === ses.clienteId); return cl ? [cl.tamCima, cl.tamBaixo] : []; })(), 'Looks da Euphoria com a sua cara', MODO_CLIENTE ? 8 : 4)}
       <section class="sec"><h3>Ideias de looks para a sua rotina</h3><div class="looks-grid">${looks.map(l => `<div class="lookc"><span class="oc">${l.ocasiao}</span><p>${esc(l.texto)}</p></div>`).join('')}</div></section>
       <section class="sec"><h3>Como esse resultado apareceu</h3>
@@ -2549,6 +2579,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
           ${c.ajustado ? '<button class="btn sm" data-a="limparAjuste" style="align-self:flex-start">Voltar ao resultado calculado</button>' : ''}</details>
       </section>
 
+      ${blocoFavoritos(favsDaSessao(ses), 'Looks que ela marcou com coração')}
       <section class="sec"><h3>Tipo de corpo</h3>
         <div class="chips">${Object.entries(TIPOS_CORPO).map(([k, t]) => `<button class="chip" data-a="corpo" data-v="${k}" aria-pressed="${corpo === k}">${t.nome}</button>`).join('')}</div>
         ${corpo ? `<div class="box"><h4>${TIPOS_CORPO[corpo].nome} · ${TIPOS_CORPO[corpo].desc}</h4><p class="small">Modelagens que costumam valorizar. Combine com o estilo dela e com o que ela gosta de mostrar:</p><ul class="plain small">${TIPOS_CORPO[corpo].dicas.map(d => `<li>${cap(d)}</li>`).join('')}</ul>${est[0] ? `<p class="small muted">Dentro do ${E[est[0]].nome}: escolha ${E[est[0]].priorizar.slice(0, 2).join(' e ')} com essas modelagens.</p>` : ''}</div>` : '<p class="small muted">O tipo de corpo não muda o estilo. Serve só para orientar as modelagens.</p>'}
@@ -2663,6 +2694,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
           ${info('Faixa etária', esc(c.faixa) || '—')}${info('Cadastro', fmtData(c.criadoEm) + (c.consentimento && c.consentimento.aceito ? ' · com autorização' : ''))}
         </dl><div class="row"><button class="btn sm" data-a="editarFicha">Editar ficha</button>
           ${c.whatsapp ? `<a class="btn sm" href="https://wa.me/${waNum(c.whatsapp)}" target="_blank" rel="noopener">Abrir WhatsApp</a><a class="btn sm" href="https://wa.me/${waNum(c.whatsapp)}?text=${encodeURIComponent(msgAniv)}" target="_blank" rel="noopener">Mensagem de aniversário</a>` : ''}</div></div>`}
+      ${blocoFavoritos(c.favoritos || [], 'Looks favoritos')}
       <section class="sec"><h3>Tipo de corpo <span class="tag" style="font:600 12px var(--f-body);vertical-align:middle">Só a equipe vê</span></h3><div class="card stack">
         <p class="small muted">Marque pela observação no provador. Não muda o estilo do teste: serve para escolher modelagens que valorizam o corpo dela.</p>
         <div class="chips">${Object.entries(TIPOS_CORPO).map(([k, t]) => `<button class="chip" data-a="corpoFicha" data-v="${k}" aria-pressed="${c.tipoCorpo === k}">${t.nome}</button>`).join('')}</div>
@@ -2906,7 +2938,9 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     const des = ses.desempates.map(x => CH[x.a] + CH[x.b] + DESC[x.escolha]).join('');
     const fin = (ses.dados.finalidades || []).map(f => FINALIDADES.findIndex(x => x.id === f)).join('');
     const p = [ses.id.slice(-8), Math.floor(new Date(ses.inicio).getTime() / 60000).toString(36), ses.dados.nome || '', FAIXAS.indexOf(ses.dados.faixa), fin, resp, des];
+    const fvs = S.favs.filter(id => /^pub_\d+$/.test(id)).map(id => id.slice(4));
     if (S.fichaOk) { const f = S.ficha; p.push(1, digitos(f.whatsapp), f.email || '', (f.aniverDia || '') + '/' + (f.aniverMes || ''), f.tamCima || '', f.tamBaixo || '', (f.cores || []).map(c => CORES_FAV.findIndex(x => x[0] === c)).join(','), f.coresOutras || ''); }
+    if (fvs.length) { while (p.length < 15) p.push(p.length === 7 ? 0 : ''); p.push(fvs.join(',')); }
     return 'EUPH2:' + b64e(p.join('|'));
   }
   function lerCodigo(txt) {
@@ -2926,12 +2960,13 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       const d = (des.match(/.../g) || []).map(x => [CHR[x[0]], CHR[x[1]], DESCR[x[2]]]);
       const p = { v: 2, id, i: new Date(parseInt(t36, 36) * 60000).toISOString(), n, fx: FAIXAS[+fx] || '', fi: fin.split('').map(c => (FINALIDADES[+c] || {}).id).filter(Boolean), r, d, ok: f[7] === '1' };
       if (p.ok) { const [ad, am] = (f[10] || '/').split('/'); p.c = { w: f[8] || '', e: f[9] || '', ad, am, tc: f[11] || '', tb: f[12] || '', co: (f[13] || '').split(',').filter(x => x !== '').map(i => (CORES_FAV[+i] || [])[0]).filter(Boolean), cx: f[14] || '' }; }
+      p.fav = (f[15] || '').split(',').filter(x => /^\d+$/.test(x)).map(x => 'pub_' + x);
       return Object.keys(r).length ? p : null;
     } catch (e) { return null; }
   }
   function sessaoDeCodigo(p) {
     const ses = novaSessao();
-    Object.assign(ses, { id: 's_' + p.id, inicio: p.i || hoje(), dados: { nome: p.n || '', faixa: p.fx || '', finalidades: p.fi || [] }, respostas: p.r || {}, desempates: (p.d || []).map(([a, b, escolha]) => ({ a, b, escolha })), qi: PERGUNTAS.length, pulouRefino: true, origem: 'casa', idAtendPref: 'a_' + String(p.id).replace(/[^A-Za-z0-9_-]/g, '') });
+    Object.assign(ses, { id: 's_' + p.id, inicio: p.i || hoje(), dados: { nome: p.n || '', faixa: p.fx || '', finalidades: p.fi || [] }, respostas: p.r || {}, desempates: (p.d || []).map(([a, b, escolha]) => ({ a, b, escolha })), qi: PERGUNTAS.length, pulouRefino: true, origem: 'casa', favoritos: p.fav || [], idAtendPref: 'a_' + String(p.id).replace(/[^A-Za-z0-9_-]/g, '') });
     return ses;
   }
   function fichaDeCodigo(p) {
@@ -2941,7 +2976,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
   function mensagemCliente() {
     const c = calc(), P = c.estilos[0];
     const abertura = P ? `Oi, Euphoria! 💗 Fiz o teste de estilo e meu estilo principal é *${E[P].nome}*. Quero ver as peças que vocês separaram para mim!` : 'Oi, Euphoria! 💗 Fiz o teste de estilo e quero descobrir meu resultado completo com vocês!';
-    return abertura + '\n\nCódigo do meu teste: ' + codigoCliente();
+    return abertura + (S.favs.length ? `\n\nMarquei ${S.favs.length} look${S.favs.length === 1 ? '' : 's'} que amei no portfólio.` : '') + '\n\nCódigo do meu teste: ' + codigoCliente();
   }
 
   /* ---------- telas da cliente (link de casa) ---------- */
@@ -3048,6 +3083,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       .sort((a, b) => b.s - a.s).slice(0, lim).map(x => x.l);
   }
   function cardLook(l, compacto) {
+    if (vistaCliente()) return cardVitrine(l);
     return `<button class="lk ${l.esgotado ? 'esg' : ''}" data-a="abrirLook" data-v="${esc(l.id)}">
       <img src="${esc(l.foto || l.src)}" alt="${esc(l.titulo || 'Look Euphoria')}" loading="lazy">
       ${l.esgotado ? '<span class="badge">Esgotado</span>' : ''}
@@ -3127,6 +3163,62 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     try { if (base.pub) await S.db.doc('looksMeta/' + d.id).set(Object.assign({}, S.looksMeta[d.id] || {}, dados)); else await S.db.doc('looks/' + d.id).update(dados); toast('Look salvo.'); return true; }
     catch (e) { toast(msgErro(e)); return false; }
   }
+  /* ---------- Meus Looks (vitrine da cliente) ---------- */
+  const ehFav = id => S.favs.includes(id);
+  function favsDaSessao(ses) { return [...new Set([...((ses && ses.favoritos) || []), ...S.favs])]; }
+  const coracao = on => `<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.5-9.3C1.1 7.9 3.3 4.5 6.7 4.5c2.1 0 3.6 1.2 4.3 2.4h2c.7-1.2 2.2-2.4 4.3-2.4 3.4 0 5.6 3.4 4.2 6.7-2 4.7-9.5 9.3-9.5 9.3z" fill="${on ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
+  function cardVitrine(l) {
+    const on = ehFav(l.id);
+    return `<div class="vt-card"><button class="vt-foto" data-a="verLook" data-v="${esc(l.id)}" aria-label="Ver ${esc(l.titulo || 'look')} em tamanho grande"><img src="${esc(l.foto || l.src)}" alt="${esc(l.titulo || 'Look Euphoria')}" loading="lazy"></button>
+      <button class="vt-fav ${on ? 'on' : ''}" data-a="fav" data-v="${esc(l.id)}" aria-pressed="${on}" aria-label="${on ? 'Tirar dos favoritos' : 'Gostei deste look'}">${coracao(on)}</button>
+      ${l.titulo ? `<span class="vt-tit">${esc(l.titulo)}</span>` : ''}</div>`;
+  }
+  function estilosDaCliente() { const ses = S.sessao; if (!ses || !Object.keys(ses.respostas || {}).length || (ses.qi || 0) < PERGUNTAS.length) return []; return calc(ses).estilos; }
+  function looksVitrine() {
+    const f = S.vitFlt, meus = estilosDaCliente();
+    let ls = todosLooks().filter(l => !l.esgotado && (l.foto || l.src));
+    if (f.estilo) ls = ls.filter(l => (l.estilos || []).includes(f.estilo));
+    if (f.ocasiao) ls = ls.filter(l => (l.ocasioes || []).includes(f.ocasiao));
+    if (meus.length && f.meu && !f.estilo) { const pt = l => { let s = 0; meus.forEach((k, i) => { if ((l.estilos || []).includes(k)) s = Math.max(s, 10 - i * 3); }); return s; }; ls = ls.map(l => [l, pt(l)]).sort((a, b) => b[1] - a[1]).map(x => x[0]); }
+    return ls;
+  }
+  function telaVitrine() {
+    const f = S.vitFlt, ls = looksVitrine(), meus = estilosDaCliente(), n = S.favs.length;
+    const chip = (a, v, txt, on) => `<button class="chip" data-a="${a}" data-v="${v}" aria-pressed="${on}">${txt}</button>`;
+    return `<div class="stack-lg">
+      <div class="stack"><span class="eyebrow">Meus Looks</span><h1 class="h1">Looks da Euphoria</h1>
+        <p class="lead">Toque no coração dos looks que você amou. ${MODO_CLIENTE ? 'Eles vão junto com o seu resultado para a Juliana.' : 'A Juliana vai separar as peças para você provar.'}</p></div>
+      <div class="vt-flt">
+        ${meus.length ? `<div class="chips">${chip('vtMeu', '', 'Combinam com o meu estilo', f.meu && !f.estilo)}${chip('vtEstilo', '', 'Todos os estilos', !f.meu && !f.estilo)}</div>` : ''}
+        <div class="chips" role="group" aria-label="Estilo">${meus.length ? '' : chip('vtEstilo', '', 'Todos', !f.estilo)}${ORDEM.map(k => chip('vtEstilo', k, E[k].nome, f.estilo === k)).join('')}</div>
+        <div class="chips" role="group" aria-label="Ocasião">${chip('vtOcasiao', '', 'Todas as ocasiões', !f.ocasiao)}${OCASIOES.map(([k, t]) => chip('vtOcasiao', k, t, f.ocasiao === k)).join('')}</div>
+      </div>
+      ${ls.length ? `<div class="vt-grid">${ls.map(cardVitrine).join('')}</div>` : '<div class="empty"><p>Nenhum look com esses filtros agora.</p><button class="btn sm" data-a="vtLimpar">Ver todos</button></div>'}
+      </div>
+      <div class="actbar"><div class="wrap"><button class="btn" data-a="home">Início</button>
+        <span class="vt-n">${n ? `${coracao(true)} ${n} favorito${n === 1 ? '' : 's'}` : ''}</span><span class="sp"></span>
+        ${MODO_CLIENTE ? (estilosDaCliente().length ? '<button class="btn pri" data-a="go" data-v="enviar">Enviar para a Euphoria</button>' : '<button class="btn pri" data-a="modulo" data-v="estilo">Fazer o teste de estilo</button>') : `<button class="btn pri" data-a="chamar">${n ? 'Mostrar para a Juliana' : 'Chamar a Juliana'}</button>`}
+      </div></div>`;
+  }
+  function modalLook() {
+    if (!S.lbox) return '';
+    const l = todosLooks().find(x => x.id === S.lbox); if (!l) return '';
+    const on = ehFav(l.id), est = (l.estilos || []).filter(k => E[k]).map(k => E[k].nome), tam = (l.tamanhos || []).map(t => t === TAM_UNICO ? 'Tamanho único' : t);
+    return `<div class="lb" role="dialog" aria-modal="true" aria-label="${esc(l.titulo || 'Look Euphoria')}"><button class="lb-fundo" data-a="fecharLook" aria-label="Fechar"></button>
+      <div class="lb-box"><img src="${esc(l.foto || l.src)}" alt="${esc(l.titulo || 'Look Euphoria')}">
+        <div class="lb-info">${l.titulo ? `<b>${esc(l.titulo)}</b>` : ''}${est.length ? `<span>${esc(est.join(' · '))}</span>` : ''}${tam.length ? `<span class="small">${esc(tam.join(' '))}</span>` : ''}</div>
+        <div class="lb-acoes"><button class="btn" data-a="fecharLook">Fechar</button><button class="btn ${on ? 'dark' : 'pri'}" data-a="fav" data-v="${esc(l.id)}" aria-pressed="${on}">${coracao(on)} ${on ? 'Nos favoritos' : 'Gostei'}</button></div></div></div>`;
+  }
+  function telaFavoritas() {
+    return `<div class="stack-lg"><div class="stack"><span class="eyebrow">Atendimento</span><h1 class="h1">Looks que a cliente marcou</h1><p class="lead">${S.favs.length ? 'Separe as peças para ela provar. Para guardar na ficha, faça o teste de estilo com ela ou ligue a uma cliente.' : 'Ela ainda não marcou nenhum look.'}</p></div>
+      ${blocoFavoritos(S.favs, 'Favoritos desta visita')}
+      <div class="row"><button class="btn pri" data-a="novoComFavs">Fazer o teste de estilo com ela</button><button class="btn" data-a="go" data-v="vitrine">Voltar aos looks</button></div></div>`;
+  }
+  function blocoFavoritos(ids, titulo) {
+    const ls = ids.map(id => todosLooks().find(l => l.id === id)).filter(Boolean);
+    if (!ls.length) return '';
+    return `<section class="sec"><h3>${titulo} <span class="tag p" style="font:600 12px var(--f-body);vertical-align:middle">${ls.length}</span></h3><div class="lkgrid small">${ls.map(l => `<button class="lk" data-a="verLook" data-v="${esc(l.id)}"><img src="${esc(l.foto || l.src)}" alt="${esc(l.titulo || 'Look Euphoria')}" loading="lazy">${l.esgotado ? '<span class="badge">Esgotado</span>' : ''}${l.titulo ? `<span class="lkinfo"><span class="small">${esc(l.titulo)}</span></span>` : ''}</button>`).join('')}</div></section>`;
+  }
   function blocoLooksSugeridos(est, tams, titulo, n) {
     const ls = looksPara(est, tams, n);
     if (!ls.length) return todosLooks().length ? '' : '';
@@ -3192,7 +3284,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     const ses = S.sessao;
     const needSes = ['dados', 'teste', 'revisar', 'refino', 'resultado', 'atendimento', 'consent', 'teaser', 'enviar', 'enviado'];
     if (needSes.includes(S.tela) && !ses) S.tela = 'inicio';
-    if (MODO_CLIENTE && !['inicio', 'dados', 'teste', 'revisar', 'refino', 'resultado', 'enviar', 'enviado'].includes(S.tela)) S.tela = ses ? 'resultado' : 'inicio';
+    if (MODO_CLIENTE && !['inicio', 'dados', 'teste', 'revisar', 'refino', 'resultado', 'enviar', 'enviado', 'vitrine'].includes(S.tela)) S.tela = ses ? 'resultado' : 'inicio';
     if (!MODO_CLIENTE && !S.equipe && !TELAS_CLIENTE.includes(S.tela)) { const dest = S.tela; S.tela = ses && ['atendimento', 'consent'].includes(dest) ? 'resultado' : 'inicio'; if (!S.pin) S.pin = { modo: pinGuardado() ? 'entrar' : 'criar', buf: '', destino: dest, erro: '', primeiro: '', tentativas: 0 }; }
     switch (S.tela) {
       case 'dados': html = telaDados(); break;
@@ -3215,12 +3307,14 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       case 'looks': html = telaLooks(); break;
       case 'look': html = telaLook(); break;
       case 'aniversarios': html = telaAniversarios(); break;
+      case 'vitrine': html = telaVitrine(); break;
+      case 'favoritas': html = telaFavoritas(); break;
       default: html = telaInicio();
     }
     const foco = document.activeElement && document.activeElement.id;
     const selS = foco && document.activeElement.selectionStart;
-    const capa = !MODO_CLIENTE && !S.equipe && S.tela === 'inicio';
-    $app.innerHTML = capa ? html + modalPin() : barra() + `<main><div class="wrap">${html}</div></main>` + modalPin();
+    const capa = (MODO_CLIENTE || !S.equipe) && S.tela === 'inicio';
+    $app.innerHTML = (capa ? html : barra() + `<main><div class="wrap">${html}</div></main>`) + modalLook() + modalPin();
     document.body.classList.toggle('modo-capa', capa);
     if (foco) { const el = document.getElementById(foco); if (el) { el.focus(); try { if (selS != null && el.setSelectionRange) el.setSelectionRange(selS, selS); } catch (e) { } } }
   }
@@ -3245,8 +3339,18 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
   const A = {
     equipe: () => S.equipe ? go('inicio') : pedirPin(null),
     bloquear: () => bloquear('Tablet bloqueado. A área da equipe pede o PIN.'),
-    chamar: () => pedirPin('resultado'),
-    modulo: (v) => { if (v === 'estilo') A.novo(); },
+    chamar: () => pedirPin(S.sessao && (S.sessao.qi || 0) >= PERGUNTAS.length ? 'resultado' : 'favoritas'),
+    modulo: (v) => {
+      if (v === 'looks') { S.vitFlt = { estilo: '', ocasiao: '', meu: true }; go('vitrine'); return; }
+      if (v === 'estilo') { const ses = S.sessao; if (ses && !ses.atendimentoId && Object.keys(ses.respostas || {}).length && ses.qi < PERGUNTAS.length) { go('teste'); return; } A.novo(); }
+    },
+    fav: (v) => { const i = S.favs.indexOf(v); if (i >= 0) S.favs.splice(i, 1); else { S.favs.push(v); toast('Adicionado aos favoritos.'); } if (S.sessao) S.sessao.dirty = true; render(); },
+    verLook: (v) => { S.lbox = v; render(); },
+    fecharLook: () => { S.lbox = null; render(); },
+    vtMeu: () => { S.vitFlt.meu = true; S.vitFlt.estilo = ''; render(); },
+    vtEstilo: (v) => { S.vitFlt.estilo = S.vitFlt.estilo === v && v ? '' : v; S.vitFlt.meu = false; render(); },
+    vtOcasiao: (v) => { S.vitFlt.ocasiao = S.vitFlt.ocasiao === v && v ? '' : v; render(); },
+    vtLimpar: () => { S.vitFlt = { estilo: '', ocasiao: '', meu: false }; render(); },
     pinTecla: (v) => teclaPin(v),
     pinConfirmar: () => confirmarPin(),
     pinFechar: () => { S.pin = null; render(); },
@@ -3306,7 +3410,8 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     },
     abrirAtend: (v) => {
       const h = S.historico.find(x => x.id === v); if (!h) return;
-      const ses = novaSessao(); Object.assign(ses, { id: 's_' + v, inicio: h.data, dados: h.dados || { nome: '', faixa: '', finalidades: [] }, respostas: h.respostas || {}, desempates: h.desempates || [], clienteId: h.clienteId, atendimentoId: h.id, validacao: h.validacao || null, ajuste: h.ajustado ? h.estilos : null, observacoes: h.observacoes || '', sugestoes: h.sugestoes || {}, extras: h.extras || [], tipoCorpo: h.tipoCorpo || '', consent: 'sim', qi: PERGUNTAS.length, pulouRefino: true });
+      const ses = novaSessao(); Object.assign(ses, { id: 's_' + v, inicio: h.data, dados: h.dados || { nome: '', faixa: '', finalidades: [] }, respostas: h.respostas || {}, desempates: h.desempates || [], clienteId: h.clienteId, atendimentoId: h.id, validacao: h.validacao || null, ajuste: h.ajustado ? h.estilos : null, observacoes: h.observacoes || '', sugestoes: h.sugestoes || {}, extras: h.extras || [], tipoCorpo: h.tipoCorpo || '', favoritos: h.favoritos || [], consent: 'sim', qi: PERGUNTAS.length, pulouRefino: true });
+      S.favs = [];
       if (!ses.dados.finalidades) ses.dados.finalidades = [];
       S.sessao = ses; go('resultado');
     },
@@ -3322,7 +3427,8 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     csv: () => { salvarArquivo('euphoria-clientes-' + dataArq() + '.csv', csvClientes()); toast('Planilha salva na pasta Downloads.'); },
     cancelarImport: () => { S.importacao = null; const el = document.getElementById('arq-backup'); if (el) el.value = ''; render(); },
     importar: async (modo) => { try { const n = await LocalDB.importar(S.importacao.obj, modo); S.importacao = null; toast(n + ' registros restaurados.'); } catch (e) { toast(e.message || 'Não foi possível restaurar.'); } render(); },
-    novo: () => { S.sessao = novaSessao(); if (MODO_CLIENTE && PARAMS.get('n')) S.sessao.dados.nome = PARAMS.get('n'); S.ficha = null; S.fichaOk = false; go('dados'); },
+    novoComFavs: () => { const f = S.favs.slice(); A.novo(); S.favs = f; S.sessao.favoritos = f.slice(); },
+    novo: () => { if (!MODO_CLIENTE && S.equipe) S.favs = []; S.sessao = novaSessao(); if (MODO_CLIENTE && PARAMS.get('n')) S.sessao.dados.nome = PARAMS.get('n'); S.ficha = null; S.fichaOk = false; go('dados'); },
     enviarWa: () => {
       if (S.fichaOk && !digitos(S.ficha.whatsapp)) { toast('Preencha seu WhatsApp para a Juliana te responder.'); const el = document.getElementById('ff-wa'); if (el) el.focus(); return; }
       S.waEnvio = 'https://wa.me/' + LOJA_WA + '?text=' + encodeURIComponent(mensagemCliente());
@@ -3412,7 +3518,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
 
   ['click', 'input', 'keydown', 'touchstart'].forEach(ev => document.addEventListener(ev, () => { S.ultimoToque = Date.now(); }, { passive: true, capture: true }));
   setInterval(() => { if (!MODO_CLIENTE && S.equipe && Date.now() - S.ultimoToque > BLOQUEIO_MIN * 60000) bloquear('O tablet ficou parado e foi bloqueado.'); }, 20000);
-  document.addEventListener('keydown', e => { if (!S.pin || e.target.id === 'pin-rec') return; if (/^[0-9]$/.test(e.key)) { e.preventDefault(); teclaPin(e.key); } else if (e.key === 'Backspace') { e.preventDefault(); teclaPin('apagar'); } else if (e.key === 'Enter') { e.preventDefault(); confirmarPin(); } else if (e.key === 'Escape') { S.pin = null; render(); } });
+  document.addEventListener('keydown', e => { if (S.lbox && e.key === 'Escape') { S.lbox = null; render(); return; } if (!S.pin || e.target.id === 'pin-rec') return; if (/^[0-9]$/.test(e.key)) { e.preventDefault(); teclaPin(e.key); } else if (e.key === 'Backspace') { e.preventDefault(); teclaPin('apagar'); } else if (e.key === 'Enter') { e.preventDefault(); confirmarPin(); } else if (e.key === 'Escape') { S.pin = null; render(); } });
   if (!MODO_CLIENTE && PARAMS.has('receber')) { S.tela = 'receber'; S.recebido.texto = [PARAMS.get('title'), PARAMS.get('text'), PARAMS.get('url')].filter(Boolean).join('\n'); }
   render(); iniciarDb();
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => { });
