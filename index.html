@@ -410,10 +410,11 @@ body.modo-capa { background: #0B0A0B; }
 .capa-claro { position: relative; background: #F7ECEE; overflow: hidden; }
 .capa-bola { position: absolute; width: 33vw; height: 33vw; max-width: 460px; max-height: 460px; left: -12vw; top: -12vw; border-radius: 50%; background: #E20867; }
 .capa-fig { position: absolute; z-index: 2; left: 11.5%; bottom: 0; height: 97%; width: auto; max-width: none; pointer-events: none; }
-.capa-lado { position: relative; z-index: 3; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; padding: clamp(36px, 7vh, 60px) clamp(28px, 6vw, 80px) clamp(28px, 6vh, 52px) clamp(120px, 15vw, 200px); }
+.capa-lado { position: relative; z-index: 3; display: flex; flex-direction: column; justify-content: center; gap: clamp(30px, 6.5vh, 56px); padding: clamp(36px, 7vh, 60px) clamp(28px, 6vw, 80px) clamp(28px, 6vh, 52px) clamp(120px, 15vw, 200px); }
 .capa-equipe { position: absolute; top: max(18px, env(safe-area-inset-top, 0px)); right: max(20px, env(safe-area-inset-right, 0px)); background: none; border: 1px solid #3A3438; color: #A79DA4; font: 400 12px var(--f-marca); letter-spacing: .2em; text-transform: uppercase; padding: 10px 16px; border-radius: 999px; cursor: pointer; min-height: 40px; }
 .capa-equipe:hover, .capa-equipe:focus-visible { color: #fff; border-color: var(--pink); outline: none; }
-.capa-topo { display: grid; gap: clamp(18px, 3.2vh, 30px); }
+.capa-topo { display: grid; gap: clamp(22px, 4.5vh, 40px); }
+.capa-amp { color: var(--pink); font-family: var(--f-display); }
 .capa-logo { width: min(380px, 100%); height: auto; }
 .capa-tit { margin: 0; font: 400 clamp(38px, min(4.8vw, 7.6vh), 62px)/1.02 var(--f-display); color: #fff; -webkit-text-stroke: .6px currentColor; letter-spacing: .01em; }
 .capa-mods { list-style: none; margin: 0; padding: 0; display: grid; }
@@ -433,8 +434,7 @@ body.modo-capa { background: #0B0A0B; }
   .capa-c { --claro: 40%; }
   .capa-fig { left: 4%; height: 72%; }
   .capa-bola { width: 44vw; height: 44vw; left: -16vw; top: -16vw; }
-  .capa-lado { padding-left: clamp(60px, 9vw, 110px); justify-content: flex-start; gap: 40px; }
-  .capa-mods { margin-top: auto; }
+  .capa-lado { padding-left: clamp(60px, 9vw, 110px); }
   .capa-tit { font-size: clamp(36px, 5.4vw, 54px); }
 }
 @media (max-width: 560px) {
@@ -497,6 +497,92 @@ body.modo-capa { background: #0B0A0B; }
 .lb-acoes { display: flex; gap: 10px; }
 .lb-acoes .btn { display: inline-flex; align-items: center; gap: 8px; }
 @media (prefers-reduced-motion: reduce) { .vt-foto img { transition: none; } }
+
+/* ===== Minhas Cores ===== */
+.btn.lg { min-height: 56px; padding: 0 28px; font-size: 17px; }
+.cor-orient { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.cor-orient > div { display: grid; gap: 6px; padding: 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.cor-orient b { font: 400 24px var(--f-display); color: var(--pink); }
+.cor-orient span { color: var(--ink-2); }
+.cor-instr { text-align: center; display: grid; gap: 6px; justify-items: center; }
+.cor-foto { width: 100%; display: flex; justify-content: center; }
+.cor-foto canvas { max-width: 100%; border-radius: 10px; cursor: crosshair; touch-action: manipulation; box-shadow: 0 4px 24px rgba(0,0,0,.18); }
+.cor-rosto { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; border: 6px solid var(--surface); box-shadow: 0 0 0 2px var(--pink); }
+.eixos { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+.eixos > div { display: grid; gap: 6px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.eixos span { font: 400 12px var(--f-marca); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.eixos b { font: 400 26px var(--f-display); }
+.eixo-barra { position: relative; display: block; height: 6px; border-radius: 6px; background: linear-gradient(90deg, #9BB7E0, #E6E0DA 50%, #E8B04A); }
+.eixo-barra em { position: absolute; top: -4px; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: var(--pink); border: 2px solid #fff; }
+.drape-passos { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 8px; }
+.drape-par, .drape-tri { display: grid; grid-template-columns: repeat(2, minmax(0, 300px)); gap: 24px; justify-content: center; margin: 18px 0; }
+.drape-tri { grid-template-columns: repeat(3, minmax(0, 260px)); }
+.drape-op { display: grid; gap: 10px; justify-items: center; padding: 10px; border: 2px solid transparent; border-radius: 16px; background: none; cursor: pointer; }
+.drape-op.on { border-color: var(--pink); background: var(--surface); }
+.drape-op:focus-visible { outline: 2px solid var(--pink); outline-offset: 2px; }
+.drape { width: 100%; aspect-ratio: 1; border-radius: 50%; padding: 15%; display: grid; place-items: center; box-shadow: 0 4px 18px rgba(0,0,0,.15); }
+.drape img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
+.drape-sem { width: 100%; height: 100%; border-radius: 50%; background: var(--surface); display: grid; place-items: center; color: var(--muted); font-size: 14px; }
+.drape-rot { font: 400 22px var(--f-display); text-align: center; }
+.cartela { display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 10px; }
+.cartela.g { grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); }
+.cartela > div { display: grid; gap: 4px; justify-items: center; }
+.cartela i { display: block; width: 100%; aspect-ratio: 1; border-radius: 10px; border: 1px solid var(--line); }
+.cartela small { font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.cor-hero { display: grid; gap: 14px; padding: 32px; border-radius: 14px; color: #151215; background: linear-gradient(135deg, var(--c1), var(--c2) 55%, var(--c3)); }
+.cor-hero .eyebrow, .cor-hero .lead { color: #151215; }
+.cor-hero .h1 { color: #151215; }
+.cor-hero .lead { background: rgba(255,255,255,.72); padding: 12px 16px; border-radius: 10px; max-width: 62ch; }
+.cor-hero .tag, .cor-hero .tag.p { background: rgba(255,255,255,.88); color: #151215; }
+@media (max-width: 700px) { .drape-tri { grid-template-columns: 1fr; max-width: 260px; margin-inline: auto; } .drape-par { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } }
+
+/* ===== Formação em Colorimetria ===== */
+.fc-nav { display: flex; flex-wrap: wrap; gap: 6px; }
+.fc-art { display: grid; gap: 18px; max-width: 900px; }
+.fc-art h4 { margin: 0 0 6px; font: 400 22px var(--f-display); }
+.fc-art h5 { margin: 12px 0 6px; font: 400 12px var(--f-marca); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.fc-art ul, .fc-art ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.fc-lead { font-size: 19px; line-height: 1.55; margin: 0; }
+.fc-duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.fc-duo > div { padding: 16px 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.fc-box { padding: 16px 18px; border-radius: 10px; background: var(--surface-2); }
+.fc-dica { padding: 14px 18px; border-left: 3px solid var(--pink); background: var(--surface); margin: 0; }
+.fc-dim { display: grid; gap: 8px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.fc-dim p { margin: 0; }
+.fc-sw { display: flex; gap: 6px; flex-wrap: wrap; }
+.fc-sw i { width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--line); }
+.fc-cap { margin: 4px 0 0; font-size: 13px; color: var(--muted); }
+.fc-testes { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.fc-testes > div { padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.fc-testes p { margin: 6px 0 0; font-size: 15px; }
+.fc-est { display: grid; gap: 10px; }
+.fc-card { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 12px 16px; }
+.fc-card summary { display: grid; grid-template-columns: auto 1fr; gap: 2px 14px; align-items: center; cursor: pointer; list-style: none; }
+.fc-card summary::-webkit-details-marker { display: none; }
+.fc-card summary b { font: 400 24px var(--f-display); }
+.fc-card summary small { grid-column: 2; color: var(--muted); }
+.fc-mini { grid-row: span 2; display: grid; grid-template-columns: repeat(3, 16px); gap: 2px; }
+.fc-mini i { width: 16px; height: 16px; border-radius: 3px; }
+.fc-card[open] { padding-bottom: 18px; }
+.fc-card dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px 16px; margin: 10px 0; }
+.fc-card dt, .fc-glo dt { font: 400 11px var(--f-marca); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.fc-card dd, .fc-glo dd { margin: 2px 0 0; }
+.fc-passos li { padding: 4px 0; }
+.fc-glo { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 0; }
+.fc-glo > div { padding: 12px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.fc-quiz { display: grid; gap: 16px; }
+.fc-q { padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); display: grid; gap: 8px; }
+.fc-q p { margin: 0; }
+.chip.certo { background: #E5F4E4; border-color: #3E8E5B; color: #1F5A33; }
+.chip.errado { background: #FBEBEB; border-color: #C8102E; color: #8A1020; }
+.ok-t { color: #2F7A47; }
+/* trava + voucher */
+.trava .teaser{display:flex;flex-direction:column}
+.cta-box.voucher-box{border-style:dashed;align-items:center;text-align:center}
+.voucher-tag{display:inline-block;align-self:center;background:#E20867;color:#fff;font:600 13px var(--f-body);letter-spacing:.14em;padding:6px 14px;border-radius:999px;margin-bottom:4px}
+.voucher-linha{margin:0;color:#C4006A}
+.trava{margin-inline:auto}
+.box.vc-box{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:12px 16px;text-align:left}.vc-box>.stack{margin-right:auto;align-items:flex-start}
 </style>
 </head>
 <body>
@@ -1979,12 +2065,242 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
 
 </script>
 <script>
+/* ===== Euphoria — Minhas Cores: cartelas, análise da foto e formação da equipe ===== */
+(function (root) {
+  'use strict';
+
+  /* t: fria (-1) a quente (+1) · v: clara (-1) a profunda (+1) · c: suave (-1) a brilhante (+1) */
+  const CARTELAS = [
+    { id: 'pc', nome: 'Primavera Clara', fam: 'Primavera', dom: 'Clara', sec: 'Quente', alvo: [0.5, -1, 0.3],
+      resumo: 'Cores leves, luminosas e levemente quentes. A sua beleza brilha com tons frescos, como pêssego, coral claro e água-marinha.',
+      pele: 'Clara, marfim ou pêssego, com fundo dourado suave', cabelo: 'Loiro claro, loiro dourado ou castanho claro', olhos: 'Azuis, verdes claros ou mel claro',
+      metais: 'Dourado claro e rosé', contraste: 'Baixo a médio',
+      cores: ['#FBD3B8', '#F7A88B', '#F28C8C', '#F6B6C9', '#FFE38A', '#F5D7A1', '#BFE3A5', '#7FC6A4', '#8FD3C7', '#9EC9EF', '#B9A7E6', '#E7C49A'],
+      neutros: ['#FFF6E5', '#E8D6BD', '#C9B08E', '#9FA8B3'], longe: ['#111111', '#3B1F2B', '#4A5A2F', '#2F3E5C'], batons: ['#F29B87', '#E8787A', '#F2A9B0'] },
+    { id: 'pp', nome: 'Primavera Pura', fam: 'Primavera', dom: 'Quente', sec: 'Brilhante', alvo: [1, -0.2, 0.5],
+      resumo: 'Cores quentes, alegres e vivas. Tons dourados, coral e verde-maçã deixam a sua pele iluminada e com aspecto saudável.',
+      pele: 'Dourada, pêssego ou bronzeada quente', cabelo: 'Loiro dourado, ruivo claro ou castanho com reflexo dourado', olhos: 'Verdes, mel, castanho claro ou azul-turquesa',
+      metais: 'Dourado amarelo', contraste: 'Médio',
+      cores: ['#FF7F50', '#FF9E57', '#FFC845', '#E8B04A', '#F36F6F', '#F7A1A1', '#8DC63F', '#A3D977', '#3FB58E', '#2BB6B0', '#4A9FD8', '#C98E4D'],
+      neutros: ['#FFF1D6', '#E3C59A', '#B07D4F', '#8B6B4A'], longe: ['#111111', '#8E9AA8', '#7B2D4F', '#1F2A44'], batons: ['#FF7F66', '#E9573F', '#F28C6B'] },
+    { id: 'pb', nome: 'Primavera Brilhante', fam: 'Primavera', dom: 'Brilhante', sec: 'Quente', alvo: [0.4, 0, 1],
+      resumo: 'Cores vibrantes e nítidas com um toque quente. Você fica linda em tons intensos, como vermelho-papoula, turquesa e amarelo vivo.',
+      pele: 'Clara a morena com fundo quente e aspecto luminoso', cabelo: 'Castanho escuro com reflexo quente ou loiro dourado', olhos: 'Claros e brilhantes, como verde, azul ou topázio',
+      metais: 'Dourado polido ou mistos', contraste: 'Médio a alto',
+      cores: ['#FF3B3F', '#FF5E7E', '#FF6F91', '#FF8A00', '#FFD400', '#7FD13B', '#00B26B', '#00C1B5', '#0091D5', '#1F3B73', '#6A5ACD', '#F4F1E1'],
+      neutros: ['#FAF6EA', '#C8A97E', '#1F3B73', '#2B2B33'], longe: ['#8A7F73', '#B9A89A', '#6E5B4E', '#A89BB0'], batons: ['#FF3355', '#FF5A5F', '#E0306A'] },
+    { id: 'vc', nome: 'Verão Claro', fam: 'Verão', dom: 'Clara', sec: 'Fria', alvo: [-0.5, -1, -0.2],
+      resumo: 'Cores claras, suaves e frias. Tons como rosa-bebê, lavanda e azul-céu valorizam a delicadeza da sua pele.',
+      pele: 'Clara e rosada, às vezes com sardas', cabelo: 'Loiro claro acinzentado ou castanho claro', olhos: 'Azuis, cinza ou verde-acinzentado',
+      metais: 'Prateado, ouro branco e rosé claro', contraste: 'Baixo',
+      cores: ['#F6C6D0', '#F2A7BB', '#F0A3A8', '#E8A0C8', '#C9B6E4', '#B6A6CF', '#A9C8EC', '#8FB8DE', '#7FA7C9', '#9ED9D4', '#B5DDB9', '#FFF3B0'],
+      neutros: ['#F8F6F4', '#D9D6D2', '#B7B2B8', '#6E7C91'], longe: ['#111111', '#FF7F00', '#8B5A2B', '#556B2F'], batons: ['#E8A1B5', '#D98BA6', '#F0A3A8'] },
+    { id: 'vp', nome: 'Verão Puro', fam: 'Verão', dom: 'Fria', sec: 'Suave', alvo: [-1, -0.3, -0.4],
+      resumo: 'Cores frias e elegantes, de intensidade média. Framboesa, lavanda-violeta e azul-cobalto suave combinam com o seu tom rosado.',
+      pele: 'Rosada ou oliva fria', cabelo: 'Castanho acinzentado ou loiro escuro acinzentado', olhos: 'Azuis, cinza ou castanho frio',
+      metais: 'Prateado e ouro branco', contraste: 'Baixo a médio',
+      cores: ['#E36F9B', '#C9558A', '#D88FA8', '#9C3D5E', '#B26AA5', '#8E7CC3', '#5D8AC6', '#3E6FA8', '#7690B2', '#5E6E98', '#4FA3A5', '#6BBF9F'],
+      neutros: ['#F4F4F6', '#A7A9B3', '#4D5A73', '#2F3B55'], longe: ['#FF8C00', '#D2691E', '#808000', '#FFD700'], batons: ['#C9558A', '#D9739A', '#B0436E'] },
+    { id: 'vs', nome: 'Verão Suave', fam: 'Verão', dom: 'Suave', sec: 'Fria', alvo: [-0.4, 0, -1],
+      resumo: 'Cores suaves, acinzentadas e frias. Rosa-antigo, malva e verde-sálvia criam uma imagem sofisticada e harmoniosa.',
+      pele: 'Bege rosada ou oliva suave', cabelo: 'Castanho médio acinzentado ou loiro escuro', olhos: 'Verde-acinzentado, cinza ou castanho suave',
+      metais: 'Prata envelhecida, rosé e ouro branco fosco', contraste: 'Baixo',
+      cores: ['#C98C9A', '#D4A5A5', '#B5838A', '#B07A8C', '#9C7FA0', '#8E7A86', '#8C93B8', '#7A97B0', '#5E7586', '#6C8FA0', '#7FA39A', '#9DB5A0'],
+      neutros: ['#EFE9E4', '#C9BFB8', '#8E8580', '#4E5560'], longe: ['#111111', '#FFFFFF', '#FF4500', '#FF1493'], batons: ['#B97A86', '#C98C9A', '#A86B7A'] },
+    { id: 'os', nome: 'Outono Suave', fam: 'Outono', dom: 'Suave', sec: 'Quente', alvo: [0.4, 0.1, -1],
+      resumo: 'Cores suaves, terrosas e levemente quentes. Pêssego-terroso, sálvia e caramelo trazem elegância discreta, o famoso luxo silencioso.',
+      pele: 'Bege dourada ou oliva quente suave', cabelo: 'Loiro escuro ou castanho claro com reflexos mistos', olhos: 'Mel, verde-oliva ou castanho suave',
+      metais: 'Ouro fosco, bronze e rosé', contraste: 'Baixo',
+      cores: ['#C99A7A', '#D08C6A', '#C98A8A', '#B06A5E', '#B5835A', '#C9A66B', '#A9A16B', '#7F8F6A', '#6F9A8D', '#5E8A99', '#8C6A5A', '#9C8466'],
+      neutros: ['#EFE3D0', '#CDB79A', '#9C8466', '#6B5A4A'], longe: ['#111111', '#FF1493', '#0000CD', '#FFFFFF'], batons: ['#C47A6A', '#B9735E', '#D08C7A'] },
+    { id: 'op', nome: 'Outono Puro', fam: 'Outono', dom: 'Quente', sec: 'Suave', alvo: [1, 0.4, -0.4],
+      resumo: 'Cores quentes, ricas e terrosas. Ferrugem, mostarda, verde-oliva e caramelo realçam o dourado natural da sua pele.',
+      pele: 'Dourada, bronze ou morena quente', cabelo: 'Ruivo, acobreado ou castanho com reflexo dourado', olhos: 'Castanhos, âmbar ou verde-oliva',
+      metais: 'Ouro amarelo, bronze e cobre', contraste: 'Médio',
+      cores: ['#C1440E', '#D2691E', '#A0522D', '#8B3A2B', '#E1A43A', '#B8860B', '#C68E4C', '#6B8E23', '#556B2F', '#2E6F62', '#1F5F6B', '#7B3F00'],
+      neutros: ['#F3E5C8', '#C8A27A', '#8B5A2B', '#4A3B2A'], longe: ['#111111', '#FF69B4', '#87CEEB', '#C0C0C0'], batons: ['#B5532F', '#A0452E', '#C8643F'] },
+    { id: 'opr', nome: 'Outono Profundo', fam: 'Outono', dom: 'Profunda', sec: 'Quente', alvo: [0.5, 1, -0.1],
+      resumo: 'Cores profundas e quentes. Vermelho-tijolo, verde-floresta, berinjela e cobre combinam com a intensidade da sua beleza.',
+      pele: 'Dourada, morena ou negra com fundo quente', cabelo: 'Castanho escuro ou preto com reflexo quente', olhos: 'Castanho escuro ou âmbar profundo',
+      metais: 'Ouro, bronze e cobre envelhecido', contraste: 'Médio a alto',
+      cores: ['#8B1E1E', '#A0302E', '#6B2E1E', '#B5541E', '#C98A1E', '#A56B2E', '#7A4A1E', '#4F5F1E', '#1F4D3A', '#0F4C5C', '#4B1E3F', '#3B2A1E'],
+      neutros: ['#F0E2C8', '#A8865E', '#4A3424', '#2B2420'], longe: ['#FFC0CB', '#ADD8E6', '#E6E6FA', '#C0C0C0'], batons: ['#8B2E2E', '#A0412A', '#7A2E3A'] },
+    { id: 'ipr', nome: 'Inverno Profundo', fam: 'Inverno', dom: 'Profunda', sec: 'Fria', alvo: [-0.5, 1, 0.3],
+      resumo: 'Cores profundas e frias, com muita presença. Vinho, roxo, azul-marinho e esmeralda escuro valorizam o seu contraste natural.',
+      pele: 'Clara, morena ou negra com fundo frio ou oliva', cabelo: 'Preto ou castanho escuro frio', olhos: 'Castanho escuro ou pretos',
+      metais: 'Prateado, ouro branco e platina', contraste: 'Alto',
+      cores: ['#8B0A3A', '#B0004F', '#C2185B', '#D10040', '#6A0DAD', '#3B1F6E', '#003F7F', '#0047AB', '#00694A', '#00575E', '#2E2E3A', '#FFFFFF'],
+      neutros: ['#FFFFFF', '#111111', '#2E2E3A', '#1C2541'], longe: ['#F5DEB3', '#FFDAB9', '#D2B48C', '#C68E4C'], batons: ['#8B0A3A', '#A3133E', '#C2185B'] },
+    { id: 'ip', nome: 'Inverno Puro', fam: 'Inverno', dom: 'Fria', sec: 'Brilhante', alvo: [-1, 0.4, 0.6],
+      resumo: 'Cores frias, puras e marcantes. Pink frio, vermelho-verdadeiro, azul-royal e safira deixam a sua imagem clássica e poderosa.',
+      pele: 'Rosada, porcelana ou oliva fria', cabelo: 'Castanho escuro, preto ou grisalho prateado', olhos: 'Castanho escuro, azul ou cinza',
+      metais: 'Prateado e platina', contraste: 'Alto',
+      cores: ['#E0115F', '#FF66B3', '#C8102E', '#8E1E5C', '#7B2CBF', '#E6E6FA', '#4169E1', '#0F52BA', '#D6ECF3', '#00A693', '#00827F', '#2F2F3A'],
+      neutros: ['#FFFFFF', '#111111', '#8C8C96', '#1B2A4A'], longe: ['#FF8C00', '#C68E4C', '#808000', '#F5DEB3'], batons: ['#C8102E', '#E0115F', '#8E1E5C'] },
+    { id: 'ib', nome: 'Inverno Brilhante', fam: 'Inverno', dom: 'Brilhante', sec: 'Fria', alvo: [-0.4, 0.1, 1],
+      resumo: 'Cores vivas, frias e de alto contraste. Pink elétrico, azul-turquesa e esmeralda vivo combinam com o brilho do seu olhar.',
+      pele: 'Clara a morena, com aspecto nítido e luminoso', cabelo: 'Castanho escuro ou preto', olhos: 'Claros e brilhantes ou escuros intensos',
+      metais: 'Prateado polido e ouro branco', contraste: 'Muito alto',
+      cores: ['#FF0084', '#FF4FB0', '#E4002B', '#D1006B', '#9B00D3', '#5B2C83', '#0050FF', '#00B2FF', '#00D1C1', '#00C16E', '#FFE600', '#111111'],
+      neutros: ['#FFFFFF', '#111111', '#3A3A44', '#14213D'], longe: ['#C3B091', '#A89C94', '#9E8E7E', '#B7A7A0'], batons: ['#FF0084', '#E4002B', '#D1006B'] }
+  ];
+  const CARTELA = id => CARTELAS.find(c => c.id === id);
+
+  /* molduras do drapeado digital */
+  const DRAPE = {
+    metal: [['Dourado', 'linear-gradient(135deg,#8C6A1C,#F5D77A 30%,#B8860B 55%,#FFF1B8 75%,#9C7A1E)', 1], ['Prateado', 'linear-gradient(135deg,#6E7378,#E8EBEE 30%,#A7ADB3 55%,#FFFFFF 75%,#7C8288)', -1]],
+    temp: [['Cores quentes', ['#C1440E', '#E1A43A', '#6B8E23', '#FF7F50', '#B8860B', '#2E6F62', '#D2691E', '#C68E4C'], 1], ['Cores frias', ['#E0115F', '#4169E1', '#7B2CBF', '#00A693', '#C8102E', '#3E6FA8', '#B26AA5', '#0F52BA'], -1]],
+    prof: [['Cores claras', ['#FBD3B8', '#A9C8EC', '#F6C6D0', '#BFE3A5', '#C9B6E4', '#FFE38A', '#9ED9D4', '#F7A88B'], -1], ['Cores profundas', ['#8B0A3A', '#1F4D3A', '#003F7F', '#4B1E3F', '#6B2E1E', '#00575E', '#3B1F6E', '#8B1E1E'], 1]],
+    int: [['Cores suaves', ['#C98C9A', '#7FA39A', '#9C8466', '#8C93B8', '#B5835A', '#6C8FA0', '#B07A8C', '#A9A16B'], -1], ['Cores brilhantes', ['#FF0084', '#00C16E', '#0050FF', '#FFD400', '#E4002B', '#00B2FF', '#9B00D3', '#FF8A00'], 1]]
+  };
+  const moldura = cores => Array.isArray(cores) ? `conic-gradient(${cores.map((c, i) => `${c} ${i * 100 / cores.length}% ${(i + 1) * 100 / cores.length}%`).join(',')})` : cores;
+
+  /* ---------- análise da foto ---------- */
+  function srgb2lin(c) { c /= 255; return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
+  function lab(rgb) {
+    const [r, g, b] = rgb.map(srgb2lin);
+    const x = (0.4124 * r + 0.3576 * g + 0.1805 * b) / 0.95047, y = 0.2126 * r + 0.7152 * g + 0.0722 * b, z = (0.0193 * r + 0.1192 * g + 0.9505 * b) / 1.08883;
+    const f = t => t > 0.008856 ? Math.cbrt(t) : 7.787 * t + 16 / 116;
+    const L = 116 * f(y) - 16, A = 500 * (f(x) - f(y)), B = 200 * (f(y) - f(z));
+    return { L, a: A, b: B, C: Math.hypot(A, B), h: (Math.atan2(B, A) * 180 / Math.PI + 360) % 360 };
+  }
+  const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+  function media(ctx, x, y, r) {
+    const W = ctx.canvas.width, H = ctx.canvas.height, x0 = clamp(Math.round(x - r), 0, W - 1), y0 = clamp(Math.round(y - r), 0, H - 1);
+    const w = clamp(Math.round(2 * r), 1, W - x0), h = clamp(Math.round(2 * r), 1, H - y0);
+    const d = ctx.getImageData(x0, y0, w, h).data; const px = [];
+    for (let i = 0; i < d.length; i += 4) px.push([d[i], d[i + 1], d[i + 2]]);
+    px.sort((p, q) => (p[0] + p[1] + p[2]) - (q[0] + q[1] + q[2]));
+    const corte = Math.floor(px.length * 0.15), meio = px.slice(corte, px.length - corte || px.length);
+    const s = [0, 0, 0]; meio.forEach(p => { s[0] += p[0]; s[1] += p[1]; s[2] += p[2]; });
+    return s.map(v => v / meio.length);
+  }
+  /* pontos: { testa, bochecha, queixo, cabelo, olho, branco } em coordenadas da imagem */
+  function analisar(ctx, pontos) {
+    const W = ctx.canvas.width, raio = { testa: 0.018, bochecha: 0.018, queixo: 0.014, cabelo: 0.016, olho: 0.0055, branco: 0.02 };
+    const amostra = {}; Object.keys(pontos).forEach(k => { const p = pontos[k]; if (p) amostra[k] = media(ctx, p.x, p.y, Math.max(2, W * raio[k])); });
+    let ganho = [1, 1, 1], conf = 'média', avisos = [];
+    if (amostra.branco) {
+      const w = amostra.branco; ganho = w.map(v => clamp(242 / Math.max(v, 1), 0.6, 1.9));
+      const desvio = Math.max(...ganho) / Math.min(...ganho);
+      if (Math.max(...w) < 150) avisos.push('A folha branca ficou escura na foto. Mais luz deixa a análise mais segura.');
+      if (desvio > 1.35) avisos.push('A luz estava bem colorida. Conferir com atenção no drapeado.');
+    } else { conf = 'baixa'; avisos.push('Sem a folha branca, a cor da luz pode ter mudado a foto.'); }
+    const corr = rgb => lab(rgb.map((v, i) => clamp(v * ganho[i], 0, 255)));
+    const pele = ['testa', 'bochecha', 'queixo'].filter(k => amostra[k]).map(k => corr(amostra[k]));
+    if (!pele.length) return null;
+    const P = { L: pele.reduce((s, x) => s + x.L, 0) / pele.length, a: pele.reduce((s, x) => s + x.a, 0) / pele.length, b: pele.reduce((s, x) => s + x.b, 0) / pele.length };
+    P.C = Math.hypot(P.a, P.b); P.h = (Math.atan2(P.b, P.a) * 180 / Math.PI + 360) % 360;
+    const cab = amostra.cabelo ? corr(amostra.cabelo) : null, olho = amostra.olho ? corr(amostra.olho) : null;
+    const t = clamp((P.h - 52) / 8, -1, 1);
+    const prof = 0.45 * (cab ? cab.L : P.L - 30) + 0.25 * (olho ? olho.L : P.L - 25) + 0.30 * P.L;
+    const v = clamp((46 - prof) / 16, -1, 1);
+    const contraste = cab ? Math.abs(P.L - cab.L) : 30;
+    const c = clamp(0.5 * ((contraste - 32) / 18) + 0.3 * ((olho ? olho.C : 14) - 14) / 10 + 0.2 * ((P.C - 22) / 8), -1, 1);
+    if (!cab || !olho) { avisos.push('Faltou ' + (!cab && !olho ? 'o cabelo e o olho' : !cab ? 'o cabelo' : 'o olho') + '. A profundidade e o contraste ficaram estimados.'); if (conf === 'média') conf = 'baixa'; }
+    const r = (x, n) => Math.round(x * (n || 100)) / (n || 100);
+    return { t: r(t), v: r(v), c: r(c), contraste: Math.round(contraste), conf, avisos, pele: { L: r(P.L, 10), h: r(P.h, 10), C: r(P.C, 10) } };
+  }
+  function ranking(e) {
+    const pesos = [1.2, 1, 1];
+    return CARTELAS.map(k => ({ k, d: Math.sqrt(k.alvo.reduce((s, x, i) => s + pesos[i] * Math.pow(x - [e.t, e.v, e.c][i], 2), 0)) })).sort((a, b) => a.d - b.d).map(x => x.k.id);
+  }
+  const rotulo = {
+    t: x => x >= 0.35 ? 'Quente' : x <= -0.35 ? 'Fria' : 'Neutra',
+    v: x => x >= 0.35 ? 'Profunda' : x <= -0.35 ? 'Clara' : 'Média',
+    c: x => x >= 0.35 ? 'Brilhante' : x <= -0.35 ? 'Suave' : 'Média',
+    k: x => x > 45 ? 'Alto' : x >= 25 ? 'Médio' : 'Baixo'
+  };
+  /* código compacto para o link de casa: id~t,v,c,contraste */
+  const codigo = e => e ? `${e.sugerida || ''}~${Math.round(e.t * 10)},${Math.round(e.v * 10)},${Math.round(e.c * 10)},${e.contraste}` : '';
+  function lerCodigo(s) { const m = String(s || '').match(/^([a-z]{0,3})~(-?\d+),(-?\d+),(-?\d+),(\d+)$/); if (!m) return null; const e = { t: +m[2] / 10, v: +m[3] / 10, c: +m[4] / 10, contraste: +m[5], conf: 'casa', avisos: ['Pré-análise feita em casa: confirmar na loja.'] }; e.sugerida = CARTELA(m[1]) ? m[1] : ranking(e)[0]; return e; }
+
+  /* ---------- Formação em Colorimetria (equipe) ---------- */
+  const sw = (cores, rot) => `<div class="fc-sw">${cores.map(c => `<i style="background:${c}" title="${c}"></i>`).join('')}</div>${rot ? `<p class="fc-cap">${rot}</p>` : ''}`;
+  const CURSO = [
+    { id: 'o-que-e', tit: 'O que é e para que serve', html: `
+      <p class="fc-lead">A coloração pessoal descobre quais cores harmonizam com a pele, os olhos e o cabelo da cliente. Perto do rosto, a cor certa ilumina, suaviza marcas e deixa a pele com aspecto descansado. A cor errada destaca olheiras, deixa a pele acinzentada ou amarelada e "apaga" a pessoa.</p>
+      <div class="fc-duo"><div><h4>Para a cliente</h4><ul><li>Compra com mais segurança e erra menos.</li><li>Monta um guarda-roupa que combina entre si.</li><li>Acerta maquiagem, cabelo e acessórios.</li></ul></div>
+      <div><h4>Para a Euphoria</h4><ul><li>A consultoria vira motivo de visita e de recompra.</li><li>Você indica peças com argumento: "esta cor acende o seu rosto".</li><li>A cliente volta para "completar a cartela".</li></ul></div></div>
+      <div class="fc-box"><b>De onde vem:</b> o método das estações nasceu nos anos 1940 e ficou famoso nos anos 1980 com o livro <i>Color Me Beautiful</i>, de Carole Jackson, com 4 estações. Depois foi ampliado para 12 estações, o chamado <b>método sazonal expandido</b>, que é o mais usado hoje por consultoras no Brasil.</div>
+      <p class="fc-dica">Regra de ouro: a cartela vale principalmente para o que fica <b>perto do rosto</b>, como blusas, vestidos, golas, lenços, brincos e maquiagem. Calças, saias e sapatos têm mais liberdade.</p>` },
+    { id: 'dimensoes', tit: 'As 4 dimensões da cor', html: `
+      <p class="fc-lead">Toda cor tem três características. A cartela de cada cliente combina as três com o contraste natural dela.</p>
+      <div class="fc-dim"><h4>1. Temperatura (subtom): quente ou fria</h4><p>Se a cor tem mais amarelo/dourado (quente) ou mais azul/rosado (fria). É a dimensão mais importante.</p><div class="fc-duo">${sw(['#C1440E', '#E1A43A', '#6B8E23', '#FF7F50', '#B8860B', '#C68E4C'], 'Quentes')}${sw(['#E0115F', '#4169E1', '#7B2CBF', '#00A693', '#C8102E', '#B26AA5'], 'Frias')}</div></div>
+      <div class="fc-dim"><h4>2. Profundidade (valor): clara ou profunda</h4><p>O quanto a cor é clara ou escura. Na cliente, olhe principalmente cabelo e olhos.</p><div class="fc-duo">${sw(['#FBD3B8', '#A9C8EC', '#F6C6D0', '#BFE3A5', '#C9B6E4', '#FFE38A'], 'Claras')}${sw(['#8B0A3A', '#1F4D3A', '#003F7F', '#4B1E3F', '#6B2E1E', '#3B1F6E'], 'Profundas')}</div></div>
+      <div class="fc-dim"><h4>3. Intensidade (croma): suave ou brilhante</h4><p>Se a cor é pura e vibrante ou acinzentada e "empoeirada".</p><div class="fc-duo">${sw(['#C98C9A', '#7FA39A', '#9C8466', '#8C93B8', '#B5835A', '#6C8FA0'], 'Suaves')}${sw(['#FF0084', '#00C16E', '#0050FF', '#FFD400', '#E4002B', '#00B2FF'], 'Brilhantes')}</div></div>
+      <div class="fc-dim"><h4>4. Contraste: baixo, médio ou alto</h4><p>A diferença entre a pele, o cabelo e os olhos. Pele clara com cabelo preto tem <b>contraste alto</b>, e pede cores mais intensas e combinações marcantes. Pele, cabelo e olhos em tons parecidos têm <b>contraste baixo</b>, e pedem combinações tom sobre tom.</p></div>
+      <p class="fc-dica">Cada estação tem uma <b>característica dominante</b> (a mais forte) e uma <b>secundária</b>. Ex.: Verão Suave = dominante suave, secundária fria.</p>` },
+    { id: 'observar', tit: 'Como observar a cliente', html: `
+      <p class="fc-lead">Antes dos tecidos, olhe a cliente em luz natural, sem maquiagem, com o cabelo afastado do rosto e uma capa neutra (cinza ou branca suave) sobre a roupa.</p>
+      <div class="fc-duo"><div><h4>Pele</h4><ul><li><b>Subtom quente:</b> fundo dourado, pêssego ou amarelado; bronzeia com facilidade.</li><li><b>Subtom frio:</b> fundo rosado ou azulado; fica vermelha no sol.</li><li><b>Neutro/oliva:</b> mistura dos dois, às vezes um fundo esverdeado.</li></ul></div>
+      <div><h4>Olhos e cabelo</h4><ul><li>Observe a <b>cor natural</b> do cabelo (raiz, sobrancelha), não a tintura.</li><li>Olhos com desenho nítido e brilho costumam indicar intensidade alta; olhos com cores misturadas, mais suavidade.</li><li>Cabelo e olhos escuros puxam para profundidade.</li></ul></div></div>
+      <h4>Testes rápidos</h4><div class="fc-testes">
+        <div><b>Folha branca</b><p>Segure uma folha branca ao lado do rosto. Ao lado do branco, a pele parece amarelada/dourada (quente) ou rosada (fria)?</p></div>
+        <div><b>Metais</b><p>Dourado perto do rosto ilumina? Tende a quente. Prateado ilumina? Tende a fria. Rosé costuma ir bem com as duas.</p></div>
+        <div><b>Branco puro × off-white</b><p>Quem fica melhor no branco óptico tende a fria e de contraste alto; no off-white/creme, tende a quente ou suave.</p></div>
+        <div><b>Veias do pulso</b><p>Esverdeadas sugerem quente; azuladas, fria. <b>Sozinho engana:</b> use só como apoio.</p></div></div>
+      <p class="fc-dica">Cuidado com o "viés de confirmação": não decida pelo que a cliente gostaria de ser. Deixe os tecidos mostrarem.</p>` },
+    { id: 'estacoes', tit: 'As 12 estações', html: '__ESTACOES__' },
+    { id: 'atendimento', tit: 'O atendimento passo a passo', html: `
+      <ol class="fc-passos">
+        <li><b>Prepare o espaço.</b> Luz natural perto da janela, sem sol direto, ou ring light na <b>luz branca</b> (nunca amarela). Espelho grande à frente da cliente.</li>
+        <li><b>Prepare a cliente.</b> Sem maquiagem (ou retirar base e batom), cabelo preso ou coberto pela faixa neutra, capa neutra sobre a roupa. Tire brincos e colares coloridos.</li>
+        <li><b>Temperatura.</b> Compare tecidos quentes × frios e dourado × prateado. Observe olheiras, manchas, brilho da pele e dos olhos.</li>
+        <li><b>Profundidade.</b> Compare tecidos claros × profundos.</li>
+        <li><b>Intensidade.</b> Compare a mesma cor em versão suave × brilhante.</li>
+        <li><b>Contraste.</b> Teste combinações de baixo, médio e alto contraste.</li>
+        <li><b>Estação.</b> Com as 3 respostas, teste as estações candidatas lado a lado, principalmente as <b>vizinhas</b> (ex.: Verão Suave × Outono Suave).</li>
+        <li><b>Confirme e entregue.</b> Mostre a cartela, as cores de destaque, os neutros e como usar no dia a dia.</li></ol>
+      <div class="fc-box"><b>O que olhar em cada tecido:</b> a cor certa deixa a pele uniforme, os olhos brilhantes e o contorno do rosto definido. A cor errada destaca olheiras, sombras, vermelhidão, deixa a pele acinzentada ou amarelada e faz a roupa "aparecer antes" da pessoa.</div>
+      <p class="fc-dica">No app: a foto com a folha branca dá uma <b>sugestão</b>. O drapeado digital ajuda a comparar na tela. Quando tiver o kit, confirme sempre com os tecidos reais.</p>` },
+    { id: 'entrega', tit: 'Como entregar o resultado', html: `
+      <p class="fc-lead">A entrega é o momento de encantar. Fale sempre do que valoriza, nunca do que "não pode".</p>
+      <div class="fc-duo"><div><h4>Frases que funcionam</h4><ul><li>"Olha como esse tom acende o seu rosto."</li><li>"Com essa cor, seus olhos aparecem primeiro."</li><li>"A sua cartela é Outono Suave: cores elegantes, que transmitem sofisticação."</li><li>"Essas são as cores para usar perto do rosto; nas peças de baixo você tem mais liberdade."</li></ul></div>
+      <div><h4>Evite</h4><ul><li>"Essa cor te deixa feia/doente."</li><li>"Você não pode usar preto."</li><li>Termos técnicos sem explicar.</li><li>Decidir sozinha sem mostrar no espelho.</li></ul></div></div>
+      <div class="fc-box"><b>Quando a cliente ama uma cor fora da cartela:</b> mostre como usar longe do rosto (calça, saia, sapato, bolsa) ou com uma peça da cartela perto do rosto (lenço, colar, blusa). Ninguém precisa abrir mão do que ama.</div>
+      <div class="fc-box"><b>Para vender:</b> termine mostrando 3 peças da loja na cartela dela e combine uma próxima visita: "Vou separar as novidades nas suas cores."</div>` },
+    { id: 'glossario', tit: 'Glossário', html: `<dl class="fc-glo">
+      <div><dt>Subtom</dt><dd>Fundo da pele (quente, frio ou neutro). Não muda com o bronzeado.</dd></div>
+      <div><dt>Temperatura</dt><dd>Quente (amarelo/dourado) ou fria (azul/rosado).</dd></div>
+      <div><dt>Profundidade ou valor</dt><dd>O quanto uma cor ou pessoa é clara ou escura.</dd></div>
+      <div><dt>Intensidade ou croma</dt><dd>Pureza da cor: brilhante (viva) ou suave (acinzentada).</dd></div>
+      <div><dt>Contraste</dt><dd>Diferença de claro e escuro entre pele, cabelo e olhos.</dd></div>
+      <div><dt>Drapeado</dt><dd>Teste com tecidos coloridos perto do rosto.</dd></div>
+      <div><dt>Cartela</dt><dd>Conjunto de cores da estação da cliente.</dd></div>
+      <div><dt>Dominante / secundária</dt><dd>A característica mais forte e a de apoio de cada estação.</dd></div>
+      <div><dt>Estações vizinhas</dt><dd>Estações que compartilham uma característica (ex.: Verão Suave e Outono Suave).</dd></div>
+      <div><dt>Neutros</dt><dd>Cores-base do guarda-roupa: branco, bege, cinza, marinho, marrom ou preto, conforme a cartela.</dd></div></dl>` }
+  ];
+  function htmlEstacoes() {
+    return `<p class="fc-lead">São 4 famílias, cada uma com 3 variações. Toque numa estação para ver os detalhes.</p>
+      <div class="fc-est">${CARTELAS.map(k => `<details class="fc-card"><summary><span class="fc-mini">${k.cores.slice(0, 6).map(c => `<i style="background:${c}"></i>`).join('')}</span><b>${k.nome}</b><small>Dominante ${k.dom.toLowerCase()} · secundária ${k.sec.toLowerCase()}</small></summary>
+        <p>${k.resumo}</p>
+        <dl><div><dt>Pele</dt><dd>${k.pele}</dd></div><div><dt>Cabelo</dt><dd>${k.cabelo}</dd></div><div><dt>Olhos</dt><dd>${k.olhos}</dd></div><div><dt>Contraste</dt><dd>${k.contraste}</dd></div><div><dt>Metais</dt><dd>${k.metais}</dd></div></dl>
+        <h5>Paleta</h5>${sw(k.cores)}<h5>Neutros</h5>${sw(k.neutros)}<h5>Usar longe do rosto</h5>${sw(k.longe)}<h5>Batons</h5>${sw(k.batons)}</details>`).join('')}</div>`;
+  }
+  const QUIZ = [
+    { p: 'Qual é a dimensão mais importante para começar a análise?', o: ['Profundidade', 'Temperatura', 'Contraste'], c: 1, e: 'A temperatura (quente ou fria) é o primeiro teste e o que mais muda o resultado.' },
+    { p: 'Cliente com pele clara, cabelo preto e olhos escuros tem contraste…', o: ['Baixo', 'Médio', 'Alto'], c: 2, e: 'A grande diferença entre pele e cabelo é contraste alto.' },
+    { p: 'Verão Suave: qual é a característica dominante?', o: ['Fria', 'Suave', 'Clara'], c: 1, e: 'Dominante suave, secundária fria.' },
+    { p: 'O teste das veias do pulso…', o: ['Define a temperatura sozinho', 'É só um apoio, pode enganar', 'Mostra a profundidade'], c: 1, e: 'Use sempre junto com os tecidos e os metais.' },
+    { p: 'Qual luz é a ideal para a análise?', o: ['Ring light amarela', 'Luz natural indireta ou ring light branca', 'Luz do provador'], c: 1, e: 'Luz natural sem sol direto ou luz branca, para não alterar as cores.' },
+    { p: 'A cliente ama laranja, mas é Inverno Puro. O que dizer?', o: ['"Você não pode usar laranja."', '"Use longe do rosto, numa saia ou bolsa."', '"Laranja te deixa doente."'], c: 1, e: 'Sempre mostre como usar, nunca proíba.' },
+    { p: 'Cores como mostarda, ferrugem e verde-oliva são típicas de…', o: ['Outono', 'Inverno', 'Verão'], c: 0, e: 'Cores quentes e terrosas são do Outono.' },
+    { p: 'A cartela vale principalmente para…', o: ['Sapatos', 'O que fica perto do rosto', 'Calças'], c: 1, e: 'Blusas, golas, lenços, brincos e maquiagem.' }
+  ];
+
+  root.Cores = { CARTELAS, CARTELA, DRAPE, moldura, analisar, ranking, rotulo, codigo, lerCodigo, CURSO, htmlEstacoes, QUIZ, lab };
+})(this);
+
+</script>
+<script>
 /* ===== Euphoria — aplicação ===== */
 (function () {
   'use strict';
   const $app = document.getElementById('app');
   const E = ESTILOS;
-  const VERSAO_APP = '03/11 · Meus Looks';
+  const VERSAO_APP = '03/11 · Agendamento e voucher';
   const PARAMS = new URLSearchParams(location.search);
   const MODO_CLIENTE = PARAMS.has('cliente');
   const RASCUNHO = MODO_CLIENTE ? 'euphoria-casa-v1' : 'euphoria-teste-v1';
@@ -2027,8 +2343,9 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
   };
 
   /* ---------- acesso: equipe x cliente ---------- */
-  const TELAS_CLIENTE = ['inicio', 'dados', 'teste', 'revisar', 'refino', 'resultado', 'vitrine'];
-  const vistaCliente = () => MODO_CLIENTE || !S.equipe;
+  const TELAS_CLIENTE = ['inicio', 'dados', 'teste', 'revisar', 'refino', 'resultado', 'vitrine', 'cores'];
+  const TELAS_CONSULTA = ['atendimento', 'consent', 'favoritas', 'coresAnalise', 'coresResultado'];
+  const vistaCliente = () => MODO_CLIENTE || (!S.equipe && !S.consulta);
   const BLOQUEIO_MIN = 5;
   async function hashPin(txt) {
     const dados = new TextEncoder().encode('euphoria|' + txt);
@@ -2041,7 +2358,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     if (S.dbStatus === 'off') { S.equipe = true; toast('Armazenamento indisponível: entrando sem PIN.'); go(destino || 'inicio'); return; }
     S.pin = { modo: pinGuardado() ? 'entrar' : 'criar', buf: '', destino: destino || null, erro: '', primeiro: '', tentativas: 0 }; render(); }
   function liberar() { S.equipe = true; S.ultimoToque = Date.now(); const d = S.pin && S.pin.destino; S.pin = null; if (d) go(d); else go('inicio'); }
-  function bloquear(motivo) { S.equipe = false; S.pin = null; if (!TELAS_CLIENTE.includes(S.tela)) S.tela = 'inicio'; render(); window.scrollTo(0, 0); if (motivo) toast(motivo); }
+  function bloquear(motivo) { S.equipe = false; S.consulta = false; S.pin = null; if (!TELAS_CLIENTE.includes(S.tela)) S.tela = 'inicio'; render(); window.scrollTo(0, 0); if (motivo) toast(motivo); }
   function codigoRec() { const a = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'; let c = ''; const r = new Uint32Array(8); (window.crypto || {}).getRandomValues ? crypto.getRandomValues(r) : r.forEach((_, i) => r[i] = Math.random() * 1e9); r.forEach(v => c += a[v % a.length]); return c.slice(0, 4) + '-' + c.slice(4); }
   async function teclaPin(v) {
     const p = S.pin; if (!p) return;
@@ -2106,6 +2423,15 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
   const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
   const lista = Score.lista;
   const hoje = () => new Date().toISOString();
+  const moraPerto = ses => norm(((ses || S.sessao || {}).dados || {}).cidade).includes('praia grande');
+  const travado = () => MODO_CLIENTE && moraPerto();
+  const VOUCHER_PCT = 10, VOUCHER_DIAS = 15;
+  const AG_FORMAS = [['l', 'Presencial na Euphoria', 'o meu atendimento aqui na loja'], ['v', 'Consultoria online personalizada', 'a minha consultoria online personalizada']];
+  const AG_AVISO = 'O horário está sujeito à disponibilidade e pode ser alterado. A nossa consultoria confirma com você.';
+  const agTexto = a => { const f = a && AG_FORMAS.find(x => x[0] === a.forma); return f ? f[1] : ''; };
+  const agCodigo = a => a && a.forma ? a.forma : '';
+  const agLer = s => { const m = String(s || '').match(/^([lv])/); return m ? { forma: m[1] } : null; };
+  const VOUCHER_TXT = `${VOUCHER_PCT}% de desconto na sua compra, na loja ou online, em até ${VOUCHER_DIAS} dias depois do seu atendimento`;
   const fmtData = iso => { if (!iso) return ''; const d = new Date(iso); return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }); };
   const diasDesde = iso => iso ? Math.floor((Date.now() - new Date(iso).getTime()) / 864e5) : null;
   const digitos = s => String(s || '').replace(/\D/g, '');
@@ -2126,7 +2452,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     clienteSel: null, historico: [], ficha: null, fichaModo: null, confirmarApagar: false, visitaObs: '', voltarPara: null, waTexto: null, salvando: false,
     anivModelo: 'carinho', anivEdit: {},
     conv: { modelo: 'curiosidade', nome: '', wa: '', texto: '', editado: false, clienteId: '' }, recebido: { texto: '' },
-    equipe: false, pin: null, ultimoToque: Date.now(), favs: [], lbox: null, vitFlt: { estilo: '', ocasiao: '', meu: true },
+    equipe: false, consulta: false, pin: null, ultimoToque: Date.now(), cor: null, fc: { cap: 0, quiz: {} }, favs: [], lbox: null, vitFlt: { estilo: '', ocasiao: '', meu: true },
     looks: [], looksMeta: {}, lookFlt: { estilo: '', ocasiao: '', tam: '', esgotados: false, semClass: false }, lookSel: null, lookDraft: null, lookVolta: 'looks', lkApagar: false
   };
   try { const r = localStorage.getItem(RASCUNHO); if (r) { const o = JSON.parse(r); if (o && o.respostas) S.rascunho = o; } } catch (e) { }
@@ -2175,13 +2501,13 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
   }
   function atendimentoPayload(ses, c) {
     return clean({
-      clienteId: ses.clienteId, tipo: 'teste', data: ses.inicio, dados: ses.dados, respostas: ses.respostas, desempates: ses.desempates,
+      clienteId: ses.clienteId, tipo: Object.keys(ses.respostas || {}).length ? 'teste' : 'cores', cores: ses.cores || null, data: ses.inicio, dados: ses.dados, respostas: ses.respostas, desempates: ses.desempates,
       estilos: c.estilos, estilosCalculados: c.r.estilos, ajustado: c.ajustado, preliminar: c.r.preliminar, consistencia: c.r.consistencia,
       pontos: c.p.atual, desejo: c.p.desejo, desejoPrincipal: c.r.desejoPrincipal, validacao: ses.validacao,
-      observacoes: ses.observacoes, sugestoes: ses.sugestoes, extras: ses.extras, tipoCorpo: ses.tipoCorpo, favoritos: favsDaSessao(ses), origem: ses.origem || 'loja', salvoEm: hoje()
+      observacoes: ses.observacoes, sugestoes: ses.sugestoes, extras: ses.extras, tipoCorpo: ses.tipoCorpo, favoritos: favsDaSessao(ses), origem: ses.origem || 'loja', agenda: ses.agenda || null, forma: ses.formaAtend || (ses.agenda && ses.agenda.forma === 'v' ? 'v' : 'l'), salvoEm: hoje()
     });
   }
-  async function salvarAtendimento() {
+  async function salvarAtendimento(op) {
     const ses = S.sessao; if (!S.db || !ses.clienteId) return false;
     const c = calc(); S.salvando = true; render();
     try {
@@ -2189,11 +2515,14 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       await S.db.doc('atendimentos/' + ses.atendimentoId).set(atendimentoPayload(ses, c));
       const cli = S.clientes.find(x => x.id === ses.clienteId) || {};
       const upd = { ultimaVisita: ses.inicio > (cli.ultimaVisita || '') ? ses.inicio : (cli.ultimaVisita || ses.inicio), atualizadoEm: hoje() };
-      if (!cli.ultimoTeste || ses.inicio >= cli.ultimoTeste) Object.assign(upd, { estilos: c.estilos, estiloPrincipal: c.estilos[0] || '', ultimoTeste: ses.inicio, ultimoAtendimento: ses.atendimentoId });
+      if (c.estilos.length && (!cli.ultimoTeste || ses.inicio >= cli.ultimoTeste)) Object.assign(upd, { estilos: c.estilos, estiloPrincipal: c.estilos[0] || '', ultimoTeste: ses.inicio, ultimoAtendimento: ses.atendimentoId });
       if (ses.tipoCorpo) upd.tipoCorpo = ses.tipoCorpo;
+      if (ses.cores && ses.cores.final) upd.cartela = { id: ses.cores.final, nome: (Cores.CARTELA(ses.cores.final) || {}).nome || '', data: hoje(), confirmada: true };
+      let novoVoucher = null; const vc = cli.voucher;
+      if (!(op && op.semVoucher) && !(vc && !vc.usadoEm && vc.validade > hoje())) { novoVoucher = { pct: VOUCHER_PCT, emitido: hoje(), validade: new Date(Date.now() + VOUCHER_DIAS * 864e5).toISOString(), usadoEm: null }; upd.voucher = novoVoucher; }
       const fv = favsDaSessao(ses); if (fv.length) upd.favoritos = [...new Set([...(cli.favoritos || []), ...fv])].slice(-40);
       await S.db.doc('clientes/' + ses.clienteId).update(upd);
-      ses.favoritos = favsDaSessao(ses); S.favs = []; ses.dirty = false; limparRascunho(); toast('Atendimento salvo na ficha.');
+      ses.favoritos = favsDaSessao(ses); S.favs = []; ses.dirty = false; limparRascunho(); toast(novoVoucher ? `Atendimento salvo. Voucher de ${VOUCHER_PCT}% (loja ou online) válido até ${fmtData(novoVoucher.validade)}.` : 'Atendimento salvo na ficha.');
       return true;
     } catch (e) { toast(msgErro(e)); return false; }
     finally { S.salvando = false; render(); }
@@ -2228,6 +2557,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
         <button class="navb" data-a="go" data-v="looks"${cur('looks') || (t === 'look' ? ' aria-current="page"' : '')}>Looks</button>
         <button class="navb" data-a="convidarNovo"${cur('convidar')}>Convidar</button>
         <button class="navb" data-a="go" data-v="receber"${cur('receber')}>Receber</button>
+        <button class="navb" data-a="go" data-v="formacao"${cur('formacao')}>Formação</button>
         <button class="navb navb-lock" data-a="bloquear" title="Bloquear e voltar para a tela da cliente">Bloquear</button>
       </nav></div></header>`;
   }
@@ -2236,7 +2566,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
   const MODULOS = [
     ['estilo', 'Meu Estilo', 'Os 7 estilos universais', true],
     ['corpo', 'Meu Corpo', 'Silhueta e proporções', false],
-    ['cores', 'Minhas Cores', 'Sua cartela pessoal', false],
+    ['cores', 'Minhas Cores', 'Sua cartela pessoal', true],
     ['looks', 'Meus Looks', 'Peças escolhidas para você', true]
   ];
   function telaCapa() {
@@ -2244,7 +2574,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       <img class="capa-fig" src="${ILUSTRA}" alt="Ilustração de moda: mulher com blusa preta, calça pink e sacola Euphoria">
       <div class="capa-lado">
         ${MODO_CLIENTE ? '' : '<button class="capa-equipe" data-a="equipe">Equipe</button>'}
-        <div class="capa-topo"><img class="capa-logo" src="${LOGO_D}" alt="Euphoria Moda Feminina">${MODO_CLIENTE && PARAMS.get('n') ? `<p class="capa-ola">Olá, ${esc(PARAMS.get('n'))}!</p>` : ''}<h1 class="capa-tit">Consultoria de<br>Imagem e Estilo</h1></div>
+        <div class="capa-topo"><img class="capa-logo" src="${LOGO_D}" alt="Euphoria Moda Feminina">${MODO_CLIENTE && PARAMS.get('n') ? `<p class="capa-ola">Olá, ${esc(PARAMS.get('n'))}!</p>` : ''}<h1 class="capa-tit">Consultoria de<br>Imagem <span class="capa-amp">&amp;</span> Estilo</h1></div>
         <ol class="capa-mods">${MODULOS.map(([k, n, sub, ok], i) => `<li><button class="capa-mod" ${ok ? `data-a="modulo" data-v="${k}"` : 'disabled aria-disabled="true"'}><span class="capa-n">${i + 1}</span><span class="capa-t"><b>${n}</b><small>${ok ? sub : sub + ' · em breve'}</small></span><span class="capa-seta" aria-hidden="true">→</span></button></li>`).join('')}</ol>
         ${MODO_CLIENTE && S.rascunho && S.rascunho.respostas && Object.keys(S.rascunho.respostas).length ? '<button class="capa-cont" data-a="continuar">Continuar o meu teste</button>' : ''}
       </div></section>`;
@@ -2274,7 +2604,8 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       `;
   }
   function gradeEquipe() {
-    return `<button class="tile" data-a="go" data-v="clientes"><span class="eyebrow">Equipe</span><b>Clientes e histórico</b><span class="muted small">Fichas, filtros, aniversariantes e atendimentos anteriores.</span></button>
+    return `<button class="tile" data-a="go" data-v="formacao"><span class="eyebrow">Só a equipe</span><b>Formação em Colorimetria</b><span class="muted small">Curso rápido: dimensões da cor, 12 estações, atendimento e como entregar o resultado.</span></button>
+      <button class="tile" data-a="go" data-v="clientes"><span class="eyebrow">Equipe</span><b>Clientes e histórico</b><span class="muted small">Fichas, filtros, aniversariantes e atendimentos anteriores.</span></button>
         <button class="tile" data-a="go" data-v="aniversarios"><span class="eyebrow">Relacionamento</span><b>Aniversariantes${aniverHoje().length ? ` <span class="badge-n">${aniverHoje().length} hoje</span>` : ''}</b><span class="muted small">Quem faz aniversário hoje e nos próximos dias, com mensagem pronta para o WhatsApp.</span></button>
         <button class="tile" data-a="go" data-v="looks"><span class="eyebrow">Portfólio</span><b>Looks Euphoria</b><span class="muted small">Fotos dos looks por estilo, ocasião e tamanho.</span></button>
         <button class="tile" data-a="convidarNovo"><span class="eyebrow">Convites</span><b>Convidar para o teste</b><span class="muted small">Três convites prontos para mandar pelo WhatsApp com o link.</span></button>
@@ -2287,10 +2618,10 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
   function telaDados() {
     const d = S.sessao.dados, ses = S.sessao;
     const q = norm(d.nome);
-    const sug = !vistaCliente() && !ses.clienteId && q.length >= 2 ? S.clientes.filter(c => (c.nomeBusca || '').includes(q)).slice(0, 4) : [];
+    const sug = S.equipe && !MODO_CLIENTE && !ses.clienteId && q.length >= 2 ? S.clientes.filter(c => (c.nomeBusca || '').includes(q)).slice(0, 4) : [];
     const ligada = ses.clienteId ? S.clientes.find(c => c.id === ses.clienteId) : null;
     return `<div class="stack-lg" style="max-width:760px">
-      <div class="stack"><span class="eyebrow">Antes de começar</span><h1 class="h1">Como podemos te chamar?</h1><p class="lead">Só o nome já basta. Os outros campos são opcionais.</p></div>
+      <div class="stack"><span class="eyebrow">Antes de começar</span><h1 class="h1">Como podemos te chamar?</h1><p class="lead">${MODO_CLIENTE ? 'Conte o seu nome e a sua cidade. Os outros campos são opcionais.' : 'Só o nome já basta. Os outros campos são opcionais.'}</p></div>
       <div class="card stack">
         <div class="field"><label for="f-nome">Nome ou identificação</label>
           <input id="f-nome" class="inp" data-f="dados.nome" value="${esc(d.nome)}" placeholder="Ex.: Ana Paula" autocomplete="off">
@@ -2301,6 +2632,9 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
           <div class="chips">${FAIXAS.map(f => `<button class="chip" data-a="faixa" data-v="${f}" aria-pressed="${d.faixa === f}">${f}</button>`).join('')}</div></div>
         <div class="field"><span class="lbl">O que você procura hoje? <span class="muted">(opcional, pode marcar mais de um)</span></span>
           <div class="chips">${FINALIDADES.map(f => `<button class="chip" data-a="finalidade" data-v="${f.id}" aria-pressed="${d.finalidades.includes(f.id)}">${f.rotulo}</button>`).join('')}</div></div>
+        ${MODO_CLIENTE ? `<div class="field"><span class="lbl">Em que cidade você mora?</span>
+          <div class="chips"><button class="chip" data-a="cidade" data-v="pg" aria-pressed="${moraPerto(ses) && !d.cidOutra}">Praia Grande</button><button class="chip" data-a="cidade" data-v="outra" aria-pressed="${!!d.cidOutra}">Outra cidade</button></div>
+          ${d.cidOutra ? `<input id="f-cidade" class="inp" data-f="dados.cidade" value="${esc(d.cidade || '')}" placeholder="Digite a sua cidade" autocomplete="address-level2">` : ''}</div>` : ''}
       </div></div>
       <div class="actbar"><div class="wrap"><button class="btn" data-a="home">Voltar</button><span class="sp"></span>${!MODO_CLIENTE && S.equipe ? '<button class="btn pri" data-a="comecar">Entregar para a cliente e começar</button>' : '<button class="btn pri" data-a="comecar">Começar as perguntas</button>'}</div></div>`;
   }
@@ -2361,7 +2695,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
   /* Desempate */
   function telaRefino() {
     const ses = S.sessao, c = calc();
-    const par = c.r.pendentes[0]; if (!par) { S.tela = destinoFinal(); return MODO_CLIENTE ? telaTeaser() : telaResultado(); }
+    const par = c.r.pendentes[0]; if (!par) { S.tela = destinoFinal(); return MODO_CLIENTE ? (travado() ? telaTrava() : telaTeaser()) : telaResultado(); }
     const [a, b] = par, idx = ses.desempates.length, fmt = DESEMPATE_FORMATOS[idx % DESEMPATE_FORMATOS.length];
     const total = Math.min(Score.LIMITES.maxDesempates, idx + c.r.pendentes.length);
     const card = (k, lado) => {
@@ -2435,6 +2769,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       </section>
       ${des ? `<section class="sec"><h3>A imagem que você quer transmitir</h3><div class="box"><p>${des.texto}</p>${des.dicas ? `<ul class="plain">${des.dicas.map(d => `<li>${cap(d)}</li>`).join('')}</ul>` : ''}</div></section>` : ''}
       ${!vistaCliente() ? blocoFavoritos(favsDaSessao(ses), 'Looks que ela marcou com coração') : ''}
+      ${!vistaCliente() ? blocoCoresSessao(ses) : ''}
       ${blocoLooksSugeridos(est, (() => { const cl = ses.clienteId && S.clientes.find(x => x.id === ses.clienteId); return cl ? [cl.tamCima, cl.tamBaixo] : []; })(), 'Looks da Euphoria com a sua cara', MODO_CLIENTE ? 8 : 4)}
       <section class="sec"><h3>Ideias de looks para a sua rotina</h3><div class="looks-grid">${looks.map(l => `<div class="lookc"><span class="oc">${l.ocasiao}</span><p>${esc(l.texto)}</p></div>`).join('')}</div></section>
       <section class="sec"><h3>Como esse resultado apareceu</h3>
@@ -2453,14 +2788,14 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       </section>
       <div class="closing"><p>Seu estilo é flexível. Ele pode misturar referências, mudar com as fases da vida e não precisa seguir regras rígidas. O mais importante é você se reconhecer no que veste.</p></div>
       ${MODO_CLIENTE ? `<section class="cta-box">
-        <h2 class="h2">Quer que a Juliana separe peças para você?</h2>
-        <p>Envie seu resultado para a Euphoria pelo WhatsApp. Com ele, a Juliana prepara uma seleção no seu estilo, nos seus tamanhos e nas cores que você ama.</p>
+        <h2 class="h2">Quer que a Euphoria separe peças para você?</h2>
+        <p>Envie seu resultado para a Euphoria pelo WhatsApp. Com ele, a nossa consultoria prepara uma seleção no seu estilo, nos seus tamanhos e nas cores que você ama.</p>
         <button class="btn pri" data-a="go" data-v="enviar">Enviar meu resultado para a Euphoria</button>
       </section>` : ''}
       ${S.waTexto ? waBox() : ''}
       </div>
-      ${!MODO_CLIENTE && !S.equipe ? `<section class="cta-box"><h2 class="h2">Pronto! Agora chame a Juliana</h2><p>Ela vai conversar com você sobre o resultado, mostrar peças da Euphoria no seu estilo e preparar o seu material.</p><button class="btn pri" data-a="chamar">Chamar a Juliana</button></section>` : ''}
-      ${!MODO_CLIENTE && !S.equipe ? `<div class="actbar"><div class="wrap"><button class="btn" data-a="go" data-v="revisar">Revisar respostas</button><span class="sp"></span><button class="btn pri" data-a="chamar">Chamar a Juliana</button></div></div>` : MODO_CLIENTE ? `<div class="actbar"><div class="wrap"><button class="btn" data-a="go" data-v="revisar">Revisar</button><button class="btn" data-a="pdf">Baixar PDF</button><span class="sp"></span><button class="btn pri" data-a="go" data-v="enviar">Enviar para a Euphoria</button></div></div>` : `<div class="actbar"><div class="wrap">
+      ${!MODO_CLIENTE && vistaCliente() ? `<section class="cta-box"><h2 class="h2">Pronto! Agora chame a Juliana</h2><p>Ela vai conversar com você sobre o resultado, mostrar peças da Euphoria no seu estilo e preparar o seu material.</p><button class="btn pri" data-a="chamar">Chamar a Juliana</button></section>` : ''}
+      ${!MODO_CLIENTE && vistaCliente() ? `<div class="actbar"><div class="wrap"><button class="btn" data-a="go" data-v="revisar">Revisar respostas</button><span class="sp"></span><button class="btn pri" data-a="chamar">Chamar a Juliana</button></div></div>` : MODO_CLIENTE ? `<div class="actbar"><div class="wrap"><button class="btn" data-a="go" data-v="revisar">Revisar</button><button class="btn" data-a="pdf">Baixar PDF</button><span class="sp"></span><button class="btn pri" data-a="go" data-v="enviar">Enviar para a Euphoria</button></div></div>` : `<div class="actbar"><div class="wrap">
         <button class="btn" data-a="go" data-v="revisar">Revisar</button>
         ${salvarBtn()}
         <button class="btn" data-a="whats">WhatsApp</button>
@@ -2563,6 +2898,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     return `<div class="stack-lg">
       <div class="staff-head"><div class="stack" style="gap:8px"><span class="eyebrow">Atendimento Euphoria · uso da equipe</span><h1 class="h2">${esc(nome)}</h1><p class="small">${ficha || (cli ? 'Ficha sem tamanhos cadastrados' : ses.consent === 'nao' ? 'Sem cadastro: estas anotações não serão guardadas' : 'Ainda não cadastrada')}</p></div>
         <button class="btn pri" data-a="go" data-v="resultado">Voltar ao resultado da cliente</button></div>
+      <div class="row small" style="gap:10px;align-items:center"><span class="muted">Atendimento:</span>${AG_FORMAS.map(([k, t]) => `<button class="chip" data-a="atForma" data-v="${k}" aria-pressed="${(ses.formaAtend || (ses.agenda && ses.agenda.forma === 'v' ? 'v' : 'l')) === k}">${t}</button>`).join('')}${ses.agenda && ses.agenda.forma ? `<span class="tag">Ela pediu: ${esc(agTexto(ses.agenda))}</span>` : ''}</div>
 
       <section class="sec"><h3>Resumo do perfil</h3>
         <div class="cols">
@@ -2580,6 +2916,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       </section>
 
       ${blocoFavoritos(favsDaSessao(ses), 'Looks que ela marcou com coração')}
+      ${blocoCoresSessao(ses)}
       <section class="sec"><h3>Tipo de corpo</h3>
         <div class="chips">${Object.entries(TIPOS_CORPO).map(([k, t]) => `<button class="chip" data-a="corpo" data-v="${k}" aria-pressed="${corpo === k}">${t.nome}</button>`).join('')}</div>
         ${corpo ? `<div class="box"><h4>${TIPOS_CORPO[corpo].nome} · ${TIPOS_CORPO[corpo].desc}</h4><p class="small">Modelagens que costumam valorizar. Combine com o estilo dela e com o que ela gosta de mostrar:</p><ul class="plain small">${TIPOS_CORPO[corpo].dicas.map(d => `<li>${cap(d)}</li>`).join('')}</ul>${est[0] ? `<p class="small muted">Dentro do ${E[est[0]].nome}: escolha ${E[est[0]].priorizar.slice(0, 2).join(' e ')} com essas modelagens.</p>` : ''}</div>` : '<p class="small muted">O tipo de corpo não muda o estilo. Serve só para orientar as modelagens.</p>'}
@@ -2672,6 +3009,15 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       </div>`;
   }
 
+  function blocoVoucher(c) {
+    const v = c.voucher;
+    if (!v) return `<section class="sec"><h3>Voucher de desconto</h3><div class="box vc-box"><span class="small muted">Nenhum voucher emitido ainda.</span><button class="btn sm" data-a="vcEmitir">Emitir voucher de ${VOUCHER_PCT}%</button></div></section>`;
+    const st = v.usadoEm ? `Usado em ${fmtData(v.usadoEm)}` : v.validade < hoje() ? `Venceu em ${fmtData(v.validade)}` : `Válido até ${fmtData(v.validade)}`;
+    const ativo = !v.usadoEm && v.validade >= hoje();
+    return `<section class="sec"><h3>Voucher de desconto</h3><div class="box vc-box">
+      <div class="stack" style="gap:4px"><b>${v.pct}% na compra · loja ou online</b><span class="small muted">Emitido em ${fmtData(v.emitido)} · ${st}</span></div>
+      ${ativo ? '<span class="tag ok">Ativo</span><button class="btn sm" data-a="vcUsar">Marcar como usado</button>' : '<span class="tag">' + (v.usadoEm ? 'Usado' : 'Vencido') + `</span><button class="btn sm" data-a="vcEmitir">Emitir novo voucher</button>`}</div></section>`;
+  }
   /* Cliente (detalhe) */
   function telaCliente() {
     const c = S.clientes.find(x => x.id === S.clienteSel);
@@ -2694,6 +3040,8 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
           ${info('Faixa etária', esc(c.faixa) || '—')}${info('Cadastro', fmtData(c.criadoEm) + (c.consentimento && c.consentimento.aceito ? ' · com autorização' : ''))}
         </dl><div class="row"><button class="btn sm" data-a="editarFicha">Editar ficha</button>
           ${c.whatsapp ? `<a class="btn sm" href="https://wa.me/${waNum(c.whatsapp)}" target="_blank" rel="noopener">Abrir WhatsApp</a><a class="btn sm" href="https://wa.me/${waNum(c.whatsapp)}?text=${encodeURIComponent(msgAniv)}" target="_blank" rel="noopener">Mensagem de aniversário</a>` : ''}</div></div>`}
+      ${blocoVoucher(c)}
+      ${c.cartela && Cores.CARTELA(c.cartela.id) ? `<section class="sec"><h3>Cartela de cores</h3><div class="box stack"><b>${esc(Cores.CARTELA(c.cartela.id).nome)}</b><span class="small muted">Confirmada em ${fmtData(c.cartela.data)}</span><div class="cartela">${Cores.CARTELA(c.cartela.id).cores.map(x => `<div><i style="background:${x}"></i></div>`).join('')}</div></div></section>` : ''}
       ${blocoFavoritos(c.favoritos || [], 'Looks favoritos')}
       <section class="sec"><h3>Tipo de corpo <span class="tag" style="font:600 12px var(--f-body);vertical-align:middle">Só a equipe vê</span></h3><div class="card stack">
         <p class="small muted">Marque pela observação no provador. Não muda o estilo do teste: serve para escolher modelagens que valorizam o corpo dela.</p>
@@ -2706,7 +3054,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       <section class="sec"><h3>Histórico</h3>
         ${S.historico.length ? `<div class="hist">${S.historico.map(h => {
           const sug = Object.entries(h.sugestoes || {}); const ok = sug.filter(([, v]) => v === 'ok').map(([t]) => t), no = sug.filter(([, v]) => v === 'nao').map(([t]) => t);
-          return `<div><div class="row" style="justify-content:space-between"><span class="d">${fmtData(h.data)} · ${h.tipo === 'visita' ? 'Visita' : h.origem === 'casa' ? 'Teste de estilo (feito em casa)' : 'Teste de estilo'}</span>${h.tipo === 'teste' ? `<button class="btn sm" data-a="abrirAtend" data-v="${h.id}">Abrir</button>` : ''}</div>
+          return `<div><div class="row" style="justify-content:space-between"><span class="d">${fmtData(h.data)} · ${h.tipo === 'visita' ? 'Visita' : h.tipo === 'cores' ? 'Análise de cores' : h.origem === 'casa' ? 'Teste de estilo (feito em casa)' : 'Teste de estilo'}${h.forma === 'v' ? ' · online' : h.forma === 'l' ? ' · presencial' : ''}</span>${h.tipo === 'teste' ? `<button class="btn sm" data-a="abrirAtend" data-v="${h.id}">Abrir</button>` : ''}</div>
           ${h.tipo === 'teste' ? `<div class="row small">${(h.estilos || []).map((k, i) => E[k] ? `<span class="tag ${i === 0 ? 'p' : ''}">${E[k].nome}</span>` : '').join('')}${h.ajustado ? '<span class="tag">ajustado</span>' : ''}${h.preliminar ? '<span class="tag warn">preliminar</span>' : ''}</div>` : ''}
           ${ok.length ? `<span class="small"><b style="color:var(--ok)">Aprovou:</b> ${esc(lista(ok))}</span>` : ''}${no.length ? `<span class="small"><b style="color:var(--bad)">Recusou:</b> ${esc(lista(no))}</span>` : ''}
           ${h.observacoes ? `<span class="small muted">${esc(h.observacoes)}</span>` : ''}</div>`; }).join('')}</div>` : '<p class="muted">Nenhum atendimento registrado.</p>'}
@@ -2892,7 +3240,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
   function textoConvite() {
     const c = S.conv; if (c.editado) return c.texto;
     const m = CONVITES.find(x => x.id === c.modelo) || CONVITES[0];
-    return m.texto(primeiroNome(c.nome), linkTeste(c.nome));
+    return m.texto(primeiroNome(c.nome), linkTeste(c.nome)) + (c.cores === false ? '' : '\n\n🎨 Quer descobrir também as suas cores? No link tem a pré-análise. Para a foto: rosto de frente e sem maquiagem, perto de uma janela ou com luz branca, segurando uma folha branca ao lado do rosto.');
   }
   const hrefConvite = () => 'https://wa.me/' + (waNum(S.conv.wa) || '') + '?text=' + encodeURIComponent(textoConvite());
   function telaConvidar() {
@@ -2908,6 +3256,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       </div>
       <section class="sec"><h3>Escolha o convite</h3>
         <div class="conv-opts">${CONVITES.map(m => `<button class="opt conv" data-a="cvModelo" data-v="${m.id}" aria-pressed="${c.modelo === m.id && !c.editado}"><span class="cap"><b>${m.rotulo}</b><br><span class="muted small">${m.desc}</span></span><span class="tick">✓</span></button>`).join('')}</div>
+        <div class="chips"><button class="chip" data-a="cvCores" aria-pressed="${c.cores !== false}">Incluir orientação da foto de cores</button></div>
       </section>
       <section class="sec"><h3>Mensagem</h3>
         <textarea id="cv-texto" class="inp copybox" style="min-height:300px">${esc(textoConvite())}</textarea>
@@ -2940,7 +3289,10 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     const p = [ses.id.slice(-8), Math.floor(new Date(ses.inicio).getTime() / 60000).toString(36), ses.dados.nome || '', FAIXAS.indexOf(ses.dados.faixa), fin, resp, des];
     const fvs = S.favs.filter(id => /^pub_\d+$/.test(id)).map(id => id.slice(4));
     if (S.fichaOk) { const f = S.ficha; p.push(1, digitos(f.whatsapp), f.email || '', (f.aniverDia || '') + '/' + (f.aniverMes || ''), f.tamCima || '', f.tamBaixo || '', (f.cores || []).map(c => CORES_FAV.findIndex(x => x[0] === c)).join(','), f.coresOutras || ''); }
-    if (fvs.length) { while (p.length < 15) p.push(p.length === 7 ? 0 : ''); p.push(fvs.join(',')); }
+    const cc = ses.cores && ses.cores.eixos ? Cores.codigo(Object.assign({ sugerida: ses.cores.sugerida }, ses.cores.eixos)) : '';
+    const cid = String(ses.dados.cidade || '').replace(/[|\n]/g, ' ').trim().slice(0, 40);
+    const extra = [fvs.join(','), cc, cid, agCodigo(ses.agenda)]; while (extra.length && !extra[extra.length - 1]) extra.pop();
+    if (extra.length) { while (p.length < 15) p.push(p.length === 7 ? 0 : ''); p.push(...extra); }
     return 'EUPH2:' + b64e(p.join('|'));
   }
   function lerCodigo(txt) {
@@ -2961,12 +3313,13 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       const p = { v: 2, id, i: new Date(parseInt(t36, 36) * 60000).toISOString(), n, fx: FAIXAS[+fx] || '', fi: fin.split('').map(c => (FINALIDADES[+c] || {}).id).filter(Boolean), r, d, ok: f[7] === '1' };
       if (p.ok) { const [ad, am] = (f[10] || '/').split('/'); p.c = { w: f[8] || '', e: f[9] || '', ad, am, tc: f[11] || '', tb: f[12] || '', co: (f[13] || '').split(',').filter(x => x !== '').map(i => (CORES_FAV[+i] || [])[0]).filter(Boolean), cx: f[14] || '' }; }
       p.fav = (f[15] || '').split(',').filter(x => /^\d+$/.test(x)).map(x => 'pub_' + x);
-      return Object.keys(r).length ? p : null;
+      p.cor = Cores.lerCodigo(f[16] || ''); p.cid = f[17] || ''; p.ag = agLer(f[18]);
+      return Object.keys(r).length || p.cor ? p : null;
     } catch (e) { return null; }
   }
   function sessaoDeCodigo(p) {
     const ses = novaSessao();
-    Object.assign(ses, { id: 's_' + p.id, inicio: p.i || hoje(), dados: { nome: p.n || '', faixa: p.fx || '', finalidades: p.fi || [] }, respostas: p.r || {}, desempates: (p.d || []).map(([a, b, escolha]) => ({ a, b, escolha })), qi: PERGUNTAS.length, pulouRefino: true, origem: 'casa', favoritos: p.fav || [], idAtendPref: 'a_' + String(p.id).replace(/[^A-Za-z0-9_-]/g, '') });
+    Object.assign(ses, { id: 's_' + p.id, inicio: p.i || hoje(), dados: { nome: p.n || '', faixa: p.fx || '', finalidades: p.fi || [], cidade: p.cid || '' }, respostas: p.r || {}, desempates: (p.d || []).map(([a, b, escolha]) => ({ a, b, escolha })), qi: PERGUNTAS.length, pulouRefino: true, origem: 'casa', favoritos: p.fav || [], agenda: p.ag || null, cores: p.cor ? { eixos: p.cor, sugerida: p.cor.sugerida, alternativas: Cores.ranking(p.cor).slice(1, 3), origem: 'casa' } : null, idAtendPref: 'a_' + String(p.id).replace(/[^A-Za-z0-9_-]/g, '') });
     return ses;
   }
   function fichaDeCodigo(p) {
@@ -2975,8 +3328,14 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
   }
   function mensagemCliente() {
     const c = calc(), P = c.estilos[0];
-    const abertura = P ? `Oi, Euphoria! 💗 Fiz o teste de estilo e meu estilo principal é *${E[P].nome}*. Quero ver as peças que vocês separaram para mim!` : 'Oi, Euphoria! 💗 Fiz o teste de estilo e quero descobrir meu resultado completo com vocês!';
-    return abertura + (S.favs.length ? `\n\nMarquei ${S.favs.length} look${S.favs.length === 1 ? '' : 's'} que amei no portfólio.` : '') + '\n\nCódigo do meu teste: ' + codigoCliente();
+    const fezCores = S.sessao.cores && S.sessao.cores.eixos;
+    const cid = String(S.sessao.dados.cidade || '').trim();
+    const ag = S.sessao.agenda, agF = ag && AG_FORMAS.find(x => x[0] === ag.forma);
+    const agLinha = agF ? `\n\nQuero agendar ${agF[2]}.` : '';
+    const fezEst = Object.keys(S.sessao.respostas || {}).length;
+    if (travado()) return `Oi, Euphoria! 💗 Fiz ${fezEst && fezCores ? 'o teste de estilo e a pré-análise de cores' : fezEst ? 'o teste de estilo' : 'a pré-análise de cores'} e quero descobrir o meu resultado com vocês!` + agLinha + (S.favs.length ? `\n\nMarquei ${S.favs.length} look${S.favs.length === 1 ? '' : 's'} que amei no portfólio.` : '') + '\n\nCódigo do meu teste: ' + codigoCliente();
+    const abertura = P ? `Oi, Euphoria! 💗 Fiz o teste de estilo e meu estilo principal é *${E[P].nome}*.${fezCores ? ' Também fiz a pré-análise de cores.' : ''} ${cid ? 'Quero continuar a minha consultoria com vocês!' : 'Quero ver as peças que vocês separaram para mim!'}` : fezCores ? 'Oi, Euphoria! 💗 Fiz a pré-análise de cores e quero terminar a minha análise com vocês!' : 'Oi, Euphoria! 💗 Fiz o teste de estilo e quero descobrir meu resultado completo com vocês!';
+    return abertura + (cid ? `\nMoro em ${cid}.` : '') + agLinha + (S.favs.length ? `\n\nMarquei ${S.favs.length} look${S.favs.length === 1 ? '' : 's'} que amei no portfólio.` : '') + '\n\nCódigo do meu teste: ' + codigoCliente();
   }
 
   /* ---------- telas da cliente (link de casa) ---------- */
@@ -2994,41 +3353,74 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
         <span class="eyebrow">${nome ? 'Seu resultado, ' + esc(nome) : 'Seu resultado'}</span>
         ${P ? `<h1 class="h1">Seu estilo principal é <em>${E[P].nome}</em></h1>
           <div class="kw">${E[P].palavras.map(w => `<span>${w}</span>`).join('')}</div>
-          <p class="lead">${E[P].resumo}</p>` : `<h1 class="h1">Seu estilo é <em>versátil</em></h1><p class="lead">Suas respostas mostram um estilo que muda bastante com a ocasião. A Juliana vai te ajudar a descobrir o que mais combina com você.</p>`}
+          <p class="lead">${E[P].resumo}</p>` : `<h1 class="h1">Seu estilo é <em>versátil</em></h1><p class="lead">Suas respostas mostram um estilo que muda bastante com a ocasião. A nossa consultoria vai te ajudar a descobrir o que mais combina com você.</p>`}
       </section>
       ${P ? `<div class="teaser-hook">
-        <p>${extras > 0 ? `E tem mais: seu resultado mostra <b>outra${extras > 1 ? 's ' + extras : ''} camada${extras > 1 ? 's' : ''} de estilo</b> que deixa${extras > 1 ? 'm' : ''} o seu visual único. Ela${extras > 1 ? 's ficam guardadas' : ' fica guardada'} com a Juliana para o seu atendimento.` : 'Seu estilo apareceu de forma bem clara. A Juliana sabe exatamente quais peças da Euphoria vão valorizar isso.'}</p>
+        <p>${extras > 0 ? `E tem mais: seu resultado mostra <b>outra${extras > 1 ? 's ' + extras : ''} camada${extras > 1 ? 's' : ''} de estilo</b> que deixa${extras > 1 ? 'm' : ''} o seu visual único. Ela${extras > 1 ? 's ficam guardadas' : ' fica guardada'} com a nossa consultoria para o seu atendimento.` : 'Seu estilo apareceu de forma bem clara. A nossa consultoria sabe exatamente quais peças da Euphoria vão valorizar isso.'}</p>
         ${des && des.tipo === 'desenvolver' ? `<p>Também vimos que você gostaria de transmitir algo mais <b>${E[des.estilo].nome.toLowerCase()}</b>. A gente sabe como chegar lá sem você perder o seu jeito.</p>` : ''}
-      </div>
-      <section class="sec"><h3>Looks da Euphoria com a sua cara</h3><div class="lkgrid prevgrid ">${previaLooks(P, 4)}</div></section>` : ''}
+      </div>` : ''}
       <section class="cta-box">
-        <h2 class="h2">Quer ver as peças que combinam com você?</h2>
-        <p>Envie seu resultado para a Euphoria. A Juliana separa uma seleção no seu estilo, nos seus tamanhos e nas cores que você ama.</p>
-        <button class="btn pri" data-a="go" data-v="enviar">Quero minha seleção</button>
+        <h2 class="h2">Quer o seu diagnóstico completo?</h2>
+        <p>Agende a sua consultoria online personalizada, gratuita, para receber o diagnóstico completo, as suas cores e as orientações da nossa consultoria. Se preferir, venha até a Euphoria.</p>
+        <p class="voucher-linha">E ganhe <b>${VOUCHER_TXT}</b>.</p>
+        <button class="btn pri" data-a="go" data-v="enviar">Agendar minha consultoria</button>
       </section>
       </div>
-      <div class="actbar"><div class="wrap"><button class="btn" data-a="go" data-v="revisar">Revisar respostas</button><span class="sp"></span><button class="btn pri" data-a="go" data-v="enviar">Quero minha seleção</button></div></div>`;
+      <div class="actbar"><div class="wrap"><button class="btn" data-a="go" data-v="revisar">Revisar respostas</button><span class="sp"></span><button class="btn pri" data-a="go" data-v="enviar">Agendar minha consultoria</button></div></div>`;
+  }
+  function telaTrava() {
+    const nome = primeiroNome(S.sessao.dados.nome), fezCores = S.sessao.cores && S.sessao.cores.eixos;
+    return `<div class="stack-lg trava" style="max-width:800px">
+      <section class="teaser" style="text-align:center;align-items:center">
+        <span class="eyebrow">${nome ? 'Seu resultado, ' + esc(nome) : 'Seu resultado'}</span>
+        <h1 class="h1">Seu resultado está <em>pronto!</em></h1>
+        <p class="lead">Venha até a Euphoria para descobrir o seu resultado com a nossa consultoria. Vamos revelar o seu estilo${fezCores ? ', as cores que te valorizam' : ''} e as peças certas para você.</p>
+      </section>
+      <section class="cta-box voucher-box">
+        <span class="voucher-tag">${VOUCHER_PCT}% OFF</span>
+        <h2 class="h2">Ganhe ${VOUCHER_PCT}% de desconto</h2>
+        <p>Na sua compra, em até ${VOUCHER_DIAS} dias depois do seu atendimento. Envie o seu teste pelo WhatsApp para agendar a sua visita.</p>
+        <span class="small muted">${AG_AVISO}</span>
+        <button class="btn pri" data-a="go" data-v="enviar">Agendar minha visita</button>
+      </section></div>
+      <div class="actbar"><div class="wrap"><button class="btn" data-a="home">Início</button><span class="sp"></span><button class="btn pri" data-a="go" data-v="enviar">Agendar minha visita</button></div></div>`;
   }
   function telaEnviar() {
     if (!S.ficha) { S.ficha = fichaVazia({ nome: S.sessao.dados.nome, faixa: S.sessao.dados.faixa }); S.fichaOk = false; }
-    return `<div class="stack-lg" style="max-width:860px"><div class="stack"><span class="eyebrow">Enviar para a Euphoria</span><h1 class="h1">Para a Juliana separar as suas peças</h1>
-      <p class="lead">Conte seus tamanhos e as cores que você ama. Assim a seleção já chega pronta para você.</p></div>
+    const ag = S.sessao.agenda || (S.sessao.agenda = { forma: '' }), d = S.sessao.dados;
+    if (MODO_CLIENTE && moraPerto()) ag.forma = 'l';
+    const ch = (a, v, t, on) => `<button class="chip" data-a="${a}" data-v="${v}" aria-pressed="${on}">${t}</button>`;
+    const blocoAgenda = MODO_CLIENTE ? `<div class="card stack ag-card"><h2 class="h3">Agende o seu atendimento gratuito</h2>
+        <p class="small muted">${d.cidade && moraPerto() ? 'Venha até a Euphoria para descobrir o seu resultado. A nossa consultoria combina o horário com você pelo WhatsApp.' : 'Escolha como prefere ser atendida. A nossa consultoria combina o horário com você pelo WhatsApp.'}</p>
+        ${d.cidade ? '' : `<div class="field"><span class="lbl">Em que cidade você mora?</span><div class="chips">${ch('cidade', 'pg', 'Praia Grande', moraPerto() && !d.cidOutra)}${ch('cidade', 'outra', 'Outra cidade', !!d.cidOutra)}</div>${d.cidOutra ? `<input id="f-cidade" class="inp" data-f="dados.cidade" value="${esc(d.cidade || '')}" placeholder="Digite a sua cidade">` : ''}</div>`}
+        ${d.cidade && !moraPerto() ? `<div class="field"><span class="lbl">Como prefere ser atendida?</span><div class="chips">${AG_FORMAS.slice().reverse().map(([k, t]) => ch('agForma', k, t, ag.forma === k)).join('')}</div></div>` : ''}
+        <p class="small muted">${AG_AVISO}</p>
+        <p class="voucher-linha small">No atendimento você ganha ${VOUCHER_TXT}.</p></div>` : '';
+    return `<div class="stack-lg" style="max-width:860px"><div class="stack"><span class="eyebrow">Enviar para a Euphoria</span><h1 class="h1">${MODO_CLIENTE ? 'Agende a sua consultoria' : 'Para a nossa consultoria separar as suas peças'}</h1>
+      <p class="lead">${MODO_CLIENTE ? (moraPerto() ? 'Conte os seus tamanhos e as cores que você ama para a nossa consultoria preparar a sua visita.' : 'Escolha como prefere ser atendida e conte os seus tamanhos e as cores que você ama.') : 'Conte seus tamanhos e as cores que você ama. Assim a seleção já chega pronta para você.'}</p></div>
+      ${blocoAgenda}
       <div class="card stack">${formFicha(S.ficha, { cliente: true })}</div>
       <div class="card stack"><label class="check"><input type="checkbox" id="ce-ok" data-f="fichaOk" ${S.fichaOk ? 'checked' : ''}><span>Autorizo a Euphoria Moda Feminina a guardar estes dados e o resultado do meu teste para personalizar meu atendimento e me enviar novidades. Posso pedir para apagar quando quiser.</span></label>
         <p class="muted small">${S.fichaOk ? 'Seus dados vão junto com o resultado.' : 'Sem autorização, enviamos só o seu nome e o resultado do teste.'} Nada fica salvo neste celular.</p></div>
       </div>
-      <div class="actbar"><div class="wrap"><button class="btn" data-a="go" data-v="resultado">Voltar ao resultado</button><span class="sp"></span><button class="btn pri" data-a="enviarWa">Enviar pelo WhatsApp</button></div></div>`;
+      <div class="actbar"><div class="wrap"><button class="btn" data-a="go" data-v="${estilosDaCliente().length ? 'resultado' : 'inicio'}">Voltar</button><span class="sp"></span><button class="btn pri" data-a="enviarWa">Enviar pelo WhatsApp</button></div></div>`;
   }
   function telaEnviado() {
     return `<div class="stack-lg" style="max-width:760px;text-align:center;align-items:center">
       <img src="${LOGO_L}" class="logo-l" alt="Euphoria Moda Feminina" style="width:260px"><img src="${LOGO_D}" class="logo-d" alt="Euphoria Moda Feminina" style="width:260px">
       <h1 class="h1">Agora é só enviar a mensagem no WhatsApp</h1>
-      <p class="lead">A mensagem já está pronta. É só tocar em enviar no WhatsApp. Seu resultado continua aqui para você consultar quando quiser, e a Juliana vai responder com a sua seleção de peças.</p>
-      <div class="row" style="justify-content:center"><a class="btn pri" href="${esc(S.waEnvio || '#')}" target="_blank" rel="noopener">Abrir o WhatsApp de novo</a><button class="btn ghost" data-a="go" data-v="resultado">Ver meu resultado</button></div>
+      <p class="lead">A mensagem já está pronta. É só tocar em enviar no WhatsApp. Seu resultado continua aqui para você consultar quando quiser, e a nossa equipe vai responder com a sua seleção de peças.</p>
+      <div class="row" style="justify-content:center"><a class="btn pri" href="${esc(S.waEnvio || '#')}" target="_blank" rel="noopener">Abrir o WhatsApp de novo</a>${travado() ? '<button class="btn ghost" data-a="home">Início</button>' : '<button class="btn ghost" data-a="go" data-v="resultado">Ver meu resultado</button>'}</div>
       <p class="small muted">Euphoria Moda Feminina · Praia Grande, SP</p></div>`;
   }
 
   /* ---------- receber teste (tablet) ---------- */
+  function textoConfirmacao(p) {
+    const nome = primeiroNome(p.n) || '', quando = '[dia], às [horário]';
+    const aviso = '\n\nO horário está sujeito à disponibilidade e pode ser alterado. Se precisar mudar, a gente te avisa por aqui.';
+    if (p.ag.forma === 'v') return `Oi${nome ? ', ' + nome : ''}! 💗 Aqui é da Euphoria. A sua consultoria online personalizada ficou marcada para ${quando}.\n\nPara a análise de cores, mande antes uma foto do seu rosto:\n• de frente para uma janela, com luz do dia (ou ring light em luz branca)\n• sem maquiagem e com o cabelo solto\n• segurando uma folha branca ao lado do rosto` + aviso + `\n\nNa consultoria você ganha ${VOUCHER_TXT}.`;
+    return `Oi${nome ? ', ' + nome : ''}! 💗 Aqui é da Euphoria. O seu atendimento ficou marcado para ${quando}, aqui na loja. Te esperamos!` + aviso + `\n\nNo atendimento você ganha ${VOUCHER_TXT}.`;
+  }
   function clientesParecidas(p) {
     const w = digitos(p.c && p.c.w).slice(-8), nb = norm(p.n);
     return S.clientes.filter(c => (w.length >= 8 && digitos(c.whatsapp).slice(-8) === w) || (nb && c.nomeBusca === nb));
@@ -3045,7 +3437,8 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       const info = (t, v) => v ? `<div><dt>${t}</dt><dd>${esc(v)}</dd></div>` : '';
       prev = `<section class="card stack">
         <div class="row" style="justify-content:space-between"><div><span class="eyebrow">Teste feito em casa</span><h2 class="h2">${esc(p.n || 'Cliente sem nome')}</h2><span class="muted small">${fmtData(p.i)}</span></div>
-          <div class="row">${c.estilos.map((k, i) => `<span class="tag ${i === 0 ? 'p' : ''}">${i + 1}º ${E[k].nome}</span>`).join('') || '<span class="tag">Sem estilo definido</span>'}</div></div>
+          <div class="row">${c.estilos.map((k, i) => `<span class="tag ${i === 0 ? 'p' : ''}">${i + 1}º ${E[k].nome}</span>`).join('') || (p.cor ? '' : '<span class="tag">Sem estilo definido</span>')}${p.ag ? `<span class="tag p">Pediu: ${esc(agTexto(p.ag))}</span>` : ''}${p.cid ? `<span class="tag">Mora em ${esc(p.cid)}${moraPerto({ dados: { cidade: p.cid } }) ? ' · resultado travado' : ' · viu o estilo'}</span>` : ''}${p.cor ? `<span class="tag p">Pré-análise de cores: ${esc((Cores.CARTELA(p.cor.sugerida) || {}).nome || '')}</span>` : ''}</div></div>
+        ${p.ag ? (() => { const msg = textoConfirmacao(p); const w = waNum(f.whatsapp || ''); return `<div class="banner info"><span>Combine o horário com ela.${p.ag.forma === 'v' ? ' A mensagem já pede a foto para a análise de cores.' : ''}</span><a class="btn sm" href="https://wa.me/${w}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Mandar confirmação</a></div>`; })() : ''}
         ${p.ok ? `<dl class="dl" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">${info('WhatsApp', f.whatsapp)}${info('E-mail', f.email)}${info('Aniversário', f.aniverDia && f.aniverMes ? f.aniverDia + '/' + f.aniverMes : '')}${info('Tamanho de cima', f.tamCima)}${info('Tamanho de baixo', f.tamBaixo)}${info('Cores favoritas', lista(f.cores || []))}${info('Outras cores', f.coresOutras)}</dl><span class="tag ok" style="align-self:flex-start">Autorizou guardar os dados</span>`
           : `<div class="banner info"><span>Ela <b>não autorizou</b> guardar os dados. Dá para ver o resultado agora e pedir a autorização no atendimento.</span></div>
              <label class="check"><input type="checkbox" id="rec-ok" data-f="recebido.okAgora" ${R.okAgora ? 'checked' : ''}><span>A cliente autorizou o cadastro agora</span></label>`}
@@ -3175,7 +3568,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
   }
   function estilosDaCliente() { const ses = S.sessao; if (!ses || !Object.keys(ses.respostas || {}).length || (ses.qi || 0) < PERGUNTAS.length) return []; return calc(ses).estilos; }
   function looksVitrine() {
-    const f = S.vitFlt, meus = estilosDaCliente();
+    const f = S.vitFlt, meus = travado() ? [] : estilosDaCliente();
     let ls = todosLooks().filter(l => !l.esgotado && (l.foto || l.src));
     if (f.estilo) ls = ls.filter(l => (l.estilos || []).includes(f.estilo));
     if (f.ocasiao) ls = ls.filter(l => (l.ocasioes || []).includes(f.ocasiao));
@@ -3183,11 +3576,11 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     return ls;
   }
   function telaVitrine() {
-    const f = S.vitFlt, ls = looksVitrine(), meus = estilosDaCliente(), n = S.favs.length;
+    const f = S.vitFlt, ls = looksVitrine(), meus = travado() ? [] : estilosDaCliente(), n = S.favs.length;
     const chip = (a, v, txt, on) => `<button class="chip" data-a="${a}" data-v="${v}" aria-pressed="${on}">${txt}</button>`;
     return `<div class="stack-lg">
       <div class="stack"><span class="eyebrow">Meus Looks</span><h1 class="h1">Looks da Euphoria</h1>
-        <p class="lead">Toque no coração dos looks que você amou. ${MODO_CLIENTE ? 'Eles vão junto com o seu resultado para a Juliana.' : 'A Juliana vai separar as peças para você provar.'}</p></div>
+        <p class="lead">Toque no coração dos looks que você amou. ${MODO_CLIENTE ? 'Eles vão junto com o seu resultado para a nossa consultoria.' : 'A Juliana vai separar as peças para você provar.'}</p></div>
       <div class="vt-flt">
         ${meus.length ? `<div class="chips">${chip('vtMeu', '', 'Combinam com o meu estilo', f.meu && !f.estilo)}${chip('vtEstilo', '', 'Todos os estilos', !f.meu && !f.estilo)}</div>` : ''}
         <div class="chips" role="group" aria-label="Estilo">${meus.length ? '' : chip('vtEstilo', '', 'Todos', !f.estilo)}${ORDEM.map(k => chip('vtEstilo', k, E[k].nome, f.estilo === k)).join('')}</div>
@@ -3214,6 +3607,13 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       ${blocoFavoritos(S.favs, 'Favoritos desta visita')}
       <div class="row"><button class="btn pri" data-a="novoComFavs">Fazer o teste de estilo com ela</button><button class="btn" data-a="go" data-v="vitrine">Voltar aos looks</button></div></div>`;
   }
+  function blocoCoresSessao(ses) {
+    const cs = ses && ses.cores; if (!cs) return '';
+    const k = cs.final ? Cores.CARTELA(cs.final) : null, sg = Cores.CARTELA(cs.sugerida);
+    return `<section class="sec"><h3>Minhas Cores</h3><div class="box row" style="align-items:center;justify-content:space-between">
+      <span>${k ? `Cartela confirmada: <b>${esc(k.nome)}</b>` : `${cs.origem === 'casa' ? 'Pré-análise de casa' : 'Análise da foto'}: sugestão <b>${esc(sg ? sg.nome : '—')}</b>, falta confirmar`}</span>
+      <button class="btn sm" data-a="go" data-v="${k ? 'coresResultado' : 'coresAnalise'}">${k ? 'Ver cartela' : 'Confirmar cores'}</button></div></section>`;
+  }
   function blocoFavoritos(ids, titulo) {
     const ls = ids.map(id => todosLooks().find(l => l.id === id)).filter(Boolean);
     if (!ls.length) return '';
@@ -3225,6 +3625,124 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     return `<section class="sec"><h3>${titulo}</h3><div class="lkgrid small">${ls.map(l => cardLook(l, false)).join('')}</div></section>`;
   }
 
+
+  /* ---------- Minhas Cores ---------- */
+  const PONTOS = [['testa', 'Toque no meio da testa', false], ['bochecha', 'Toque na bochecha, numa parte sem sombra', false], ['queixo', 'Toque no queixo', false], ['cabelo', 'Toque numa mecha do cabelo perto do rosto', true], ['olho', 'Toque na parte colorida do olho (íris)', true], ['branco', 'Toque na folha branca', true]];
+  let corCv = null;
+  function iniciarCores() {
+    if (!S.sessao || S.sessao.atendimentoId) { S.sessao = novaSessao(); if (MODO_CLIENTE && PARAMS.get('n')) S.sessao.dados.nome = PARAMS.get('n'); }
+    S.cor = { passo: 'consent', ok: false, pontos: {}, idx: 0, img: null, rosto: null, eixos: null }; corCv = null; go('cores');
+  }
+  function carregarFotoCor(file) {
+    if (!file || !file.type.startsWith('image/')) return;
+    const url = URL.createObjectURL(file), img = new Image();
+    img.onload = () => { const M = 1400, r = Math.min(1, M / Math.max(img.width, img.height)); corCv = document.createElement('canvas'); corCv.width = Math.round(img.width * r); corCv.height = Math.round(img.height * r); corCv.getContext('2d', { willReadFrequently: true }).drawImage(img, 0, 0, corCv.width, corCv.height); URL.revokeObjectURL(url); S.cor.pontos = {}; S.cor.idx = 0; S.cor.passo = 'pontos'; render(); };
+    img.onerror = () => { URL.revokeObjectURL(url); toast('Não consegui abrir essa foto. Tente outra.'); };
+    img.src = url;
+  }
+  function desenharPontos() {
+    const cv = document.getElementById('cv-cores'); if (!cv || !corCv) return;
+    const box = cv.parentNode.getBoundingClientRect(), maxH = Math.max(300, window.innerHeight - 300), esc_ = Math.min(box.width / corCv.width, maxH / corCv.height);
+    cv.width = Math.round(corCv.width * esc_); cv.height = Math.round(corCv.height * esc_);
+    const g = cv.getContext('2d'); g.drawImage(corCv, 0, 0, cv.width, cv.height);
+    Object.entries(S.cor.pontos).forEach(([k, p]) => { if (!p) return; const x = p.x * esc_, y = p.y * esc_; g.beginPath(); g.arc(x, y, 9, 0, 7); g.fillStyle = 'rgba(255,0,132,.9)'; g.fill(); g.lineWidth = 2; g.strokeStyle = '#fff'; g.stroke(); });
+  }
+  function recortarRosto() {
+    const p = S.cor.pontos, pts = ['testa', 'bochecha', 'queixo'].map(k => p[k]).filter(Boolean); if (!pts.length || !corCv) return null;
+    const cx = pts.reduce((a, q) => a + q.x, 0) / pts.length, cy = pts.reduce((a, q) => a + q.y, 0) / pts.length;
+    const alt = p.testa && p.queixo ? Math.abs(p.queixo.y - p.testa.y) : corCv.height * 0.15;
+    let lado = Math.max(alt * 2.6, corCv.width * 0.3); lado = Math.min(lado, corCv.width, corCv.height);
+    const x0 = Math.max(0, Math.min(corCv.width - lado, cx - lado / 2)), y0 = Math.max(0, Math.min(corCv.height - lado, cy - lado / 2.2));
+    const out = document.createElement('canvas'); out.width = out.height = 420; out.getContext('2d').drawImage(corCv, x0, y0, lado, lado, 0, 0, 420, 420);
+    return out.toDataURL('image/jpeg', 0.85);
+  }
+  function concluirPontos() {
+    const e = Cores.analisar(corCv.getContext('2d', { willReadFrequently: true }), S.cor.pontos);
+    if (!e) { toast('Preciso pelo menos dos pontos da pele.'); return; }
+    const rk = Cores.ranking(e);
+    S.cor.eixos = e; S.cor.rosto = recortarRosto(); S.cor.esc = {}; S.cor.dp = 0;
+    S.sessao.cores = { eixos: e, sugerida: rk[0], alternativas: rk.slice(1, 3), origem: MODO_CLIENTE ? 'casa' : 'loja', feitoEm: hoje() };
+    S.cor.passo = 'pronta'; S.sessao.dirty = true; render(); window.scrollTo(0, 0);
+  }
+  function telaCores() {
+    const c = S.cor; if (!c) { iniciarCores(); return ''; }
+    if (c.passo === 'consent') return `<div class="stack-lg" style="max-width:760px"><div class="stack"><span class="eyebrow">Minhas Cores</span><h1 class="h1">Descubra as cores que iluminam você</h1>
+      <p class="lead">Vamos analisar a sua pele, o seu cabelo e os seus olhos por uma foto. ${MODO_CLIENTE ? 'É uma pré-análise: a cartela final é confirmada na loja, com a nossa consultoria.' : 'A consultora confirma o resultado com você.'}</p></div>
+      <div class="card stack"><label class="check"><input type="checkbox" id="cor-ok" data-f="cor.ok" ${c.ok ? 'checked' : ''}><span>Autorizo o uso da minha foto apenas para esta análise de cores, ${MODO_CLIENTE ? 'neste celular' : 'neste tablet'}. A foto não é salva nem enviada: fica guardado só o resultado.</span></label></div></div>
+      <div class="actbar"><div class="wrap"><button class="btn" data-a="home">Início</button><span class="sp"></span><button class="btn pri" data-a="corPasso" data-v="orient" ${c.ok ? '' : 'disabled'}>Continuar</button></div></div>`;
+    if (c.passo === 'orient' || c.passo === 'foto') return `<div class="stack-lg" style="max-width:860px"><div class="stack"><span class="eyebrow">Minhas Cores · antes da foto</span><h1 class="h1">Uma foto bem feita faz toda a diferença</h1></div>
+      <div class="cor-orient">
+        <div><b>Luz</b><span>Perto de uma janela, sem sol direto. Ou ring light na luz branca, nunca amarela.</span></div>
+        <div><b>Rosto</b><span>Sem maquiagem, de frente, com o cabelo solto ao lado do rosto.</span></div>
+        <div><b>Folha branca</b><span>Segure uma folha branca ao lado do rosto. Ela ajuda a corrigir a cor da luz.</span></div>
+        <div><b>Sem filtro</b><span>Câmera normal, sem efeito de beleza, e sem óculos ou acessórios no rosto.</span></div></div>
+      <div class="row" style="justify-content:center"><label class="btn pri lg" for="cor-cam">Tirar a foto agora<input type="file" id="cor-cam" accept="image/*" capture="user" hidden></label><label class="btn lg" for="cor-gal">Escolher da galeria<input type="file" id="cor-gal" accept="image/*" hidden></label></div></div>
+      <div class="actbar"><div class="wrap"><button class="btn" data-a="home">Início</button></div></div>`;
+    if (c.passo === 'pontos') { const atual = PONTOS[c.idx]; return `<div class="stack" style="max-width:980px;margin:0 auto">
+      <div class="cor-instr"><span class="eyebrow">Ponto ${Math.min(c.idx + 1, PONTOS.length)} de ${PONTOS.length}</span><h1 class="h2">${atual ? esc(atual[1]) : 'Tudo pronto!'}</h1></div>
+      <div class="cor-foto"><canvas id="cv-cores" data-a="corToque" aria-label="Foto para marcar os pontos"></canvas></div></div>
+      <div class="actbar"><div class="wrap"><button class="btn" data-a="corPasso" data-v="foto">Trocar a foto</button>${c.idx > 0 ? '<button class="btn" data-a="corDesfazer">Desfazer</button>' : ''}<span class="sp"></span>${atual && atual[2] ? '<button class="btn ghost" data-a="corPular">Pular este ponto</button>' : ''}${!atual ? '<button class="btn pri" data-a="corConcluir">Ver análise</button>' : ''}</div></div>`; }
+    if (c.passo === 'pronta') return MODO_CLIENTE ? `<div class="stack-lg" style="max-width:760px;text-align:center;align-items:center">
+      <span class="eyebrow">Minhas Cores</span><h1 class="h1">Sua pré-análise está pronta!</h1>
+      ${S.sessao.dados.cidade && !moraPerto() ? '<p class="lead">Agende a sua consultoria online personalizada para a nossa consultoria terminar a sua análise e montar a sua cartela completa.</p>' : '<p class="lead">Venha terminar a sua análise aqui na Euphoria, com a nossa consultoria. Vamos comparar as cores no seu rosto e montar a sua cartela completa.</p>'}<p class="voucher-linha">E ganhe <b>${VOUCHER_TXT}</b>.</p>
+      <div class="row" style="justify-content:center"><button class="btn pri" data-a="go" data-v="enviar">Agendar meu atendimento</button><button class="btn" data-a="home">Início</button></div></div>` :
+      `<div class="stack-lg" style="max-width:760px;text-align:center;align-items:center">${c.rosto ? `<img class="cor-rosto" src="${c.rosto}" alt="">` : ''}
+      <span class="eyebrow">Minhas Cores</span><h1 class="h1">Análise pronta!</h1><p class="lead">Agora chame a Juliana para conferir as cores no seu rosto e revelar a sua cartela.</p>
+      <button class="btn pri lg" data-a="chamar">Chamar a Juliana</button></div>`;
+    return '';
+  }
+  const ROT_EIXO = { t: 'Temperatura', v: 'Profundidade', c: 'Intensidade' };
+  function eixosAtuais() { const c = S.cor || {}, base = Object.assign({}, (S.sessao && S.sessao.cores && S.sessao.cores.eixos) || {}), es = c.esc || {}; if (es.metal) base.t = (base.t || 0) * 0.5 + es.metal * 0.5; if (es.temp) base.t = es.temp * 0.8; if (es.prof) base.v = es.prof * 0.8; if (es.int) base.c = es.int * 0.8; return base; }
+  function drape(cores, rosto, rot) { return `<div class="drape" style="background:${Cores.moldura(cores)}">${rosto ? `<img src="${rosto}" alt="">` : '<span class="drape-sem">sem foto</span>'}</div>${rot ? `<b class="drape-rot">${rot}</b>` : ''}`; }
+  function telaCoresAnalise() {
+    const cs = S.sessao && S.sessao.cores; if (!cs) return `<div class="empty"><p>Ainda não há análise de cores nesta sessão.</p><button class="btn pri" data-a="modulo" data-v="cores">Fazer a análise</button></div>`;
+    if (!S.cor) S.cor = { passo: 'pronta', esc: {}, dp: 0, rosto: null };
+    const c = S.cor, e = eixosAtuais(), rk = Cores.ranking(e), passos = ['metal', 'temp', 'prof', 'int', 'estacao'], p = passos[c.dp || 0];
+    const tit = { metal: 'Metal: qual ilumina mais?', temp: 'Temperatura: quentes ou frias?', prof: 'Profundidade: claras ou profundas?', int: 'Intensidade: suaves ou brilhantes?', estacao: 'Qual cartela valoriza mais?' }[p];
+    const eix = cs.eixos;
+    let comp = '';
+    if (p !== 'estacao') comp = `<div class="drape-par">${Cores.DRAPE[p].map(([rot, cor, val]) => `<button class="drape-op ${c.esc[p] === val ? 'on' : ''}" data-a="corEscolha" data-v="${p}:${val}">${drape(cor, c.rosto, rot)}</button>`).join('')}</div>
+      <div class="row" style="justify-content:center"><button class="btn ghost" data-a="corEscolha" data-v="${p}:0">Ficaram parecidas</button></div>`;
+    else comp = `<div class="drape-tri">${rk.slice(0, 3).map(id => { const k = Cores.CARTELA(id); return `<button class="drape-op ${c.final === id ? 'on' : ''}" data-a="corFinal" data-v="${id}">${drape(k.cores.slice(0, 8), c.rosto, k.nome)}</button>`; }).join('')}</div>
+      <div class="field" style="max-width:360px;margin:0 auto"><label for="cor-outra">Ou escolha outra cartela</label><select id="cor-outra" class="inp" data-cor="final"><option value="">—</option>${Cores.CARTELAS.map(k => `<option value="${k.id}">${k.nome}</option>`).join('')}</select></div>`;
+    return `<div class="stack-lg">
+      <div class="staff-head"><div class="stack" style="gap:8px"><span class="eyebrow">Análise de cores · consultora</span><h1 class="h2">${esc(S.sessao.dados.nome || 'Cliente')}</h1>
+        <p class="small">Sugestão do app: <b>${esc(Cores.CARTELA(cs.sugerida).nome)}</b>${cs.alternativas && cs.alternativas.length ? ` · próximas: ${cs.alternativas.map(id => esc(Cores.CARTELA(id).nome)).join(', ')}` : ''} · confiança ${esc(eix.conf || '—')}</p></div>
+        ${c.rosto ? '' : '<button class="btn" data-a="modulo" data-v="cores">Fazer a foto aqui na loja</button>'}</div>
+      <div class="eixos">${['t', 'v', 'c'].map(k => `<div><span>${ROT_EIXO[k]}</span><b>${Cores.rotulo[k](eix[k])}</b><i class="eixo-barra"><em style="left:${(eix[k] + 1) * 50}%"></em></i></div>`).join('')}<div><span>Contraste</span><b>${Cores.rotulo.k(eix.contraste)}</b></div></div>
+      ${(eix.avisos || []).length ? `<div class="banner"><span>${eix.avisos.map(esc).join(' ')}</span></div>` : ''}
+      <section class="sec"><div class="drape-passos">${passos.map((x, i) => `<button class="chip" data-a="corDp" data-v="${i}" aria-pressed="${i === (c.dp || 0)}">${i + 1}. ${{ metal: 'Metal', temp: 'Temperatura', prof: 'Profundidade', int: 'Intensidade', estacao: 'Cartela' }[x]}</button>`).join('')}</div>
+        <h3 style="text-align:center">${tit}</h3><p class="muted small" style="text-align:center">Compare com a cliente no espelho: a cor certa uniformiza a pele e faz os olhos brilharem.</p>${comp}</section>
+      </div>
+      <div class="actbar"><div class="wrap"><button class="btn" data-a="home">Início</button><span class="sp"></span>${c.final ? '<button class="btn pri" data-a="corRevelar">Revelar a cartela</button>' : ''}</div></div>`;
+  }
+  function telaCoresResultado() {
+    const cs = S.sessao && S.sessao.cores, k = cs && cs.final && Cores.CARTELA(cs.final);
+    if (!k) return `<div class="empty"><p>A cartela ainda não foi confirmada.</p><button class="btn" data-a="go" data-v="coresAnalise">Voltar à análise</button></div>`;
+    const sw = (cores, grande) => `<div class="cartela ${grande ? 'g' : ''}">${cores.map(c => `<div><i style="background:${c}"></i><small>${c}</small></div>`).join('')}</div>`;
+    return `<div class="stack-lg">
+      <section class="cor-hero" style="--c1:${k.cores[0]};--c2:${k.cores[5]};--c3:${k.cores[9]}"><span class="eyebrow">Sua cartela de cores</span><h1 class="h1">${esc(k.nome)}</h1><p class="lead">${esc(k.resumo)}</p>
+        <div class="row small"><span class="tag p">Dominante ${esc(k.dom.toLowerCase())}</span><span class="tag">Secundária ${esc(k.sec.toLowerCase())}</span><span class="tag">Metais: ${esc(k.metais.toLowerCase())}</span></div></section>
+      <section class="sec"><h3>Suas cores para usar perto do rosto</h3>${sw(k.cores, true)}</section>
+      <div class="cols"><section class="box"><h4>Neutros para a base do guarda-roupa</h4>${sw(k.neutros)}</section>
+        <section class="box"><h4>Batons</h4>${sw(k.batons)}</section>
+        <section class="box"><h4>Prefira usar longe do rosto</h4><p class="small muted">Em calças, saias, sapatos e bolsas, ou com uma peça da sua cartela perto do rosto.</p>${sw(k.longe)}</section></div>
+      <div class="closing"><p>As suas cores não são regras: são aliadas. Use a cartela para acertar nas peças perto do rosto e nas combinações. A Euphoria separa as novidades nas suas cores para você.</p></div></div>
+      <div class="actbar"><div class="wrap"><button class="btn" data-a="go" data-v="coresAnalise">Voltar à análise</button>${salvarBtn()}<span class="sp"></span><button class="btn" data-a="home">Início</button></div></div>`;
+  }
+  /* ---------- Formação em Colorimetria ---------- */
+  function telaFormacao() {
+    const f = S.fc, caps = Cores.CURSO, n = caps.length, quiz = f.cap === n;
+    const cap = caps[f.cap];
+    let corpo = '';
+    if (quiz) corpo = `<h2 class="h2">Quiz para fixar</h2><div class="fc-quiz">${Cores.QUIZ.map((q, i) => { const r = f.quiz[i]; return `<div class="fc-q"><p><b>${i + 1}.</b> ${esc(q.p)}</p><div class="chips">${q.o.map((o, j) => `<button class="chip ${r != null && j === q.c ? 'certo' : ''} ${r === j && j !== q.c ? 'errado' : ''}" data-a="fcResp" data-v="${i}:${j}" aria-pressed="${r === j}">${esc(o)}</button>`).join('')}</div>${r != null ? `<p class="small ${r === q.c ? 'ok-t' : 'muted'}">${r === q.c ? 'Isso!' : 'Quase.'} ${esc(q.e)}</p>` : ''}</div>`; }).join('')}</div>
+      <p class="muted">Acertos: ${Cores.QUIZ.filter((q, i) => f.quiz[i] === q.c).length} de ${Cores.QUIZ.length}${Object.keys(f.quiz).length ? ' · <button class="linkb" data-a="fcZerar">Refazer</button>' : ''}</p>`;
+    else corpo = `<h2 class="h2">${esc(cap.tit)}</h2>${cap.html === '__ESTACOES__' ? Cores.htmlEstacoes() : cap.html}`;
+    return `<div class="stack-lg"><div class="stack"><span class="eyebrow">Só a equipe · Formação</span><h1 class="h1">Colorimetria Euphoria</h1></div>
+      <nav class="fc-nav" aria-label="Capítulos">${caps.map((c, i) => `<button class="chip" data-a="fcCap" data-v="${i}" aria-pressed="${i === f.cap}">${i + 1}. ${esc(c.tit)}</button>`).join('')}<button class="chip" data-a="fcCap" data-v="${n}" aria-pressed="${quiz}">Quiz</button></nav>
+      <article class="fc-art">${corpo}</article></div>
+      <div class="actbar"><div class="wrap">${f.cap > 0 ? `<button class="btn" data-a="fcCap" data-v="${f.cap - 1}">Anterior</button>` : ''}<span class="sp"></span>${f.cap < n ? `<button class="btn pri" data-a="fcCap" data-v="${f.cap + 1}">${f.cap === n - 1 ? 'Ir para o quiz' : 'Próximo'}</button>` : ''}</div></div>`;
+  }
 
   /* ---------- aniversariantes ---------- */
   const MSG_ANIV = [
@@ -3284,14 +3802,14 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     const ses = S.sessao;
     const needSes = ['dados', 'teste', 'revisar', 'refino', 'resultado', 'atendimento', 'consent', 'teaser', 'enviar', 'enviado'];
     if (needSes.includes(S.tela) && !ses) S.tela = 'inicio';
-    if (MODO_CLIENTE && !['inicio', 'dados', 'teste', 'revisar', 'refino', 'resultado', 'enviar', 'enviado', 'vitrine'].includes(S.tela)) S.tela = ses ? 'resultado' : 'inicio';
-    if (!MODO_CLIENTE && !S.equipe && !TELAS_CLIENTE.includes(S.tela)) { const dest = S.tela; S.tela = ses && ['atendimento', 'consent'].includes(dest) ? 'resultado' : 'inicio'; if (!S.pin) S.pin = { modo: pinGuardado() ? 'entrar' : 'criar', buf: '', destino: dest, erro: '', primeiro: '', tentativas: 0 }; }
+    if (MODO_CLIENTE && !['inicio', 'dados', 'teste', 'revisar', 'refino', 'resultado', 'enviar', 'enviado', 'vitrine', 'cores'].includes(S.tela)) S.tela = ses ? 'resultado' : 'inicio';
+    if (!MODO_CLIENTE && !S.equipe && !TELAS_CLIENTE.concat(S.consulta ? TELAS_CONSULTA : []).includes(S.tela)) { const dest = S.tela; S.tela = ses && ['atendimento', 'consent'].includes(dest) ? 'resultado' : 'inicio'; if (!S.pin) S.pin = { modo: pinGuardado() ? 'entrar' : 'criar', buf: '', destino: dest, erro: '', primeiro: '', tentativas: 0 }; }
     switch (S.tela) {
       case 'dados': html = telaDados(); break;
       case 'teste': html = telaPergunta(); break;
       case 'revisar': html = telaRevisar(); break;
       case 'refino': html = telaRefino(); break;
-      case 'resultado': html = telaResultado(); break;
+      case 'resultado': html = MODO_CLIENTE ? (travado() ? telaTrava() : telaTeaser()) : telaResultado(); break;
       case 'atendimento': html = telaAtendimento(); break;
       case 'consent': html = telaConsent(); break;
       case 'clientes': html = telaClientes(); break;
@@ -3309,6 +3827,10 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       case 'aniversarios': html = telaAniversarios(); break;
       case 'vitrine': html = telaVitrine(); break;
       case 'favoritas': html = telaFavoritas(); break;
+      case 'cores': html = telaCores(); break;
+      case 'coresAnalise': html = telaCoresAnalise(); break;
+      case 'coresResultado': html = telaCoresResultado(); break;
+      case 'formacao': html = telaFormacao(); break;
       default: html = telaInicio();
     }
     const foco = document.activeElement && document.activeElement.id;
@@ -3316,6 +3838,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     const capa = (MODO_CLIENTE || !S.equipe) && S.tela === 'inicio';
     $app.innerHTML = (capa ? html : barra() + `<main><div class="wrap">${html}</div></main>`) + modalLook() + modalPin();
     document.body.classList.toggle('modo-capa', capa);
+    if (S.tela === 'cores' && S.cor && S.cor.passo === 'pontos') desenharPontos();
     if (foco) { const el = document.getElementById(foco); if (el) { el.focus(); try { if (selS != null && el.setSelectionRange) el.setSelectionRange(selS, selS); } catch (e) { } } }
   }
 
@@ -3326,6 +3849,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     else if (a === 'ficha') S.ficha[b] = val;
     else if (a === 'recebido') S.recebido[b] = val;
     else if (a === 'lookDraft') S.lookDraft[b] = val;
+    else if (a === 'cor') S.cor[b] = val;
     else if (a === 'sessao') { S.sessao[b] = val; S.sessao.dirty = true; }
     else S[a] = val;
   }
@@ -3339,11 +3863,24 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
   const A = {
     equipe: () => S.equipe ? go('inicio') : pedirPin(null),
     bloquear: () => bloquear('Tablet bloqueado. A área da equipe pede o PIN.'),
-    chamar: () => pedirPin(S.sessao && (S.sessao.qi || 0) >= PERGUNTAS.length ? 'resultado' : 'favoritas'),
+    chamar: () => { S.consulta = true; S.ultimoToque = Date.now(); if (S.tela === 'cores' && S.cor && S.cor.eixos) go('coresAnalise'); else go(S.sessao && (S.sessao.qi || 0) >= PERGUNTAS.length ? 'resultado' : 'favoritas'); },
     modulo: (v) => {
       if (v === 'looks') { S.vitFlt = { estilo: '', ocasiao: '', meu: true }; go('vitrine'); return; }
+      if (v === 'cores') { iniciarCores(); return; }
       if (v === 'estilo') { const ses = S.sessao; if (ses && !ses.atendimentoId && Object.keys(ses.respostas || {}).length && ses.qi < PERGUNTAS.length) { go('teste'); return; } A.novo(); }
     },
+    corPasso: (v) => { S.cor.passo = v; render(); window.scrollTo(0, 0); },
+    corToque: (v, el, ev) => { if (!corCv || !ev) return; const r = el.getBoundingClientRect(), sc = corCv.width / r.width; const p = PONTOS[S.cor.idx]; if (!p) return; S.cor.pontos[p[0]] = { x: (ev.clientX - r.left) * sc, y: (ev.clientY - r.top) * sc }; S.cor.idx++; render(); },
+    corPular: () => { const p = PONTOS[S.cor.idx]; if (p) S.cor.pontos[p[0]] = null; S.cor.idx++; render(); },
+    corDesfazer: () => { if (S.cor.idx > 0) { S.cor.idx--; delete S.cor.pontos[PONTOS[S.cor.idx][0]]; } render(); },
+    corConcluir: () => concluirPontos(),
+    corEscolha: (v) => { const [k, val] = v.split(':'); S.cor.esc[k] = +val; S.cor.dp = Math.min((S.cor.dp || 0) + 1, 4); render(); },
+    corDp: (v) => { S.cor.dp = +v; render(); },
+    corFinal: (v) => { S.cor.final = v; render(); },
+    corRevelar: () => { S.sessao.cores.final = S.cor.final; S.sessao.cores.escolhas = Object.assign({}, S.cor.esc); S.sessao.cores.confirmadaEm = hoje(); S.sessao.dirty = true; go('coresResultado'); },
+    fcCap: (v) => { S.fc.cap = +v; render(); window.scrollTo(0, 0); },
+    fcResp: (v) => { const [i, j] = v.split(':').map(Number); S.fc.quiz[i] = j; render(); },
+    fcZerar: () => { S.fc.quiz = {}; render(); },
     fav: (v) => { const i = S.favs.indexOf(v); if (i >= 0) S.favs.splice(i, 1); else { S.favs.push(v); toast('Adicionado aos favoritos.'); } if (S.sessao) S.sessao.dirty = true; render(); },
     verLook: (v) => { S.lbox = v; render(); },
     fecharLook: () => { S.lbox = null; render(); },
@@ -3358,14 +3895,15 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     pinEsqueci: () => { S.pin.modo = 'recuperar'; S.pin.erro = ''; render(); setTimeout(() => { const el = document.getElementById('pin-rec'); if (el) el.focus(); }, 30); },
     pinVoltar: () => { S.pin.modo = 'entrar'; S.pin.erro = ''; render(); },
     pinRecuperar: () => recuperarPin(),
-    home: () => go('inicio'),
+    home: () => { if (!S.equipe) S.consulta = false; go('inicio'); },
     go: (v) => go(v),
     continuar: () => { S.sessao = S.rascunho; go(S.sessao.qi >= PERGUNTAS.length ? 'revisar' : 'teste'); },
     faixa: (v) => { S.sessao.dados.faixa = S.sessao.dados.faixa === v ? '' : v; render(); },
     finalidade: (v) => { const f = S.sessao.dados.finalidades; const i = f.indexOf(v); if (i >= 0) f.splice(i, 1); else f.push(v); render(); },
     ligar: (v) => { const c = S.clientes.find(x => x.id === v); S.sessao.clienteId = v; if (c) { S.sessao.dados.nome = c.nome; if (c.faixa) S.sessao.dados.faixa = c.faixa; if (c.tipoCorpo) S.sessao.tipoCorpo = c.tipoCorpo; } render(); },
     desligar: () => { S.sessao.clienteId = null; render(); },
-    comecar: () => { S.sessao.qi = 0; guardarRascunho(); if (!MODO_CLIENTE && S.equipe) { S.equipe = false; toast('Tablet no modo cliente. Para voltar à equipe, use o PIN.'); } go('teste'); },
+    cidade: (v) => { const d = S.sessao.dados; if (v === 'pg') { d.cidade = 'Praia Grande'; d.cidOutra = false; } else { d.cidOutra = true; if (moraPerto()) d.cidade = ''; } guardarRascunho(); render(); if (v !== 'pg') { const i = document.getElementById('f-cidade'); if (i) i.focus(); } },
+    comecar: () => { if (MODO_CLIENTE && !String(S.sessao.dados.cidade || '').trim()) { toast('Conte em que cidade você mora para começar.'); return; } S.sessao.qi = 0; guardarRascunho(); if (!MODO_CLIENTE && S.equipe) { S.equipe = false; toast('Tablet no modo cliente. Para voltar à equipe, use o PIN.'); } go('teste'); },
     opt: (v) => {
       const q = PERGUNTAS[S.sessao.qi]; let sel = (S.sessao.respostas[q.id] || []).slice();
       if (!E[v]) sel = sel.includes(v) ? [] : [v];
@@ -3410,7 +3948,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     },
     abrirAtend: (v) => {
       const h = S.historico.find(x => x.id === v); if (!h) return;
-      const ses = novaSessao(); Object.assign(ses, { id: 's_' + v, inicio: h.data, dados: h.dados || { nome: '', faixa: '', finalidades: [] }, respostas: h.respostas || {}, desempates: h.desempates || [], clienteId: h.clienteId, atendimentoId: h.id, validacao: h.validacao || null, ajuste: h.ajustado ? h.estilos : null, observacoes: h.observacoes || '', sugestoes: h.sugestoes || {}, extras: h.extras || [], tipoCorpo: h.tipoCorpo || '', favoritos: h.favoritos || [], consent: 'sim', qi: PERGUNTAS.length, pulouRefino: true });
+      const ses = novaSessao(); Object.assign(ses, { id: 's_' + v, inicio: h.data, dados: h.dados || { nome: '', faixa: '', finalidades: [] }, respostas: h.respostas || {}, desempates: h.desempates || [], clienteId: h.clienteId, atendimentoId: h.id, validacao: h.validacao || null, ajuste: h.ajustado ? h.estilos : null, observacoes: h.observacoes || '', sugestoes: h.sugestoes || {}, extras: h.extras || [], tipoCorpo: h.tipoCorpo || '', favoritos: h.favoritos || [], cores: h.cores || null, consent: 'sim', qi: PERGUNTAS.length, pulouRefino: true });
       S.favs = [];
       if (!ses.dados.finalidades) ses.dados.finalidades = [];
       S.sessao = ses; go('resultado');
@@ -3430,7 +3968,8 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     novoComFavs: () => { const f = S.favs.slice(); A.novo(); S.favs = f; S.sessao.favoritos = f.slice(); },
     novo: () => { if (!MODO_CLIENTE && S.equipe) S.favs = []; S.sessao = novaSessao(); if (MODO_CLIENTE && PARAMS.get('n')) S.sessao.dados.nome = PARAMS.get('n'); S.ficha = null; S.fichaOk = false; go('dados'); },
     enviarWa: () => {
-      if (S.fichaOk && !digitos(S.ficha.whatsapp)) { toast('Preencha seu WhatsApp para a Juliana te responder.'); const el = document.getElementById('ff-wa'); if (el) el.focus(); return; }
+      if (MODO_CLIENTE) { const ag = S.sessao.agenda || {}; if (!String(S.sessao.dados.cidade || '').trim()) { toast('Conte em que cidade você mora.'); return; } if (moraPerto()) ag.forma = 'l'; if (!ag.forma) { toast('Escolha como prefere ser atendida.'); return; } }
+      if (S.fichaOk && !digitos(S.ficha.whatsapp)) { toast('Preencha seu WhatsApp para a gente te responder.'); const el = document.getElementById('ff-wa'); if (el) el.focus(); return; }
       S.waEnvio = 'https://wa.me/' + LOJA_WA + '?text=' + encodeURIComponent(mensagemCliente());
       const a = document.createElement('a'); a.href = S.waEnvio; a.target = '_blank'; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove();
       limparRascunho(); go('enviado');
@@ -3438,14 +3977,19 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     convidarNovo: () => { S.conv = { modelo: S.conv.modelo || 'curiosidade', nome: '', wa: '', texto: '', editado: false, clienteId: '' }; go('convidar'); },
     convidarCliente: () => { const c = S.clientes.find(x => x.id === S.clienteSel); S.conv = { modelo: S.conv.modelo || 'exclusivo', nome: c ? c.nome : '', wa: c ? c.whatsapp || '' : '', texto: '', editado: false, clienteId: c ? c.id : '' }; go('convidar'); },
     cvModelo: (v) => { S.conv.modelo = v; S.conv.editado = false; render(); },
+    cvCores: () => { S.conv.cores = S.conv.cores === false; S.conv.editado = false; render(); },
     cvOriginal: () => { S.conv.editado = false; render(); },
     cvCopiar: () => copiar(textoConvite(), 'Mensagem copiada.', 'cv-texto'),
     cvLink: () => copiar(linkTeste(S.conv.nome), 'Link copiado.'),
     recColar: async () => { try { const t = await navigator.clipboard.readText(); if (t) { S.recebido = { texto: t }; render(); } else toast('A área de transferência está vazia.'); } catch (e) { toast('Toque e segure no campo e escolha Colar.'); const el = document.getElementById('rec-texto'); if (el) el.focus(); } },
+    agForma: (v) => { S.sessao.agenda.forma = v; guardarRascunho(); render(); },
+    atForma: (v) => { S.sessao.formaAtend = v; S.sessao.dirty = true; render(); },
+    vcEmitir: async () => { const c = S.clientes.find(x => x.id === S.clienteSel); if (!c || !S.db) return; const v = { pct: VOUCHER_PCT, emitido: hoje(), validade: new Date(Date.now() + VOUCHER_DIAS * 864e5).toISOString(), usadoEm: null }; try { await S.db.doc('clientes/' + c.id).update({ voucher: v }); c.voucher = v; toast(`Voucher de ${VOUCHER_PCT}% válido até ${fmtData(v.validade)}.`); } catch (e) { toast(msgErro(e)); } render(); },
+    vcUsar: async () => { const c = S.clientes.find(x => x.id === S.clienteSel); if (!c || !c.voucher || !S.db) return; const v = Object.assign({}, c.voucher, { usadoEm: hoje() }); try { await S.db.doc('clientes/' + c.id).update({ voucher: v }); c.voucher = v; toast('Voucher marcado como usado.'); } catch (e) { toast(msgErro(e)); } render(); },
     recLimpar: () => { S.recebido = { texto: '' }; render(); },
     recDestino: (v) => { S.recebido.destino = v; render(); },
     recAbrirExistente: async () => { const p = lerCodigo(S.recebido.texto); const ses = sessaoDeCodigo(p); const snap = await S.db.doc('atendimentos/' + ses.idAtendPref).get(); const h = snap.data(); if (!h) return; S.historico = [Object.assign({ id: ses.idAtendPref }, h)]; A.abrirAtend(ses.idAtendPref); },
-    recVer: () => { const p = lerCodigo(S.recebido.texto); if (!p) return; S.sessao = sessaoDeCodigo(p); const par = clientesParecidas(p)[0]; if (par) { S.sessao.clienteId = par.id; S.sessao.consent = 'sim'; } S.sessao.dirty = true; go('resultado'); },
+    recVer: () => { const p = lerCodigo(S.recebido.texto); if (!p) return; S.sessao = sessaoDeCodigo(p); const par = clientesParecidas(p)[0]; if (par) { S.sessao.clienteId = par.id; S.sessao.consent = 'sim'; } S.sessao.dirty = true; const temResp = Object.keys(p.r || {}).length; if (!temResp && S.sessao.cores) { S.consulta = true; go('coresAnalise'); } else go('resultado'); },
     recSalvar: async () => {
       const p = lerCodigo(S.recebido.texto); if (!p || !S.db) return;
       const ses = sessaoDeCodigo(p); S.sessao = ses; let cid = S.recebido.destino;
@@ -3453,7 +3997,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
       if (!cid || cid === 'novo') { cid = await criarCliente(f, true); if (!cid) { render(); return; } }
       else { const atual = S.clientes.find(x => x.id === cid) || {}; const upd = {}; ['whatsapp', 'email', 'tamCima', 'tamBaixo', 'coresOutras', 'faixa'].forEach(k => { if (f[k] && !atual[k]) upd[k] = f[k]; }); if (f.aniverDia && !atual.aniverDia) { upd.aniverDia = +f.aniverDia; upd.aniverMes = +f.aniverMes; } if ((f.cores || []).length) upd.cores = [...new Set([...(atual.cores || []), ...f.cores])]; if (Object.keys(upd).length) { upd.atualizadoEm = hoje(); try { await S.db.doc('clientes/' + cid).update(upd); } catch (e) { } } }
       ses.clienteId = cid; ses.consent = 'sim'; S.tela = 'resultado';
-      const ok = await salvarAtendimento(); if (ok) S.recebido = { texto: '' }; window.scrollTo(0, 0);
+      const ok = await salvarAtendimento({ semVoucher: true }); if (ok) S.recebido = { texto: '' }; window.scrollTo(0, 0);
     },
     lkToggle: (v) => { S.lookFlt[v] = !S.lookFlt[v]; render(); },
     lkSemClass: () => { S.lookFlt = { estilo: '', ocasiao: '', tam: '', esgotados: true, semClass: true }; render(); },
@@ -3481,7 +4025,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
 
   document.addEventListener('click', e => {
     const el = e.target.closest('[data-a]'); if (!el || el.disabled) return;
-    const fn = A[el.dataset.a]; if (fn) { e.preventDefault(); fn(el.dataset.v, el); }
+    const fn = A[el.dataset.a]; if (fn) { e.preventDefault(); fn(el.dataset.v, el, e); }
   });
   document.addEventListener('input', e => {
     const el = e.target;
@@ -3503,6 +4047,8 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
     if (el.dataset.lf) { S.lookFlt[el.dataset.lf] = el.value; render(); }
     if (el.dataset.cv === 'clienteId') { const c = S.clientes.find(x => x.id === el.value); S.conv.clienteId = el.value; if (c) { S.conv.nome = c.nome; S.conv.wa = c.whatsapp || ''; } render(); }
     if (el.id === 'lk-add' && el.files && el.files.length) { adicionarFotos(el.files); el.value = ''; }
+    if ((el.id === 'cor-cam' || el.id === 'cor-gal') && el.files && el.files[0]) { carregarFotoCor(el.files[0]); el.value = ''; }
+    if (el.dataset.cor === 'final' && el.value) { S.cor.final = el.value; render(); }
     if (el.id === 'arq-backup' && el.files && el.files[0]) {
       const fr = new FileReader();
       fr.onload = () => { try { const obj = JSON.parse(fr.result); if (!obj || obj.app !== 'Euphoria Estilo') throw 0; const ks = Object.keys(obj.docs || {}); S.importacao = { obj, nCli: ks.filter(k => k.startsWith('clientes/')).length, nAt: ks.filter(k => k.startsWith('atendimentos/')).length }; } catch (e) { S.importacao = null; toast('Este arquivo não é um backup do Euphoria Estilo.'); } render(); };
@@ -3517,7 +4063,7 @@ function __dadosEuphoria() { return { ORDEM, ESTILOS, PERGUNTAS, PARES, DIFERENC
   document.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'nova-sug') { e.preventDefault(); A.addSug(); } });
 
   ['click', 'input', 'keydown', 'touchstart'].forEach(ev => document.addEventListener(ev, () => { S.ultimoToque = Date.now(); }, { passive: true, capture: true }));
-  setInterval(() => { if (!MODO_CLIENTE && S.equipe && Date.now() - S.ultimoToque > BLOQUEIO_MIN * 60000) bloquear('O tablet ficou parado e foi bloqueado.'); }, 20000);
+  setInterval(() => { if (!MODO_CLIENTE && (S.equipe || S.consulta) && Date.now() - S.ultimoToque > BLOQUEIO_MIN * 60000) bloquear('O tablet ficou parado e foi bloqueado.'); }, 20000);
   document.addEventListener('keydown', e => { if (S.lbox && e.key === 'Escape') { S.lbox = null; render(); return; } if (!S.pin || e.target.id === 'pin-rec') return; if (/^[0-9]$/.test(e.key)) { e.preventDefault(); teclaPin(e.key); } else if (e.key === 'Backspace') { e.preventDefault(); teclaPin('apagar'); } else if (e.key === 'Enter') { e.preventDefault(); confirmarPin(); } else if (e.key === 'Escape') { S.pin = null; render(); } });
   if (!MODO_CLIENTE && PARAMS.has('receber')) { S.tela = 'receber'; S.recebido.texto = [PARAMS.get('title'), PARAMS.get('text'), PARAMS.get('url')].filter(Boolean).join('\n'); }
   render(); iniciarDb();
