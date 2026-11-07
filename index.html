@@ -668,6 +668,44 @@ body.tema-a .resumo-cor { border-top: 4px solid #151215; }
 body.tema-a .ind-barra i, body.tema-a .compat i, body.tema-a .cp-rank i { background: #F3D5E2; }
 body.tema-a .cor-orient>div b { color: #151215; }
 body.tema-a .cp-tipo.on, body.tema-a .drape-col.on { border-color: #151215; box-shadow: 0 0 0 3px #F9C9DD; }
+/* ===== Informativo ===== */
+body.tema-a .info, .info {}
+.info-capa{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:30px;border-radius:24px;background:linear-gradient(135deg,#F9C9DD,#FDEFF5 75%)}
+.info-capa h1 em,.info-bloco h2 em{color:#E20867;font-style:normal}
+.info-capa>div:first-child{display:flex;flex-direction:column;gap:14px}
+.info-voucher{display:flex;flex-direction:column;align-items:center;gap:4px;padding:20px 26px;border-radius:20px;background:#151215;color:#fff;text-align:center;border:2px dashed #FF5FA8;min-width:200px}
+.info-voucher span{font:400 40px/1 var(--f-display);color:#FF5FA8}
+.info-voucher small{color:#E9DDE4;font-size:12.5px;max-width:170px}
+.info-bloco{display:grid;grid-template-columns:52px 1fr;gap:18px;padding:26px;border-radius:22px;background:#fff;border:1px solid #F4CFE0;box-shadow:0 6px 22px rgba(226,8,103,.07)}
+.info-num{width:44px;height:44px;border-radius:50%;background:#151215;color:#fff;display:grid;place-items:center;font:400 22px var(--f-display)}
+.info-dois{display:grid;grid-template-columns:1fr minmax(140px,220px);gap:22px;align-items:start}
+.info-dois img{width:100%;aspect-ratio:3/5;object-fit:cover;object-position:50% 5%;border-radius:14px}
+body .info-bloco .box,body.tema-a .info-bloco .box{background:#151215;color:#fff;border-color:#151215;box-shadow:none}
+.info-bloco .box b{color:#FF5FA8}
+.info-bloco .cartela{grid-template-columns:repeat(auto-fill,minmax(44px,1fr))}
+.info-bloco .cartela i{height:44px}
+.info-falta{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.info-falta .box{cursor:pointer;text-align:left;font:inherit;color:inherit;border:1.5px dashed #E20867;background:#fff}
+.info-convite{display:flex;flex-direction:column;gap:12px;align-items:flex-start;padding:30px;border-radius:24px;background:#151215;color:#fff}
+.info-convite h2{color:#fff}.info-convite .eyebrow{color:#FF5FA8}
+.info-convite .small{color:#E9DDE4}
+.info-convite ul{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+@media (max-width:760px){.info-capa{grid-template-columns:1fr}.info-bloco{grid-template-columns:1fr;padding:20px}.info-dois{grid-template-columns:1fr}.info-dois img{max-width:220px}}
+/* ===== Trilha guiada ===== */
+.trilha{display:flex;flex-direction:column;gap:8px;margin:0 0 22px;padding:14px 18px;border-radius:18px;background:#fff;border:1px solid #F4CFE0;box-shadow:0 4px 16px rgba(226,8,103,.06)}
+.trilha-passos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.trilha-passos span{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);position:relative}
+.trilha-passos i{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:600 13px var(--f-body);font-style:normal;background:#F6E3EC;color:#A3004B}
+.trilha-passos span.ok i{background:#151215;color:#fff}
+.trilha-passos span.at i{background:#E20867;color:#fff;box-shadow:0 0 0 4px #FFD3E6}
+.trilha-passos span.at b{color:#151215}
+.trilha-passos b{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.trilha-info{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
+.trilha-info .linkb{font-size:13px}
+.etapa-ok{display:flex;align-items:center;gap:16px}
+.etapa-ok>span{flex:none;width:52px;height:52px;border-radius:50%;background:#E20867;color:#fff;display:grid;place-items:center;font-size:26px}
+.etapa-prox{align-items:flex-start}
+@media (max-width:640px){.trilha-passos b{display:none}.trilha-passos{grid-template-columns:repeat(4,auto);justify-content:space-between}.trilha-passos span::after{content:''}}
 </style>
 </head>
 <body>
@@ -2392,7 +2430,7 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
   'use strict';
   const $app = document.getElementById('app');
   const E = ESTILOS;
-  const VERSAO_APP = '03/11 · Meu Corpo';
+  const VERSAO_APP = '07/11 · Trilha guiada';
   const PARAMS = new URLSearchParams(location.search);
   const MODO_CLIENTE = PARAMS.has('cliente');
   const RASCUNHO = MODO_CLIENTE ? 'euphoria-casa-v1' : 'euphoria-teste-v1';
@@ -2435,7 +2473,7 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
   };
 
   /* ---------- acesso: equipe x cliente ---------- */
-  const TELAS_CLIENTE = ['inicio', 'dados', 'teste', 'revisar', 'refino', 'resultado', 'vitrine', 'cores', 'corpo'];
+  const TELAS_CLIENTE = ['inicio', 'dados', 'teste', 'revisar', 'refino', 'resultado', 'vitrine', 'cores', 'corpo', 'informativo', 'estiloCompleto', 'corpoResultado', 'etapa'];
   const TELAS_CONSULTA = ['atendimento', 'consent', 'favoritas', 'coresAnalise', 'coresResultado', 'corpoAnalise', 'corpoResultado'];
   const vistaCliente = () => MODO_CLIENTE || (!S.equipe && !S.consulta);
   const BLOQUEIO_MIN = 5;
@@ -2516,7 +2554,7 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
   const lista = Score.lista;
   const hoje = () => new Date().toISOString();
   const moraPerto = ses => norm(((ses || S.sessao || {}).dados || {}).cidade).includes('praia grande');
-  const travado = () => MODO_CLIENTE && moraPerto();
+  const travado = () => false;
   const VOUCHER_PCT = 10, VOUCHER_DIAS = 15;
   const AG_FORMAS = [['l', 'Presencial na Euphoria', 'o meu atendimento aqui na loja'], ['v', 'Consultoria online personalizada', 'a minha consultoria online personalizada']];
   const AG_AVISO = 'O horário está sujeito à disponibilidade e pode ser alterado. A nossa consultoria confirma com você.';
@@ -2612,7 +2650,7 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
       if (ses.corpo && ses.corpo.medidas && Object.values(ses.corpo.medidas).some(Boolean)) upd.medidas = Object.assign({}, ses.corpo.medidas, { data: hoje() });
       if (ses.cores && ses.cores.final) upd.cartela = { id: ses.cores.final, nome: (Cores.CARTELA(ses.cores.final) || {}).nome || '', data: hoje(), confirmada: true };
       let novoVoucher = null; const vc = cli.voucher;
-      if (!(op && op.semVoucher) && !(vc && !vc.usadoEm && vc.validade > hoje())) { novoVoucher = { pct: VOUCHER_PCT, emitido: hoje(), validade: new Date(Date.now() + VOUCHER_DIAS * 864e5).toISOString(), usadoEm: null }; upd.voucher = novoVoucher; }
+      if (!(op && op.semVoucher) && !(vc && !vc.usadoEm && vc.validade > hoje())) { const base = op && op.voucherDe ? new Date(op.voucherDe).getTime() : Date.now(); novoVoucher = { pct: VOUCHER_PCT, emitido: op && op.voucherDe ? op.voucherDe : hoje(), validade: new Date(base + VOUCHER_DIAS * 864e5).toISOString(), usadoEm: null, origem: op && op.voucherDe ? 'informativo' : 'atendimento' }; if (novoVoucher.validade > hoje()) upd.voucher = novoVoucher; else novoVoucher = null; }
       const fv = favsDaSessao(ses); if (fv.length) upd.favoritos = [...new Set([...(cli.favoritos || []), ...fv])].slice(-40);
       await S.db.doc('clientes/' + ses.clienteId).update(upd);
       ses.favoritos = favsDaSessao(ses); S.favs = []; ses.dirty = false; limparRascunho(); toast(novoVoucher ? `Atendimento salvo. Voucher de ${VOUCHER_PCT}% (loja ou online) válido até ${fmtData(novoVoucher.validade)}.` : 'Atendimento salvo na ficha.');
@@ -2788,7 +2826,7 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
   /* Desempate */
   function telaRefino() {
     const ses = S.sessao, c = calc();
-    const par = c.r.pendentes[0]; if (!par) { S.tela = destinoFinal(); return MODO_CLIENTE ? (travado() ? telaTrava() : telaTeaser()) : telaResultado(); }
+    const par = c.r.pendentes[0]; if (!par) { S.tela = destinoFinal(); if (MODO_CLIENTE) { S.tela = 'etapa'; S.etapa = 'estilo'; return telaEtapa(); } return telaResultado(); }
     const [a, b] = par, idx = ses.desempates.length, fmt = DESEMPATE_FORMATOS[idx % DESEMPATE_FORMATOS.length];
     const total = Math.min(Score.LIMITES.maxDesempates, idx + c.r.pendentes.length);
     const card = (k, lado) => {
@@ -2883,12 +2921,12 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
       ${MODO_CLIENTE ? `<section class="cta-box">
         <h2 class="h2">Quer que a Euphoria separe peças para você?</h2>
         <p>Envie seu resultado para a Euphoria pelo WhatsApp. Com ele, a nossa consultoria prepara uma seleção no seu estilo, nos seus tamanhos e nas cores que você ama.</p>
-        <button class="btn pri" data-a="go" data-v="enviar">Enviar meu resultado para a Euphoria</button>
+        <button class="btn pri" data-a="go" data-v="enviar">Agendar a minha consultoria</button>
       </section>` : ''}
       ${S.waTexto ? waBox() : ''}
       </div>
       ${!MODO_CLIENTE && vistaCliente() ? `<section class="cta-box"><h2 class="h2">Pronto! Agora chame a Juliana</h2><p>Ela vai conversar com você sobre o resultado, mostrar peças da Euphoria no seu estilo e preparar o seu material.</p><button class="btn pri" data-a="chamar">Chamar a Juliana</button></section>` : ''}
-      ${!MODO_CLIENTE && vistaCliente() ? `<div class="actbar"><div class="wrap"><button class="btn" data-a="go" data-v="revisar">Revisar respostas</button><span class="sp"></span><button class="btn pri" data-a="chamar">Chamar a Juliana</button></div></div>` : MODO_CLIENTE ? `<div class="actbar"><div class="wrap"><button class="btn" data-a="go" data-v="revisar">Revisar</button><button class="btn" data-a="pdf">Baixar PDF</button><span class="sp"></span><button class="btn pri" data-a="go" data-v="enviar">Enviar para a Euphoria</button></div></div>` : `<div class="actbar"><div class="wrap">
+      ${!MODO_CLIENTE && vistaCliente() ? `<div class="actbar"><div class="wrap"><button class="btn" data-a="go" data-v="revisar">Revisar respostas</button><span class="sp"></span><button class="btn pri" data-a="chamar">Chamar a Juliana</button></div></div>` : MODO_CLIENTE ? `<div class="actbar"><div class="wrap"><button class="btn" data-a="go" data-v="revisar">Revisar</button><span class="sp"></span><button class="btn pri" data-a="go" data-v="informativo">Voltar ao meu informativo</button></div></div>` : `<div class="actbar"><div class="wrap">
         <button class="btn" data-a="go" data-v="revisar">Revisar</button>
         ${salvarBtn()}
         <button class="btn" data-a="whats">WhatsApp</button>
@@ -3333,7 +3371,7 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
   function textoConvite() {
     const c = S.conv; if (c.editado) return c.texto;
     const m = CONVITES.find(x => x.id === c.modelo) || CONVITES[0];
-    return m.texto(primeiroNome(c.nome), linkTeste(c.nome)) + (c.cores === false ? '' : '\n\n🎨 Quer descobrir também as suas cores? No link tem a pré-análise. Para a foto: rosto de frente e sem maquiagem, perto de uma janela ou com luz branca, segurando uma folha branca ao lado do rosto.');
+    return m.texto(primeiroNome(c.nome), linkTeste(c.nome)) + (c.cores === false ? '' : '\n\n🎨 Quer descobrir também as suas cores? No link você também descobre a sua cartela e o seu tipo de corpo. Para a foto: rosto de frente e sem maquiagem, perto de uma janela ou com luz branca, segurando uma folha branca ao lado do rosto.');
   }
   const hrefConvite = () => 'https://wa.me/' + (waNum(S.conv.wa) || '') + '?text=' + encodeURIComponent(textoConvite());
   function telaConvidar() {
@@ -3427,10 +3465,11 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
     const ag = S.sessao.agenda, agF = ag && AG_FORMAS.find(x => x[0] === ag.forma);
     const agLinha = agF ? `\n\nQuero agendar ${agF[2]}.` : '';
     const fezEst = Object.keys(S.sessao.respostas || {}).length, fezCorpo = S.sessao.corpo && respCorpo(S.sessao.corpo);
-    const feitos = [fezEst && 'o teste de estilo', fezCores && 'a pré-análise de cores', fezCorpo && 'a análise de corpo'].filter(Boolean);
+    const feitos = [fezEst && 'o teste de estilo', fezCores && 'a análise de cores', fezCorpo && 'a análise de corpo'].filter(Boolean);
     const feitosTxt = feitos.length > 1 ? feitos.slice(0, -1).join(', ') + ' e ' + feitos[feitos.length - 1] : (feitos[0] || 'o teste');
     if (travado()) return `Oi, Euphoria! 💗 Fiz ${feitosTxt} e quero descobrir o meu resultado com vocês!` + agLinha + (S.favs.length ? `\n\nMarquei ${S.favs.length} look${S.favs.length === 1 ? '' : 's'} que amei no portfólio.` : '') + '\n\nCódigo do meu teste: ' + codigoCliente();
-    const abertura = P ? `Oi, Euphoria! 💗 Fiz o teste de estilo e meu estilo principal é *${E[P].nome}*.${fezCores || fezCorpo ? ` Também fiz ${[fezCores && 'a pré-análise de cores', fezCorpo && 'a análise de corpo'].filter(Boolean).join(' e ')}.` : ''} ${cid ? 'Quero continuar a minha consultoria com vocês!' : 'Quero ver as peças que vocês separaram para mim!'}` : fezCores || fezCorpo ? `Oi, Euphoria! 💗 Fiz ${feitosTxt} e quero terminar a minha análise com vocês!` : 'Oi, Euphoria! 💗 Fiz o teste de estilo e quero descobrir meu resultado completo com vocês!';
+    const tCorpo = fezCorpo && CTIPOS[S.sessao.corpo.final || rankingCorpo(S.sessao.corpo)[0].id], kCor = fezCores && Cores.CARTELA(S.sessao.cores.final || S.sessao.cores.sugerida);
+    const abertura = P ? `Oi, Euphoria! 💗 Fiz o teste de estilo e meu estilo principal é *${E[P].nome}*.${tCorpo ? ` Meu corpo é *${tCorpo.nome}*.` : ''}${kCor ? ` Minha cartela é *${kCor.nome}*.` : ''} ${cid ? 'Quero continuar a minha consultoria com vocês!' : 'Quero ver as peças que vocês separaram para mim!'}` : fezCores || fezCorpo ? `Oi, Euphoria! 💗 Fiz ${feitosTxt} e quero terminar a minha análise com vocês!` : 'Oi, Euphoria! 💗 Fiz o teste de estilo e quero descobrir meu resultado completo com vocês!';
     return abertura + (cid ? `\nMoro em ${cid}.` : '') + agLinha + (S.favs.length ? `\n\nMarquei ${S.favs.length} look${S.favs.length === 1 ? '' : 's'} que amei no portfólio.` : '') + '\n\nCódigo do meu teste: ' + codigoCliente();
   }
 
@@ -3533,7 +3572,7 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
       const info = (t, v) => v ? `<div><dt>${t}</dt><dd>${esc(v)}</dd></div>` : '';
       prev = `<section class="card stack">
         <div class="row" style="justify-content:space-between"><div><span class="eyebrow">Teste feito em casa</span><h2 class="h2">${esc(p.n || 'Cliente sem nome')}</h2><span class="muted small">${fmtData(p.i)}</span></div>
-          <div class="row">${c.estilos.map((k, i) => `<span class="tag ${i === 0 ? 'p' : ''}">${i + 1}º ${E[k].nome}</span>`).join('') || (p.cor || p.cp ? '' : '<span class="tag">Sem estilo definido</span>')}${p.cp ? `<span class="tag p">Corpo: indicação ${esc(CTIPOS[rankingCorpo(p.cp)[0].id].nome)}</span>` : ''}${p.ag ? `<span class="tag p">Pediu: ${esc(agTexto(p.ag))}</span>` : ''}${p.cid ? `<span class="tag">Mora em ${esc(p.cid)}${moraPerto({ dados: { cidade: p.cid } }) ? ' · resultado travado' : ' · viu o estilo'}</span>` : ''}${p.cor ? `<span class="tag p">Pré-análise de cores: ${esc((Cores.CARTELA(p.cor.sugerida) || {}).nome || '')}</span>` : ''}</div></div>
+          <div class="row">${c.estilos.map((k, i) => `<span class="tag ${i === 0 ? 'p' : ''}">${i + 1}º ${E[k].nome}</span>`).join('') || (p.cor || p.cp ? '' : '<span class="tag">Sem estilo definido</span>')}${p.cp ? `<span class="tag p">Corpo: indicação ${esc(CTIPOS[rankingCorpo(p.cp)[0].id].nome)}</span>` : ''}${p.ag ? `<span class="tag p">Pediu: ${esc(agTexto(p.ag))}</span>` : ''}${p.cid ? `<span class="tag">Mora em ${esc(p.cid)}${moraPerto({ dados: { cidade: p.cid } }) ? ' · convite para a loja' : ' · convite online'}</span><span class="tag ok">Recebeu o informativo</span>` : ''}${p.cor ? `<span class="tag p">Pré-análise de cores: ${esc((Cores.CARTELA(p.cor.sugerida) || {}).nome || '')}</span>` : ''}</div></div>
         ${p.ag ? (() => { const msg = textoConfirmacao(p); const w = waNum(f.whatsapp || ''); return `<div class="banner info"><span>Combine o horário com ela.${p.ag.forma === 'v' ? ' A mensagem já pede a foto para a análise de cores.' : ''}</span><a class="btn sm" href="https://wa.me/${w}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Mandar confirmação</a></div>`; })() : ''}
         ${p.ok ? `<dl class="dl" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">${info('WhatsApp', f.whatsapp)}${info('E-mail', f.email)}${info('Aniversário', f.aniverDia && f.aniverMes ? f.aniverDia + '/' + f.aniverMes : '')}${info('Tamanho de cima', f.tamCima)}${info('Tamanho de baixo', f.tamBaixo)}${info('Cores favoritas', lista(f.cores || []))}${info('Outras cores', f.coresOutras)}</dl><span class="tag ok" style="align-self:flex-start">Autorizou guardar os dados</span>`
           : `<div class="banner info"><span>Ela <b>não autorizou</b> guardar os dados. Dá para ver o resultado agora e pedir a autorização no atendimento.</span></div>
@@ -3686,7 +3725,7 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
       </div>
       <div class="actbar"><div class="wrap"><button class="btn" data-a="home">Início</button>
         <span class="vt-n">${n ? `${coracao(true)} ${n} favorito${n === 1 ? '' : 's'}` : ''}</span><span class="sp"></span>
-        ${MODO_CLIENTE ? (estilosDaCliente().length ? '<button class="btn pri" data-a="go" data-v="enviar">Enviar para a Euphoria</button>' : '<button class="btn pri" data-a="modulo" data-v="estilo">Fazer o teste de estilo</button>') : `<button class="btn pri" data-a="chamar">${n ? 'Mostrar para a Juliana' : 'Chamar a Juliana'}</button>`}
+        ${MODO_CLIENTE ? '<button class="btn pri" data-a="trilhaIr" data-v="informativo">Ver o meu informativo completo</button>' : `<button class="btn pri" data-a="chamar">${n ? 'Mostrar para a Juliana' : 'Chamar a Juliana'}</button>`}
       </div></div>`;
   }
   function modalLook() {
@@ -3758,7 +3797,7 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
     const rk = Cores.ranking(e);
     S.cor.eixos = e; S.cor.rosto = recortarRosto(); S.cor.esc = {}; S.cor.dp = 0;
     S.sessao.cores = { eixos: e, sugerida: rk[0], alternativas: rk.slice(1, 3), origem: MODO_CLIENTE ? 'casa' : 'loja', feitoEm: hoje() };
-    S.cor.passo = 'pronta'; S.sessao.dirty = true; render(); window.scrollTo(0, 0);
+    S.cor.passo = 'pronta'; S.sessao.dirty = true; if (MODO_CLIENTE) { guardarRascunho(); S.etapa = 'cores'; go('etapa'); window.scrollTo(0, 0); return; } render(); window.scrollTo(0, 0);
   }
   /* ---------- Meu Corpo ---------- */
   const CTIPOS = Object.fromEntries(CORPO.TIPOS.map(t => [t.id, t]));
@@ -3835,7 +3874,7 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
       <div class="actbar"><div class="wrap"><button class="btn" data-a="home">Início</button><span class="sp"></span>${sel ? '<button class="btn pri" data-a="corpoRevelar">Revelar o resultado</button>' : ''}</div></div>`;
   }
   function telaCorpoResultado() {
-    const ses = S.sessao, cp = ses && ses.corpo, t = cp && cp.final && CTIPOS[cp.final];
+    const ses = S.sessao, cp = ses && ses.corpo, idT = cp && (cp.final || (MODO_CLIENTE && respCorpo(cp) ? rankingCorpo(cp)[0].id : '')), t = idT && CTIPOS[idT], prov = cp && !cp.final;
     if (!t) return `<div class="empty"><p>O tipo de corpo ainda não foi confirmado.</p><button class="btn" data-a="go" data-v="corpoAnalise">Voltar</button></div>`;
     const est = Object.keys(ses.respostas || {}).length ? calc().estilos : [], P = est[0];
     const ZN = { ombros: 'Ombros', cintura: 'Cintura', quadril: 'Quadril', pernas: 'Pernas' };
@@ -3856,12 +3895,153 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
       ${aj.length ? `<section class="sec"><h3>Ajustes de proporção</h3><div class="cp-cats">${aj.map(a => `<div class="box"><span class="eyebrow">${esc(a.area)}</span><h4>${esc(a.nome)}</h4><p class="small">${esc(a.obj)}</p><ul class="plain small">${a.sim.slice(0, 4).map(x => `<li>✓ ${esc(x)}</li>`).join('')}</ul></div>`).join('')}</div></section>` : ''}
       ${S.equipe && !MODO_CLIENTE ? `<section class="sec"><h3>Para a consultora</h3><div class="box"><ul class="plain small">${t.truques.map(x => `<li>${esc(x)}</li>`).join('')}</ul><p class="small"><b>Na Euphoria:</b> ${esc(t.loja)}</p></div></section>` : ''}
       <div class="closing"><p>O seu corpo não precisa caber numa regra: estas são dicas para você se sentir ainda mais bonita. A Euphoria separa as peças com a modelagem certa para você.</p></div></div>
-      <div class="actbar"><div class="wrap"><button class="btn" data-a="go" data-v="corpoAnalise">Voltar à análise</button>${salvarBtn()}<span class="sp"></span><button class="btn" data-a="home">Início</button></div></div>`;
+      <div class="actbar"><div class="wrap">${MODO_CLIENTE ? '<button class="btn pri" data-a="go" data-v="informativo">Voltar ao meu informativo</button>' : `<button class="btn" data-a="go" data-v="corpoAnalise">Voltar à análise</button>${salvarBtn()}`}<span class="sp"></span><button class="btn" data-a="home">Início</button></div></div>`;
+  }
+  /* ---------- Trilha guiada (link de casa) ---------- */
+  const TRILHA = [['estilo', 'Meu Estilo', 'descobrir o meu estilo'], ['corpo', 'Meu Corpo', 'descobrir o meu tipo de corpo'], ['cores', 'Minhas Cores', 'descobrir as minhas cores'], ['looks', 'Meus Looks', 'ver os looks para você']];
+  const TELA_MOD = { dados: 'estilo', teste: 'estilo', revisar: 'estilo', refino: 'estilo', corpo: 'corpo', cores: 'cores', vitrine: 'looks', etapa: null };
+  function feitoMod(id, ses) { ses = ses || S.sessao; if (!ses) return false; if (id === 'estilo') return estilosDaCliente().length > 0; if (id === 'corpo') return !!(ses.corpo && respCorpo(ses.corpo)); if (id === 'cores') return !!(ses.cores && ses.cores.eixos); return !!ses.viuLooks; }
+  function proximoMod(id) { const i = TRILHA.findIndex(x => x[0] === id); const resto = TRILHA.slice(i + 1); return resto.find(x => !feitoMod(x[0])) || null; }
+  function barraTrilha(id) {
+    const i = TRILHA.findIndex(x => x[0] === id); if (i < 0) return '';
+    const prox = proximoMod(id);
+    return `<div class="trilha"><div class="trilha-passos">${TRILHA.map(([k, n], j) => `<span class="${j === i ? 'at' : feitoMod(k) ? 'ok' : ''}"><i>${feitoMod(k) && j !== i ? '✓' : j + 1}</i><b>${n}</b></span>`).join('')}</div>
+      <div class="trilha-info"><span>Etapa ${i + 1} de ${TRILHA.length}</span>${S.tela !== 'etapa' && id !== 'looks' ? `<button class="linkb" data-a="trilhaIr" data-v="${prox ? prox[0] : 'informativo'}">Pular esta etapa</button>` : ''}</div></div>`;
+  }
+  function telaEtapa() {
+    const id = S.etapa, D = dadosInformativo(), prox = proximoMod(id), nome = primeiroNome(S.sessao.dados.nome);
+    const bloco = id === 'estilo' ? blocoInfoEstilo(D, '') : id === 'corpo' ? blocoInfoCorpo(D, '') : blocoInfoCores(D, '');
+    const tit = { estilo: 'o seu estilo', corpo: 'o seu tipo de corpo', cores: 'as suas cores' }[id];
+    return `<div class="stack-lg info">
+      <div class="etapa-ok"><span>✓</span><div><span class="eyebrow">Etapa concluída</span><h1 class="h2">${nome ? esc(nome) + ', você' : 'Você'} descobriu ${tit}!</h1></div></div>
+      ${bloco}
+      <section class="info-convite etapa-prox">${prox ? `<span class="eyebrow">Próximo passo</span><h2 class="h2">${esc(prox[1])}</h2><button class="btn pri lg" data-a="trilhaIr" data-v="${prox[0]}">Próximo passo: ${esc(prox[2])}</button>` : `<span class="eyebrow">Tudo pronto</span><h2 class="h2">O seu informativo completo está pronto</h2><button class="btn pri lg" data-a="go" data-v="informativo">Ver o meu informativo completo</button>`}
+        <button class="linkb" data-a="go" data-v="informativo" style="color:#E9DDE4">Ver o meu informativo agora</button></section></div>
+      <div class="actbar"><div class="wrap"><button class="btn" data-a="home">Início</button><span class="sp"></span>${prox ? `<button class="btn pri" data-a="trilhaIr" data-v="${prox[0]}">Próximo passo</button>` : '<button class="btn pri" data-a="go" data-v="informativo">Ver o meu informativo</button>'}</div></div>`;
+  }
+  /* ---------- Informativo Euphoria (link de casa) ---------- */
+  const fmtCurta = d => new Date(d).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+  const validadeInfo = ses => new Date(new Date(ses.inicio).getTime() + VOUCHER_DIAS * 864e5).toISOString();
+  function dadosInformativo() {
+    const ses = S.sessao, est = estilosDaCliente(), cp = ses.corpo && respCorpo(ses.corpo) ? ses.corpo : null, cs = ses.cores && ses.cores.eixos ? ses.cores : null;
+    return { ses, est, corpo: cp ? CTIPOS[cp.final || rankingCorpo(cp)[0].id] : null, cartela: cs ? Cores.CARTELA(cs.final || cs.sugerida) : null, validade: validadeInfo(ses) };
+  }
+  const swInfo = cores => `<div class="cartela">${cores.map(c => `<div><i style="background:${c}"></i></div>`).join('')}</div>`;
+  function blocoInfoEstilo(D, n) {
+    const est = D.est; if (!est.length) return '';
+    return `<section class="info-bloco">${n ? `<span class="info-num">${n}</span>` : '<span class="info-num">✓</span>'}<div class="stack"><span class="eyebrow">Meu Estilo</span><h2 class="h2">Seu estilo principal é <em>${esc(E[est[0]].nome)}</em></h2>
+        <p class="small" style="color:#C4006A">${esc(E[est[0]].palavras.join(' · '))}</p><p>${esc(Score.interpretacao(est))}</p>
+        ${est.length > 1 ? `<div class="row">${est.slice(1).map(x => `<span class="tag">${esc(E[x].nome)}</span>`).join('')}</div>` : ''}
+        <button class="btn sm" data-a="go" data-v="estiloCompleto">Ver o resultado completo do estilo</button></div></section>`;
+  }
+  function blocoInfoCorpo(D, n) {
+    const t = D.corpo; if (!t) return '';
+    return `<section class="info-bloco">${n ? `<span class="info-num">${n}</span>` : '<span class="info-num">✓</span>'}<div class="info-dois"><div class="stack"><span class="eyebrow">Meu Corpo</span><h2 class="h2">Seu corpo é <em>${esc(t.nome)}</em></h2>
+        <p>${esc(t.ver)}</p><div class="box"><b>O objetivo</b><span>${esc(t.objetivo)}</span></div>
+        <ul class="plain small">${Object.entries(t.cats).slice(0, 3).map(([c, l]) => `<li><b>${esc(c)}:</b> ${esc(l.slice(0, 3).join(', '))}</li>`).join('')}</ul>
+        <button class="btn sm" data-a="go" data-v="corpoResultado">Ver todas as dicas do seu corpo</button></div>
+        <img src="${CORPO.FOTOS[t.id].w}" alt="Exemplo de corpo ${esc(t.nome)}"></div></section>`;
+  }
+  function blocoInfoCores(D, n) {
+    const k = D.cartela; if (!k) return '';
+    return `<section class="info-bloco">${n ? `<span class="info-num">${n}</span>` : '<span class="info-num">✓</span>'}<div class="stack"><span class="eyebrow">Minhas Cores</span><h2 class="h2">A sua cartela é <em>${esc(k.nome)}</em></h2>
+        <p>${esc(k.resumo)}</p><b class="small">Suas cores para usar perto do rosto</b>${swInfo(k.cores)}
+        <div class="cols"><div><b class="small">Neutros</b>${swInfo(k.neutros)}</div><div><b class="small">Batons</b>${swInfo(k.batons)}</div><div><b class="small">Longe do rosto</b>${swInfo(k.longe)}</div></div>
+        <p class="small"><b>Metais:</b> ${esc(k.metais)}</p></div></section>`;
+  }
+  function telaInformativo() {
+    if (!S.sessao) return telaInicio();
+    const D = dadosInformativo(), { ses, est, corpo: t, cartela: k } = D, nome = primeiroNome(ses.dados.nome), perto = moraPerto(), temCid = !!String(ses.dados.cidade || '').trim();
+    const looks = est.length ? previaLooks(est[0], 6) : '';
+    const falta = [!est.length && ['estilo', 'Meu Estilo', 'Descubra o seu estilo em 12 perguntas.'], !t && ['corpo', 'Meu Corpo', '5 perguntas sobre a sua silhueta.'], !k && ['cores', 'Minhas Cores', 'Descubra a sua cartela de cores pela foto.']].filter(Boolean);
+    return `<div class="stack-lg info">
+      <section class="info-capa"><div><span class="eyebrow">Informativo Euphoria${nome ? ' · ' + esc(nome) : ''}</span><h1 class="h1">O seu <em>resultado</em> chegou</h1>
+        <p class="lead">Aqui está tudo o que você descobriu${est.length ? ': o seu estilo' : ''}${t ? (est.length ? ', ' : ': ') + 'o seu tipo de corpo' : ''}${k ? (est.length || t ? ' e ' : ': ') + 'as suas cores' : ''}, com looks escolhidos para você.</p>
+        <div class="row"><button class="btn pri" data-a="infoPdf">Baixar o meu informativo (PDF)</button><button class="btn" data-a="go" data-v="enviar">Agendar a minha consultoria</button></div></div>
+        <div class="info-voucher"><span>${VOUCHER_PCT}% OFF</span><b>Seu voucher Euphoria</b><small>Válido até ${fmtCurta(D.validade)}, na loja ou online</small></div></section>
+      ${blocoInfoEstilo(D, 1)}${blocoInfoCorpo(D, est.length ? 2 : 1)}${blocoInfoCores(D, 1 + (est.length ? 1 : 0) + (t ? 1 : 0))}
+      ${blocoFavoritos(S.favs, 'Os looks que você amou')}
+      ${looks ? `<section class="sec"><h3>${S.favs.length ? 'Mais looks com a sua cara' : 'Looks da Euphoria com a sua cara'}</h3><div class="lkgrid prevgrid">${looks}</div><button class="btn sm" data-a="trilhaIr" data-v="looks">Ver todos os looks e marcar favoritos</button></section>` : ''}
+      ${falta.length ? `<section class="sec"><h3>Complete o seu informativo</h3><div class="info-falta">${falta.map(([v, n, d]) => `<button class="box" data-a="trilhaIr" data-v="${v}"><b>${n}</b><span class="small">${d}</span></button>`).join('')}</div></section>` : ''}
+      <section class="info-convite"><span class="eyebrow">O próximo passo</span>
+        <h2 class="h2">${temCid && !perto ? 'A sua consultoria online personalizada' : 'Venha viver a experiência na Euphoria'}</h2>
+        <p>${temCid && !perto ? 'Na consultoria online, a nossa consultoria explica cada detalhe do seu resultado e indica as peças certas para você.' : 'Venha ver as suas cores com tecidos, no seu rosto, e experimentar as peças que a nossa consultoria separa para você, no seu estilo e no seu tamanho.'}</p>
+        <ul class="plain"><li>✓ Análise das suas cores com tecidos, no seu rosto</li><li>✓ Provador com peças separadas para você</li><li>✓ Dossiê de Estilo completo</li><li>✓ ${VOUCHER_PCT}% de desconto até ${fmtCurta(D.validade)}</li></ul>
+        <button class="btn pri lg" data-a="go" data-v="enviar">${temCid && !perto ? 'Agendar a minha consultoria online' : 'Agendar a minha visita'}</button>
+        <span class="small">${AG_AVISO}</span></section></div>
+      <div class="actbar"><div class="wrap"><button class="btn" data-a="home">Início</button><span class="sp"></span><button class="btn" data-a="infoPdf">Baixar PDF</button><button class="btn pri" data-a="go" data-v="enviar">Agendar</button></div></div>`;
+  }
+  async function gerarInformativoPdf() {
+    if (!window.jspdf) { toast('O gerador de PDF ainda está carregando. Tente de novo em instantes.'); return; }
+    toast('Gerando o seu informativo…');
+    const D = dadosInformativo(), { ses, est, corpo: t, cartela: k } = D;
+    const { jsPDF } = window.jspdf; const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+    const W = 210, M = 16; let y = 0;
+    const PINK = [226, 8, 103], INK = [21, 18, 21], MUT = [111, 103, 110], BLUSH = [251, 234, 241];
+    const fundo = () => { doc.setFillColor(...BLUSH); doc.rect(0, 0, W, 297, 'F'); };
+    const novaPag = () => { doc.addPage(); fundo(); y = 18; };
+    const precisa = h => { if (y + h > 280) novaPag(); };
+    const texto = (tx, size, color, style, width, lh, x) => { doc.setFont('helvetica', style || 'normal'); doc.setFontSize(size); doc.setTextColor(...(color || INK)); const lines = doc.splitTextToSize(tx, width || W - 2 * M); precisa(lines.length * (lh || size * 0.45)); doc.text(lines, x || M, y + size * 0.32); y += lines.length * (lh || size * 0.45); };
+    const titulo = tx => { precisa(16); y += 4; doc.setDrawColor(...PINK); doc.setLineWidth(.5); doc.line(M, y + 1, M + 10, y + 1); texto(tx.toUpperCase(), 9, PINK, 'bold', W - 2 * M, 4, M + 13); y += 2; };
+    const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+    const amostras = (cores, tam) => { precisa(tam + 4); cores.forEach((c, i) => { const x = M + i * (tam + 2.5); if (x + tam > W - M) return; doc.setFillColor(...hex(c)); doc.roundedRect(x, y, tam, tam, 1.5, 1.5, 'F'); }); y += tam + 4; };
+    fundo();
+    doc.setFillColor(11, 10, 11); doc.rect(0, 0, W, 40, 'F');
+    try { doc.addImage(LOGO_D, 'PNG', M, 10, 68, 16.3); } catch (e) { }
+    doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+    doc.text('Consultoria de Imagem & Estilo', W - M, 18, { align: 'right' }); doc.text(new Date(ses.inicio).toLocaleDateString('pt-BR'), W - M, 23, { align: 'right' });
+    y = 52;
+    texto('INFORMATIVO EUPHORIA' + (ses.dados.nome ? ' · ' + ses.dados.nome.toUpperCase() : ''), 9, PINK, 'bold');
+    texto('O seu resultado chegou', 24, INK, 'bold'); y += 2;
+    // voucher
+    doc.setFillColor(...PINK); doc.roundedRect(M, y, W - 2 * M, 22, 3, 3, 'F'); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold'); doc.setFontSize(20); doc.text(VOUCHER_PCT + '% OFF', M + 8, y + 14);
+    doc.setFontSize(11); doc.text('Seu voucher Euphoria', M + 52, y + 9.5); doc.setFont('helvetica', 'normal'); doc.setFontSize(9.5); doc.text('Válido até ' + new Date(D.validade).toLocaleDateString('pt-BR') + ', na loja ou online. Apresente este informativo.', M + 52, y + 15.5); y += 30;
+    if (est.length) {
+      titulo('Meu Estilo');
+      texto('Seu estilo principal é ' + E[est[0]].nome, 16, INK, 'bold'); texto(E[est[0]].palavras.join(' · '), 9.5, PINK); y += 1;
+      texto(Score.interpretacao(est), 10.5, INK, 'normal', W - 2 * M, 5); if (est[1]) { y += 1; texto('Complementado pelo ' + E[est[1]].nome + (est[2] ? ' e pelo ' + E[est[2]].nome : '') + '.', 10, MUT); }
+      y += 2; texto('Peças: ' + E[est[0]].pecas.slice(0, 5).join(', ') + '.', 9.5, MUT, 'normal', W - 2 * M, 4.6);
+    }
+    if (t) {
+      titulo('Meu Corpo');
+      const top = y, img = CORPO.FOTOS[t.id].w; precisa(70);
+      try { doc.addImage(img, 'JPEG', W - M - 40, y, 40, 66); } catch (e) { }
+      const WW = W - 2 * M - 46;
+      texto('Seu corpo é ' + t.nome, 16, INK, 'bold', WW); texto(t.ver, 10, MUT, 'normal', WW, 4.8); y += 1; texto('O objetivo: ' + t.objetivo, 10, INK, 'normal', WW, 4.8); y += 2;
+      Object.entries(t.cats).slice(0, 4).forEach(([c, l]) => texto(c + ': ' + l.slice(0, 4).join(', '), 9.5, INK, 'normal', WW, 4.5));
+      y += 1; texto('Use com cuidado: ' + t.evitar.slice(0, 2).join('; ') + '.', 9, MUT, 'italic', WW, 4.3);
+      y = Math.max(y, top + 70);
+    }
+    if (k) {
+      precisa(95); titulo('Minhas Cores');
+      texto('A sua cartela é ' + k.nome, 16, INK, 'bold'); texto(k.resumo, 10, MUT, 'normal', W - 2 * M, 4.8); y += 2;
+      precisa(20); texto('Perto do rosto', 9, INK, 'bold'); amostras(k.cores.slice(0, 12), 11);
+      texto('Neutros', 9, INK, 'bold'); amostras(k.neutros, 9); texto('Batons', 9, INK, 'bold'); amostras(k.batons, 9);
+      texto('Metais: ' + k.metais + '.', 9.5, INK);
+    }
+    if (est.length) {
+      const favF = S.favs.map(id => todosLooks().find(l => l.id === id)).filter(Boolean).map(l => l.foto || l.src);
+      const fotos = favF.length ? favF.concat(looksPara([est[0]], [], 6).map(l => l.foto || l.src)) : looksPara([est[0]], [], 6).map(l => l.foto || l.src).filter(Boolean);
+      const fs = fotos.length >= 3 ? fotos : ['dia', 'insp', 'evento', 'cor'].map(st => fotoEstilo(est[0], st)).filter(Boolean);
+      if (fs.length) { titulo(favF.length ? 'Os looks que você amou' : 'Looks da Euphoria com a sua cara'); precisa(62); fs.slice(0, 4).forEach((src, i) => { try { doc.addImage(src, 'JPEG', M + i * 45, y, 41, 58); } catch (e) { } }); y += 64; }
+    }
+    precisa(52); y += 4;
+    doc.setFillColor(...INK); doc.roundedRect(M, y, W - 2 * M, 46, 3, 3, 'F'); const y0 = y;
+    doc.setTextColor(255, 95, 168); doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.text('O PRÓXIMO PASSO', M + 8, y0 + 9);
+    const longe = String(ses.dados.cidade || '').trim() && !moraPerto(); doc.setTextColor(255, 255, 255); doc.setFontSize(14); doc.text(longe ? 'A sua consultoria online personalizada' : 'Venha viver a experiência na Euphoria', M + 8, y0 + 17);
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9.5);
+    [longe ? 'Cada detalhe do seu resultado explicado' : 'Análise das suas cores com tecidos, no seu rosto', longe ? 'Indicação das peças certas para você' : 'Provador com peças separadas no seu estilo e tamanho', 'Dossiê de Estilo completo', VOUCHER_PCT + '% de desconto até ' + new Date(D.validade).toLocaleDateString('pt-BR')].forEach((l, i) => doc.text('•  ' + l, M + 8, y0 + 24 + i * 5));
+    doc.setFontSize(8.5); doc.setTextColor(233, 221, 228); doc.text('Agende pelo WhatsApp (13) 99633-3343. Horários sujeitos à disponibilidade.', M + 8, y0 + 43);
+    y += 52; texto('Euphoria Moda Feminina · Praia Grande, SP', 9, MUT);
+    const blob = doc.output('blob');
+    const nomeArq = 'Informativo Euphoria - ' + (ses.dados.nome || 'cliente').replace(/[^\p{L}\p{N} ]/gu, '').trim() + '.pdf';
+    const comp = await compartilharArquivo(nomeArq, blob, 'application/pdf', 'Informativo Euphoria');
+    toast(comp ? 'Informativo pronto.' : 'Informativo salvo na pasta Downloads.');
   }
   function telaCores() {
     const c = S.cor; if (!c) { iniciarCores(); return ''; }
     if (c.passo === 'consent') return `<div class="stack-lg" style="max-width:760px"><div class="stack"><span class="eyebrow">Minhas Cores</span><h1 class="h1">Descubra as cores que iluminam você</h1>
-      <p class="lead">Vamos analisar a sua pele, o seu cabelo e os seus olhos por uma foto. ${MODO_CLIENTE ? 'É uma pré-análise: a cartela final é confirmada na loja, com a nossa consultoria.' : 'A consultora confirma o resultado com você.'}</p></div>
+      <p class="lead">Vamos analisar a sua pele, o seu cabelo e os seus olhos por uma foto. ${MODO_CLIENTE ? 'Em poucos minutos você recebe a sua cartela de cores.' : 'A consultora confirma o resultado com você.'}</p></div>
       <div class="card stack"><label class="check"><input type="checkbox" id="cor-ok" data-f="cor.ok" ${c.ok ? 'checked' : ''}><span>Autorizo o uso da minha foto apenas para esta análise de cores, ${MODO_CLIENTE ? 'neste celular' : 'neste tablet'}. A foto não é salva nem enviada: fica guardado só o resultado.</span></label></div></div>
       <div class="actbar"><div class="wrap"><button class="btn" data-a="home">Início</button><span class="sp"></span><button class="btn pri" data-a="corPasso" data-v="orient" ${c.ok ? '' : 'disabled'}>Continuar</button></div></div>`;
     if (c.passo === 'orient' || c.passo === 'foto') return `<div class="stack-lg" style="max-width:860px"><div class="stack"><span class="eyebrow">Minhas Cores · antes da foto</span><h1 class="h1">Uma foto bem feita faz toda a diferença</h1></div>
@@ -4028,14 +4208,17 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
     const ses = S.sessao;
     const needSes = ['dados', 'teste', 'revisar', 'refino', 'resultado', 'atendimento', 'consent', 'teaser', 'enviar', 'enviado'];
     if (needSes.includes(S.tela) && !ses) S.tela = 'inicio';
-    if (MODO_CLIENTE && !['inicio', 'dados', 'teste', 'revisar', 'refino', 'resultado', 'enviar', 'enviado', 'vitrine', 'cores', 'corpo'].includes(S.tela)) S.tela = ses ? 'resultado' : 'inicio';
+    if (MODO_CLIENTE && !['inicio', 'dados', 'teste', 'revisar', 'refino', 'resultado', 'enviar', 'enviado', 'vitrine', 'cores', 'corpo', 'informativo', 'estiloCompleto', 'corpoResultado', 'etapa'].includes(S.tela)) S.tela = ses ? 'resultado' : 'inicio';
     if (!MODO_CLIENTE && !S.equipe && !TELAS_CLIENTE.concat(S.consulta ? TELAS_CONSULTA : []).includes(S.tela)) { const dest = S.tela; S.tela = ses && ['atendimento', 'consent'].includes(dest) ? 'resultado' : 'inicio'; if (!S.pin) S.pin = { modo: pinGuardado() ? 'entrar' : 'criar', buf: '', destino: dest, erro: '', primeiro: '', tentativas: 0 }; }
     switch (S.tela) {
       case 'dados': html = telaDados(); break;
       case 'teste': html = telaPergunta(); break;
       case 'revisar': html = telaRevisar(); break;
       case 'refino': html = telaRefino(); break;
-      case 'resultado': html = MODO_CLIENTE ? (travado() ? telaTrava() : telaTeaser()) : telaResultado(); break;
+      case 'resultado': if (MODO_CLIENTE) { S.tela = 'etapa'; S.etapa = 'estilo'; html = telaEtapa(); } else html = telaResultado(); break;
+      case 'informativo': html = telaInformativo(); break;
+      case 'etapa': html = telaEtapa(); break;
+      case 'estiloCompleto': html = telaResultado(); break;
       case 'atendimento': html = telaAtendimento(); break;
       case 'consent': html = telaConsent(); break;
       case 'clientes': html = telaClientes(); break;
@@ -4065,9 +4248,11 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
     const foco = document.activeElement && document.activeElement.id;
     const selS = foco && document.activeElement.selectionStart;
     const capa = (MODO_CLIENTE || !S.equipe) && S.tela === 'inicio';
+    const modT = MODO_CLIENTE ? (S.tela === 'etapa' ? S.etapa : TELA_MOD[S.tela]) : null;
+    if (modT && !(S.tela === 'cores' && S.cor && S.cor.passo === 'pontos')) html = barraTrilha(modT) + html;
     $app.innerHTML = (capa ? html : barra() + `<main><div class="wrap">${html}</div></main>`) + modalLook() + modalPin();
     document.body.classList.toggle('modo-capa', capa);
-    document.body.classList.toggle('tema-a', ['cores', 'coresAnalise', 'coresResultado', 'corpo', 'corpoAnalise', 'corpoResultado'].includes(S.tela));
+    document.body.classList.toggle('tema-a', ['cores', 'coresAnalise', 'coresResultado', 'corpo', 'corpoAnalise', 'corpoResultado', 'informativo', 'etapa'].includes(S.tela));
     if (S.tela === 'cores' && S.cor && S.cor.passo === 'pontos') desenharPontos();
     if (foco) { const el = document.getElementById(foco); if (el) { el.focus(); try { if (selS != null && el.setSelectionRange) el.setSelectionRange(selS, selS); } catch (e) { } } }
   }
@@ -4102,7 +4287,9 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
       if (v === 'estilo') { const ses = S.sessao; if (ses && !ses.atendimentoId && Object.keys(ses.respostas || {}).length && ses.qi < PERGUNTAS.length) { go('teste'); return; } A.novo(); }
     },
     corpoResp: (v) => { const [id, i] = v.split(':'); const cp = S.sessao.corpo; cp.resp[id] = cp.resp[id] === +i ? undefined : +i; if (cp.resp[id] === undefined) delete cp.resp[id]; S.sessao.dirty = true; guardarRascunho(); render(); },
-    corpoPronto: () => { S.corpoPasso = 'pronta'; S.sessao.dirty = true; guardarRascunho(); render(); window.scrollTo(0, 0); },
+    corpoPronto: () => { S.corpoPasso = 'pronta'; S.sessao.dirty = true; guardarRascunho(); if (MODO_CLIENTE) { S.etapa = 'corpo'; go('etapa'); window.scrollTo(0, 0); return; } render(); window.scrollTo(0, 0); },
+    trilhaIr: (v) => { if (v === 'informativo') { go('informativo'); window.scrollTo(0, 0); return; } if (v === 'looks') { if (S.sessao) S.sessao.viuLooks = true; S.vitFlt.meu = true; go('vitrine'); window.scrollTo(0, 0); return; } if (feitoMod(v)) { if (v === 'estilo') go('estiloCompleto'); else { S.etapa = v; go('etapa'); } window.scrollTo(0, 0); return; } A.modulo(v); },
+    infoPdf: () => gerarInformativoPdf(),
     corpoRever: () => { S.corpoPasso = 'perguntas'; render(); },
     corpoPerguntas: () => { S.corpoPasso = 'perguntas'; if (!S.equipe) { go('corpo'); return; } S.equipe = false; S.consulta = false; toast('Tablet no modo cliente. Ao terminar, ela chama a Juliana.'); go('corpo'); },
     corpoFinal: (v) => { const cp = S.sessao.corpo; cp.final = cp.final === v ? '' : v; render(); },
@@ -4237,7 +4424,7 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
       if (!cid || cid === 'novo') { cid = await criarCliente(f, true); if (!cid) { render(); return; } }
       else { const atual = S.clientes.find(x => x.id === cid) || {}; const upd = {}; ['whatsapp', 'email', 'tamCima', 'tamBaixo', 'coresOutras', 'faixa'].forEach(k => { if (f[k] && !atual[k]) upd[k] = f[k]; }); if (f.aniverDia && !atual.aniverDia) { upd.aniverDia = +f.aniverDia; upd.aniverMes = +f.aniverMes; } if ((f.cores || []).length) upd.cores = [...new Set([...(atual.cores || []), ...f.cores])]; if (Object.keys(upd).length) { upd.atualizadoEm = hoje(); try { await S.db.doc('clientes/' + cid).update(upd); } catch (e) { } } }
       ses.clienteId = cid; ses.consent = 'sim'; S.tela = Object.keys(p.r || {}).length ? 'resultado' : ses.cores ? 'coresAnalise' : ses.corpo ? 'corpoAnalise' : 'resultado';
-      const ok = await salvarAtendimento({ semVoucher: true }); if (ok) S.recebido = { texto: '' }; window.scrollTo(0, 0);
+      const ok = await salvarAtendimento({ voucherDe: S.sessao.origem === 'casa' ? S.sessao.inicio : null, semVoucher: S.sessao.origem !== 'casa' }); if (ok) S.recebido = { texto: '' }; window.scrollTo(0, 0);
     },
     lkToggle: (v) => { S.lookFlt[v] = !S.lookFlt[v]; render(); },
     lkSemClass: () => { S.lookFlt = { estilo: '', ocasiao: '', tam: '', esgotados: true, semClass: true }; render(); },
