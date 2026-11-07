@@ -706,6 +706,7 @@ body .info-bloco .box,body.tema-a .info-bloco .box{background:#151215;color:#fff
 .etapa-ok>span{flex:none;width:52px;height:52px;border-radius:50%;background:#E20867;color:#fff;display:grid;place-items:center;font-size:26px}
 .etapa-prox{align-items:flex-start}
 @media (max-width:640px){.trilha-passos b{display:none}.trilha-passos{grid-template-columns:repeat(4,auto);justify-content:space-between}.trilha-passos span::after{content:''}}
+.cv-prev{white-space:pre-wrap;font:14px/1.5 var(--f-body);background:#fff;border:1px dashed #E8B7CC;border-radius:14px;padding:14px 16px;margin:0}
 </style>
 </head>
 <body>
@@ -2430,7 +2431,7 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
   'use strict';
   const $app = document.getElementById('app');
   const E = ESTILOS;
-  const VERSAO_APP = '07/11 · Trilha guiada';
+  const VERSAO_APP = '07/11 · Convites novos';
   const PARAMS = new URLSearchParams(location.search);
   const MODO_CLIENTE = PARAMS.has('cliente');
   const RASCUNHO = MODO_CLIENTE ? 'euphoria-casa-v1' : 'euphoria-teste-v1';
@@ -3360,24 +3361,27 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
 
   /* ---------- convites ---------- */
   const CONVITES = [
-    { id: 'curiosidade', rotulo: 'Curiosidade', desc: 'Desperta a vontade de descobrir o estilo',
-      texto: (n, l) => `Oi${n ? ', ' + n : ''}! Tudo bem? 💗\n\nVocê sabe qual é o seu estilo de verdade?\n\nCriamos na Euphoria um teste rápido, com 12 perguntas, que mostra quais dos 7 estilos mais combinam com você e a imagem que você quer transmitir.\n\nLeva uns 5 minutos e dá para fazer agora, do celular:\n👉 ${l}\n\nNo final, a gente separa peças da loja pensadas para o seu resultado. Depois me conta o que deu? 😉` },
-    { id: 'exclusivo', rotulo: 'Atendimento exclusivo', desc: 'Para clientes fiéis e antes de uma visita',
-      texto: (n, l) => `Oi${n ? ', ' + n : ''}! Aqui é a Juliana, da Euphoria 💗\n\nQuero te atender de um jeito mais especial: antes da sua próxima visita, faça nosso teste de estilo. São só 5 minutos.\n\n👉 ${l}\n\nCom o seu resultado, eu separo peças que têm a sua cara, nos seus tamanhos e nas cores que você ama. Quando você chegar, já vai ter uma seleção pronta te esperando.\n\nSem compromisso, é um carinho nosso para você. ✨` },
-    { id: 'novidades', rotulo: 'Desejo e novidades', desc: 'Quando chega coleção ou peça nova',
-      texto: (n, l) => `${n ? n + ', c' : 'C'}hegaram novidades na Euphoria e eu pensei em você! 💗\n\nMas antes de te mostrar, quero saber uma coisa: qual é o seu estilo?\n\nFaça nosso teste em 5 minutos e descubra o seu estilo principal:\n👉 ${l}\n\nCom o resultado, eu te mando as peças da coleção nova que mais combinam com você. Tem coisa linda esperando! ✨` }
+    { id: 'curiosidade', rotulo: 'Curiosidade', desc: 'Desperta a vontade de se descobrir',
+      texto: (n, l) => `Oi${n ? ', ' + n : ''}! Tudo bem? 💗\n\nVocê já se perguntou quais roupas realmente valorizam você?\n\nPreparamos na Euphoria uma consultoria de imagem gratuita, feita direto do seu celular. Em poucos minutos, você descobre:\n✨ o seu estilo, entre os 7 estilos universais\n✨ o seu tipo de corpo e as modelagens que mais valorizam você\n✨ a sua cartela de cores\n\nNo final, você recebe o seu Informativo Euphoria completo, com looks escolhidos para você e um voucher de 10% de desconto.\n\n👉 ${l}\n\nVai ser um prazer fazer parte dessa descoberta com você. 💗` },
+    { id: 'novidades', rotulo: 'Novidades', desc: 'Quando chega coleção ou peça nova',
+      texto: (n, l) => `${n ? n + ', c' : 'C'}hegaram novidades na Euphoria e nós lembramos de você! 💗\n\nPara te ajudar a escolher as peças certas, preparamos uma consultoria de imagem gratuita, direto do celular: você descobre o seu estilo, o seu tipo de corpo e as cores que iluminam você.\n\nAo terminar, você recebe o seu Informativo Euphoria, com looks que combinam com você e um voucher de 10% para aproveitar as novidades.\n\n👉 ${l}\n\nTem peças lindas esperando por você. ✨` },
+    { id: 'exclusivo', rotulo: 'Clientes especiais', desc: 'Um presente para as clientes fiéis',
+      texto: (n, l) => `Oi${n ? ', ' + n : ''}! Aqui é a Juliana, da Euphoria. 💗\n\nVocê é uma cliente muito especial para nós, e por isso quero te presentear com a nossa consultoria de imagem.\n\nPelo celular, em poucos minutos, você descobre o seu estilo, o seu tipo de corpo e a sua cartela de cores. No final, recebe um informativo completo, com looks pensados para você e um voucher de 10% de desconto.\n\n👉 ${l}\n\nDepois, vai ser um prazer te receber aqui para te mostrar as peças que vou separar especialmente para você. ✨` },
+    { id: 'livre', rotulo: 'Texto livre', desc: 'Escreva do seu jeito; o link entra sozinho', texto: null }
   ];
   const primeiroNome = s => (s || '').trim().split(/\s+/)[0] || '';
   function textoConvite() {
-    const c = S.conv; if (c.editado) return c.texto;
+    const c = S.conv, foto = c.cores === false ? '' : '\n\n🎨 Para a etapa das cores: tire uma foto do rosto de frente, sem maquiagem, perto de uma janela (ou com luz branca), segurando uma folha branca ao lado do rosto.';
+    if (c.modelo === 'livre') return ((c.livre || '').trim() ? (c.livre || '').trim() + '\n\n' : '') + '👉 ' + linkTeste(c.nome) + foto;
+    if (c.editado) return c.texto;
     const m = CONVITES.find(x => x.id === c.modelo) || CONVITES[0];
-    return m.texto(primeiroNome(c.nome), linkTeste(c.nome)) + (c.cores === false ? '' : '\n\n🎨 Quer descobrir também as suas cores? No link você também descobre a sua cartela e o seu tipo de corpo. Para a foto: rosto de frente e sem maquiagem, perto de uma janela ou com luz branca, segurando uma folha branca ao lado do rosto.');
+    return m.texto(primeiroNome(c.nome), linkTeste(c.nome)) + foto;
   }
   const hrefConvite = () => 'https://wa.me/' + (waNum(S.conv.wa) || '') + '?text=' + encodeURIComponent(textoConvite());
   function telaConvidar() {
     const c = S.conv, cls = S.clientes.slice().sort((a, b) => (a.nome || '').localeCompare(b.nome || '', 'pt-BR'));
     return `<div class="stack-lg" style="max-width:900px">
-      <div class="stack"><span class="eyebrow">Convites</span><h1 class="h1">Convidar para o teste</h1><p class="lead">Escolha o convite que combina com o momento. A mensagem já vai com o link do teste, que a cliente faz em casa pelo celular.</p></div>
+      <div class="stack"><span class="eyebrow">Convites</span><h1 class="h1">Convidar para a consultoria</h1><p class="lead">Escolha o convite que combina com o momento. A mensagem já vai com o link: a cliente faz pelo celular o estilo, o corpo e as cores, e recebe o informativo com o voucher.</p></div>
       <div class="card stack">
         <div class="grid2">
           <div class="field"><label for="cv-cli">Cliente cadastrada <span class="muted">(opcional)</span></label><select id="cv-cli" class="inp" data-cv="clienteId"><option value="">Escolher da lista…</option>${cls.map(x => `<option value="${x.id}" ${c.clienteId === x.id ? 'selected' : ''}>${esc(x.nome)}</option>`).join('')}</select></div>
@@ -3390,8 +3394,9 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
         <div class="chips"><button class="chip" data-a="cvCores" aria-pressed="${c.cores !== false}">Incluir orientação da foto de cores</button></div>
       </section>
       <section class="sec"><h3>Mensagem</h3>
-        <textarea id="cv-texto" class="inp copybox" style="min-height:300px">${esc(textoConvite())}</textarea>
-        <div class="row small">${c.editado ? '<span class="tag">Texto editado</span><button class="linkb" data-a="cvOriginal">Voltar ao texto do modelo</button>' : '<span class="muted">Pode editar o texto antes de enviar.</span>'}</div>
+        ${c.modelo === 'livre' ? `<textarea id="cv-livre" class="inp copybox" style="min-height:200px" placeholder="Escreva aqui o convite para ${esc(primeiroNome(c.nome) || 'a cliente')}…">${esc(c.livre || '')}</textarea>
+        <div class="small muted">Como a cliente vai receber (o link entra sozinho no final):</div><pre id="cv-prev" class="cv-prev">${esc(textoConvite())}</pre>` : `<textarea id="cv-texto" class="inp copybox" style="min-height:300px">${esc(textoConvite())}</textarea>
+        <div class="row small">${c.editado ? '<span class="tag">Texto editado</span><button class="linkb" data-a="cvOriginal">Voltar ao texto do modelo</button>' : '<span class="muted">Pode editar o texto antes de enviar.</span>'}</div>`}
         <div class="row"><a id="cv-abrir" class="btn pri" href="${esc(hrefConvite())}" target="_blank" rel="noopener">Abrir no WhatsApp</a><button class="btn" data-a="cvCopiar">Copiar mensagem</button><button class="btn ghost" data-a="cvLink">Copiar só o link</button></div>
         <p class="small muted">Link do teste: ${esc(linkTeste(c.nome))}</p>
       </section></div>`;
@@ -4462,6 +4467,7 @@ root.CORPO={TIPOS:[{"id":"triangulo","nome":"Triângulo","apelido":"Também cham
     }
     if (el.dataset.flt && el.tagName === 'INPUT') { S.filtros[el.dataset.flt] = el.value; render(); }
     if (el.dataset.cv && el.tagName === 'INPUT') { S.conv[el.dataset.cv] = el.value; render(); }
+    if (el.id === 'cv-livre') { S.conv.livre = el.value; const a = document.getElementById('cv-abrir'); if (a) a.href = hrefConvite(); const pv = document.getElementById('cv-prev'); if (pv) pv.textContent = textoConvite(); }
     if (el.id === 'cv-texto') { S.conv.texto = el.value; S.conv.editado = true; const a = document.getElementById('cv-abrir'); if (a) a.href = hrefConvite(); }
     if (el.dataset.aniv) { S.anivEdit[el.dataset.aniv] = el.value; const a = el.parentNode.querySelector('a.btn.pri'); const c = S.clientes.find(x => x.id === el.dataset.aniv); if (a && c) a.href = 'https://wa.me/' + waNum(c.whatsapp) + '?text=' + encodeURIComponent(el.value); return; }
     if (el.id === 'rec-texto') { S.recebido.destino = undefined; render(); }
